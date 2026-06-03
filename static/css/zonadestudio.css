@@ -1,0 +1,134 @@
+body{
+  background: url(imagenqui.png);
+  margin: 0;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 0;
+  font-family:Arial, Helvetica, sans-serif;
+        
+      }
+
+.contenedortitulo{
+    text-align: center;
+     margin-top:60px;
+}
+
+.contenedor-botones {
+    display: flex;
+    gap: 50px; /* Espacio entre los botones*/
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 100px; /*distancia entre los botones y arriba*/
+}
+
+.boton{
+    flex: 1; /* Hace que todos los botones ocupen el mismo ancho */
+    padding: 30px;
+    background-color: #c596c2; /* Color de fondo */
+    border-radius: 8px; /* Bordes redondeados */
+    color: #f3e0e0;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Diseño adaptable (responsive) para celulares */
+@media (max-width: 768px) {
+    .contenedor-bloques {
+        flex-direction: column; /* Los botones se apilan verticalmente */
+    }
+}
+
+.contenedorelegir{
+    margin-top: 100px; /*distancia entre el texto y arriba*/
+    text-align:center;
+}
+
+.contenedor.botonze{
+    position: relative;
+    width:75%;
+    height:150px;
+}
+.boton:hover{
+    background-color: #9372c9;
+    color: rgb(197, 185, 230);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.boton:hover h2 {
+    color: #ebb6dc;
+
+}
+h1 {
+    color: #741daa;
+    font-family: 'Times New Roman', Times, serif;
+}
+h3{
+    color: #8a3998;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: normal;
+}
+/* Títulos morados de las 3 cajitas del medio */
+.boton h2{
+  color: #833297;  /* Morado oscuro */
+  font-size: 24px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+.buttonpom{ 
+  background-color: #a750da; 
+  color: white; 
+  font-family: 'Times New Roman', Times, serif;
+} 
+
+.buttonfey{ 
+  background-color: #936194; 
+  color: white; 
+  font-family: 'Times New Roman', Times, serif;
+} 
+
+.buttonar{ 
+  background-color: #d762a7; 
+  color: #ffffff; 
+  font-family: 'Times New Roman', Times, serif;
+} 
+.buttoncn{ 
+  background-color: #a78bfa; 
+  color: white; 
+  font-family: 'Times New Roman', Times, serif;
+} 
+/* Efecto cuando pasas el mouse por cada botón */
+.buttonpom:hover{ 
+  background-color: #819bce; /* Rojo más oscuro */
+  transform: scale(1.05);    /* Crece poquito */
+  transition: 0.3s;          /* Suave el cambio */
+}
+
+.buttonfey:hover{ 
+  background-color: #ba8bcc; /* Turquesa más oscuro */
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.buttonar:hover{ 
+  background-color: #e982af; /* Amarillo más fuerte */
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.buttoncn:hover{ 
+  background-color: #8b5cf6; /* Morado más oscuro */
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+.metodoo{
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
