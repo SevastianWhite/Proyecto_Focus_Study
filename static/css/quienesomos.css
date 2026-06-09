@@ -1,0 +1,38 @@
+body{
+  min-height: 100vh;
+  background: url(imagenqui.png);
+  margin: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment:fixed ;
+  padding: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.7;
+}
+
+/* Esto fuerza el color negro visible en todo el texto */
+body, h1, h2, h3, p, a, li {
+  color: #0f172a;
+}
+h1,h2,h3 {
+    color: #075985;
+}
+.contenedorqs {
+    text-align:center
+}
+.texto-justificado{
+    text-align:justify;
+}
+.focus-text {
+  text-align: center;
+  font-size: 1rem;  /* tamaño chiquito */
+  color: #075985;
+  font-weight: 600;
+  letter-spacing: 2px;  /* separa las letras */
+  text-transform: uppercase; /* FOCUS STUDY */
+  
+  /* Línea abajo */
+  border-bottom: 3px solid #22d3ee;
+  padding-bottom: 5px;
+  display: inline-block;
+}

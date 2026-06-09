@@ -1,0 +1,47 @@
+.titulopomodoro{
+    text-align: center;
+    color: rgb(97, 1, 129);
+}
+.parrafospomodoro{
+    display: flex;
+    gap: 10px; /*espacio entre los parrafos*/
+    justify-content: space-between;
+    text-align: justify;
+    margin-top: 5px; /*distancia entre los bloques y arriba*/
+}
+.primerparrafo{
+    padding: 30px;
+    background-color: #e3e8ff;
+    border-radius:8px;
+    color: purple;
+}
+.segundoparrafo{
+    padding: 30px;
+    background-color: #e3e8ff;
+    border-radius:8px;
+    color: purple;
+}
+.tercerparrafo{
+    padding: 30px;
+    background-color: #e3e8ff;
+    border-radius:8px;
+    color: purple;
+}
+/*diseño adaptible(responsive) para celulares*/
+@media (max-width: 768px){ 
+    .parrafospomodoro{
+        flex-direction: column; /*los parrafos se apilan verticalmente*/
+    }
+
+}
+body{
+    background: linear-gradient(135deg, #ffffff,#ffffff);
+    font-family: 'Times New Roman', Times, serif;
+
+}
+.botonze{
+    color: rgb(245, 230, 255);
+    backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.1);
+}
