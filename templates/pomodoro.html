@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+         <!-- Esto permite que se vean bien las tildes y la ñ -->
+
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Esto hace que la página se vea bien en celulares y tablets -->
+
+        <title>Método Pomodoro</title>
+        <!-- El nombre que aparece en la pestaña del navegador -->
+        <link rel="stylesheet" href="pomodoro.css" />
+    </head>
+
+    <body>
+        <div class="titulopomodoro">
+            <h1>Pomodoro</h1>
+        </div>
+        <div class="botonze">
+            <button><a href="zonadestudio.html">Elegir otro método</a></button>
+        </div>
+        <div class="parrafospomodoro">
+            <div class="primerparrafo">
+                <h3>¿Qué es el método Pomodoro?</h3>
+                <h5>Técnica que divide el tiempo en intérvalos de trabajo <br>
+                    enfocado (25min) y descansos cortos (5min) para <br>
+                    mejorar la concentración y productividad.</h5>
+                <h3>¿Cómo aplicarlo?</h3>
+                <h5><ol>
+                        <li>Define tu objetivo o tarea.</li>
+                        <li>Trabaja con enfoque 25 minutos.</li>
+                        <li>Descansa 5 minutos.</li>
+                    </ol>
+                </h5>
+                <h3>Tips</h3>
+                <h5>Elimina distracciones.<br>
+                Mantén tu espacio ordenado. <br>
+                Sé constante, la clave es la disciplina</h5>
+            </div>
+            <div class="segundoparrafo">
+                <h3>Tu espacio de estudio <br></h3>
+                   <form>
+                        <label><h3>Escribe acá tu meta de estudio</h3></label>
+                        <input type="text"/>
+                    </form>
+
+                    <label for="miTexto">Escribe algo:</label>
+                    <input type="text" id="miTexto" placeholder="Tu texto aquí">
+    
+                    <button onclick="mostrarTexto()">Mostrar texto</button>
+
+                    <!-- Aquí se mostrará el texto -->
+                    <p id="resultado"></p>
+                    <h2>por ahora dejar los dos, más adelante<br> se ve cual conviene más</h2>
+
+                    <h3>Notas rápidas</h3>
+                    <form>
+                        <label for="comentario">Deja tus notas aquí:</label><br>
+                        <textarea id="comentario" name="comentario" rows="8" cols="50" placeholder="Escribe aquí..."></textarea><br>
+                    </form>
+                       
+            </div>
+            <div class="tercerparrafo">
+                <h3>Cronómetro</h3>
+                <h2>espacio para el cronometro</h2>
+            </div>
+        </div>
+        
+    </body>
+    
