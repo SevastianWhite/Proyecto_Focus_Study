@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>¿Quienes Somos?</title>
-    <link rel="stylesheet" href="quienesomos.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quienesomos.css') }}" />
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 
         <ul>
             <li>
-                <a href="inicio.html">Volver al inicio</a>
+                <a href="{{ url_for('inicio') }}">Volver al inicio</a>
             </li>
         </ul>
     </div>   

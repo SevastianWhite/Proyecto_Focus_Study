@@ -9,7 +9,7 @@
 
         <title>Zona de Estudio</title>
         <!-- El nombre que aparece en la pestaña del navegador -->
-        <link rel="stylesheet" href="zonadestudio.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/zonadestudio.css') }}" />
     </head>
     <body>
         <title>Zona de Estudio</title>
@@ -18,7 +18,7 @@
             <h3>¿Qué deseas hacer hoy?</h3>
         </div>
         <div class="contenedor-botones">
-            <button class="boton"><h2><a href="pomodoro.html">Concentrarse</a></h2><br>Mejora tu enfoque y <br>reduce distracciones</button>
+            <button class="boton"><h2><a href="{{ url_for('pomodoro') }}">Concentrarse</a></h2><br>Mejora tu enfoque y <br>reduce distracciones</button>
             <button class="boton"><h2>Memorizar</h2><br>Recuerda información de<br> forma efectiva</button>
             <button class="boton"><h2>Entender</h2><br> Comprende a fondo cualquier<br>tema</button>
         </div>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="contenedor.botonze">
-            <button class="buttonpom"><a href="pomodoro.html">Pomodoro</a></button>
+            <button class="buttonpom"><a href="{{ url_for('pomodoro') }}">Pomodoro</a></button>
             <button class="buttonfey">Feynmann</button> <!--falta crear el feynmann-->
             <button class="buttonar">Active Recall</button> <!--falta crear el active recall-->
             <button class="buttoncn">Cornell Notes</button> <!--falta crear el cornell notes-->

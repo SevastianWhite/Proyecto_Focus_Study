@@ -9,14 +9,13 @@
   <!-- Esto hace que la página se vea bien en celulares y tablets -->
 
   <title>Focus Study</title>
-  <link rel="stylesheet" href="inicio.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
   <!-- El nombre que aparece en la pestaña del navegador -->
-  <link rel="stylesheet" href="estilo.css" />
 </head>
 
 <body>
    <video autoplay muted loop id="bg-video">
-    <source src="video2i.mp4" type="video/mp4">
+    <source src="{{ url_for('static', filename='css/video2i.mp4') }}" type="video/mp4">
   </video>
    <div class="decoracion"></div>
     <div class="titulo"></div>
@@ -31,8 +30,8 @@
     </div>
   </nav> 
   <div class="contenedor-button">
-    <button class="buttonqs"><a href="quienesomos.html">¿Quienes somos?</a></button>
-    <button class="buttonlogin"><a href="login2 (1).html"> Login</a></button>
+    <button class="buttonqs"><a href="{{ url_for('quienesomos') }}">¿Quienes somos?</a></button>
+    <button class="buttonlogin"><a href="{{ url_for('login') }}"> Login</a></button>
   </div>
 
   <!-- ===== SECCIÓN PRINCIPAL (el centro de la página) ===== -->

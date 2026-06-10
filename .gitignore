@@ -1,0 +1,14 @@
+# Python — archivos generados automáticamente, no deben subirse a Git
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales — cada integrante crea el suyo localmente
+.env
+venv/
+.venv/
+env/
+
+# VS Code — configuración local de cada computador
+.vscode/
