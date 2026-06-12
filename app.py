@@ -58,6 +58,23 @@ def dashboard():
     return render_template("dashboard.html")
 
 
+# ── Secciones del Dashboard ───────────────────────────────────
+# Accesibles desde la navegación lateral del Dashboard.
+# Contenido a implementar en fases futuras por el equipo.
+
+@app.route("/complementos")
+def complementos():
+    return render_template("complementos.html")
+
+@app.route("/configuracion")
+def configuracion():
+    return render_template("configuracion.html")
+
+@app.route("/progreso")
+def progreso():
+    return render_template("progreso.html")
+
+
 # ── Zona de Estudio ───────────────────────────────────────────
 # Selector de métodos de estudio.
 
