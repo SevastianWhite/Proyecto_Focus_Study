@@ -44,23 +44,18 @@ def registro():
     return render_template("registro.html")
 
 
-# ── Dashboard: centro de navegación principal post-login ──────
-# Es la página central después de iniciar sesión.
-# Desde aquí el usuario accederá a:
-#   - Zona de Estudio
-#   - Complementos
-#   - Configuración
-#   - Progreso
-# El contenido real del dashboard será implementado por Helmuth.
+# ── Dashboard → pantalla Inicio (área privada) ────────────────
+# Primera pantalla que ve el usuario al iniciar sesión.
+# Desde aquí accede a: Zona de Estudio, Complementos, Configuración.
+# Menú hamburguesa disponible en todas las páginas del área privada.
 
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
 
 
-# ── Secciones del Dashboard ───────────────────────────────────
-# Accesibles desde la navegación lateral del Dashboard.
-# Contenido a implementar en fases futuras por el equipo.
+# ── Secciones del área privada ────────────────────────────────
+# Accesibles desde el menú hamburguesa (nav.css + nav.js).
 
 @app.route("/complementos")
 def complementos():
@@ -69,10 +64,6 @@ def complementos():
 @app.route("/configuracion")
 def configuracion():
     return render_template("configuracion.html")
-
-@app.route("/progreso")
-def progreso():
-    return render_template("progreso.html")
 
 
 # ── Zona de Estudio ───────────────────────────────────────────

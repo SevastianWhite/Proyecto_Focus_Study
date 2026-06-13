@@ -9,19 +9,36 @@
   <!-- Esto hace que la página se vea bien en celulares y tablets -->
 
   <title>Focus Study</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/descanso.css') }}">
+  <style>body { padding-top: var(--fs-nav-h, 56px); }</style>
   <!-- El nombre que aparece en la pestaña del navegador -->
 </head>
 
 <body>
-  <nav class="navbar">
-  <!-- <nav> es una etiqueta especial para menús de navegación -->
-    <!-- Logo o nombre de la web en la esquina izquierda -->
-    <div class="nav-logo">
-      <span class="logo-text">FS</span>
-      <!-- Solo las iniciales del proyecto -->
-    </div>
+  <!-- Menú de navegación reutilizable (nav.css + nav.js) -->
+  <!-- Ítem activo: Zona de Estudio (Descanso es parte del flujo Pomodoro) -->
+  <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
+      <button class="fs-nav-toggle"
+              id="fsNavToggle"
+              aria-controls="fsNavMenu"
+              aria-expanded="false"
+              aria-label="Abrir menú de navegación">
+          <span></span>
+          <span></span>
+          <span></span>
+      </button>
+      <span class="fs-nav-brand">Focus Study</span>
   </nav>
+
+  <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
+      <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
+      <a href="{{ url_for('zonadestudio') }}"  class="fs-nav-link activo" role="menuitem">Zona de Estudio</a>
+      <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
+      <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
+      <div class="fs-nav-divider" role="separator"></div>
+      <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+  </div>
   <div class="textocentral">
     <img src="https://previews.123rf.com/images/avaicon/avaicon2201/avaicon220100857/180707839-coffee-cup-icon-cup-a-coffee-sign-and-symbol.jpg" alt="café" height="50" width="50">
     <h1>¡Descanso!</h1>
@@ -45,6 +62,7 @@
     <button class="botonomitirdescanso">Omitir descanso</button>
     <h4>El siguiente ciclo comenzará pronto.</h4>
   </div>
+  <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 </body>
 
 </html>

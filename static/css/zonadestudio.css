@@ -1,134 +1,188 @@
-body{
-  background: url(imagenqui.png);
+/*
+ * zonadestudio.css — Zona de Estudio (selector de métodos)
+ * Focus Study — Área privada
+ *
+ * Variables de color definidas en nav.css (siempre se carga antes).
+ * Esta hoja reemplaza el diseño anterior basado en imagen de fondo.
+ */
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  min-height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   padding: 0;
-  font-family:Arial, Helvetica, sans-serif;
-        
-      }
-
-.contenedortitulo{
-    text-align: center;
-     margin-top:60px;
 }
 
-.contenedor-botones {
-    display: flex;
-    gap: 50px; /* Espacio entre los botones*/
-    justify-content: space-between;
-    text-align: center;
-    margin-top: 100px; /*distancia entre los botones y arriba*/
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--fs-blanco);
+  color: var(--fs-texto);
+  padding-top: var(--fs-nav-h);
 }
 
-.boton{
-    flex: 1; /* Hace que todos los botones ocupen el mismo ancho */
-    padding: 30px;
-    background-color: #c596c2; /* Color de fondo */
-    border-radius: 8px; /* Bordes redondeados */
-    color: #f3e0e0;
-    transition: all 0.3s ease;
-    font-family: 'Times New Roman', Times, serif;
+/* ── Layout principal ── */
+.ze-main {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 36px 24px 72px;
 }
 
-/* Diseño adaptable (responsive) para celulares */
-@media (max-width: 768px) {
-    .contenedor-bloques {
-        flex-direction: column; /* Los botones se apilan verticalmente */
-    }
+/* ── Cabecera de sección ── */
+.ze-breadcrumb {
+  font-size: 0.7rem;
+  color: #b5afc8;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
 }
 
-.contenedorelegir{
-    margin-top: 100px; /*distancia entre el texto y arriba*/
-    text-align:center;
+.ze-main > h1 {
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  font-weight: 700;
+  color: var(--fs-texto);
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
-.contenedor.botonze{
-    position: relative;
-    width:75%;
-    height:150px;
-}
-.boton:hover{
-    background-color: #9372c9;
-    color: rgb(197, 185, 230);
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-.boton:hover h2 {
-    color: #ebb6dc;
-
-}
-h1 {
-    color: #741daa;
-    font-family: 'Times New Roman', Times, serif;
-}
-h3{
-    color: #8a3998;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    font-weight: normal;
-}
-/* Títulos morados de las 3 cajitas del medio */
-.boton h2{
-  color: #833297;  /* Morado oscuro */
-  font-size: 24px;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-}
-.buttonpom{ 
-  background-color: #a750da; 
-  color: white; 
-  font-family: 'Times New Roman', Times, serif;
-} 
-
-.buttonfey{ 
-  background-color: #936194; 
-  color: white; 
-  font-family: 'Times New Roman', Times, serif;
-} 
-
-.buttonar{ 
-  background-color: #d762a7; 
-  color: #ffffff; 
-  font-family: 'Times New Roman', Times, serif;
-} 
-.buttoncn{ 
-  background-color: #a78bfa; 
-  color: white; 
-  font-family: 'Times New Roman', Times, serif;
-} 
-/* Efecto cuando pasas el mouse por cada botón */
-.buttonpom:hover{ 
-  background-color: #819bce; /* Rojo más oscuro */
-  transform: scale(1.05);    /* Crece poquito */
-  transition: 0.3s;          /* Suave el cambio */
+.ze-subtitulo {
+  font-size: 0.9rem;
+  color: var(--fs-suave);
+  margin-bottom: 36px;
 }
 
-.buttonfey:hover{ 
-  background-color: #ba8bcc; /* Turquesa más oscuro */
-  transform: scale(1.05);
-  transition: 0.3s;
+/* ── Grid 2×2 ── */
+.ze-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
-.buttonar:hover{ 
-  background-color: #e982af; /* Amarillo más fuerte */
-  transform: scale(1.05);
-  transition: 0.3s;
+/* ── Tarjeta de método ── */
+.ze-card {
+  background: var(--fs-gris);
+  border-radius: 16px;
+  padding: 24px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1.5px solid transparent;
+  text-decoration: none;
+  color: var(--fs-texto);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.18s ease, border-color 0.18s ease,
+              transform 0.16s ease, box-shadow 0.18s ease;
 }
 
-.buttoncn:hover{ 
-  background-color: #8b5cf6; /* Morado más oscuro */
-  transform: scale(1.05);
-  transition: 0.3s;
-}
-.metodoo{
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+/* Franja de acento superior — diferencia visualmente cada método */
+.ze-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 16px 16px 0 0;
 }
 
+.ze-card--pomodoro::before { background: #BDA7F5; }
+.ze-card--feynman::before  { background: #CBB8F5; }
+.ze-card--cornell::before  { background: #CFC3F2; }
+.ze-card--recall::before   { background: #A690E0; }
+
+.ze-card:hover {
+  background: var(--fs-lavanda);
+  border-color: var(--fs-borde);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(189, 167, 245, 0.16);
+}
+
+/* ── Icono SVG representativo del método ── */
+.ze-card-icon {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── Nombre del método ── */
+.ze-card-nombre {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--fs-texto);
+  line-height: 1.2;
+}
+
+/* ── Descripción breve ── */
+.ze-card-desc {
+  font-size: 0.8rem;
+  color: var(--fs-suave);
+  line-height: 1.55;
+  flex-grow: 1; /* empuja beneficio + CTA hacia el fondo de la tarjeta */
+}
+
+/* ── Etiqueta de beneficio principal ── */
+.ze-card-beneficio {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(189, 167, 245, 0.14);
+  color: #6b5fa0;
+  border-radius: 5px;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.ze-card--feynman .ze-card-beneficio { background: rgba(203, 184, 245, 0.18); }
+.ze-card--cornell .ze-card-beneficio { background: rgba(220, 207, 251, 0.25); }
+.ze-card--recall  .ze-card-beneficio { background: rgba(166, 144, 224, 0.14); }
+
+/* ── Texto CTA ── */
+.ze-card-cta {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b5fa0;
+  text-align: right;
+  transition: letter-spacing 0.14s ease;
+}
+
+.ze-card:hover .ze-card-cta {
+  letter-spacing: 0.02em;
+}
+
+/* ══════════════════════════════════════
+   ANIMACIONES DE ENTRADA — DESACOPLADAS
+   Para desactivar: sobreescribir con
+     .ze-card { animation: none !important; }
+   O activar prefers-reduced-motion en el S.O.
+   ══════════════════════════════════════ */
+@media (prefers-reduced-motion: no-preference) {
+  .ze-main > h1 { animation: zeFadeUp 0.5s ease both; }
+  .ze-subtitulo { animation: zeFadeUp 0.5s ease both; animation-delay: 0.08s; }
+
+  .ze-card { animation: zeFadeUp 0.48s ease both; }
+  .ze-card:nth-child(1) { animation-delay: 0.14s; }
+  .ze-card:nth-child(2) { animation-delay: 0.22s; }
+  .ze-card:nth-child(3) { animation-delay: 0.30s; }
+  .ze-card:nth-child(4) { animation-delay: 0.38s; }
+}
+
+@keyframes zeFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════ */
+@media (max-width: 540px) {
+  .ze-main {
+    padding: 24px 16px 60px;
+  }
+
+  .ze-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ze-main > h1 {
+    font-size: 1.5rem;
+  }
+
+  .ze-subtitulo {
+    margin-bottom: 24px;
+  }
+}

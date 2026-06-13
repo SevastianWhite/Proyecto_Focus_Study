@@ -2,67 +2,229 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Esto permite que se vean bien las tildes y la ñ -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Esto hace que la página se vea bien en celulares y tablets -->
-
-    <title>Dashboard — Focus Study</title>
-    <!-- El nombre que aparece en la pestaña del navegador -->
-
-    <!-- dashboard.css será creado por Monserrat en Fase 3 -->
+    <title>Inicio — Focus Study</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
 
-    <!-- ── Barra de navegación superior ── -->
-    <nav class="navbar">
-        <div class="nav-logo">
-            <span class="logo-text">FS</span>
-        </div>
-        <div class="nav-acciones">
-            <a href="{{ url_for('quienesomos') }}">¿Quiénes Somos?</a>
-            <a href="{{ url_for('cerrar_sesion') }}">Cerrar Sesión</a>
-        </div>
+    <!-- ════════════════════════════════════════
+         MENÚ DE NAVEGACIÓN
+         Reutilizable: nav.css + nav.js
+         ════════════════════════════════════════ -->
+    <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
+        <button class="fs-nav-toggle"
+                id="fsNavToggle"
+                aria-controls="fsNavMenu"
+                aria-expanded="false"
+                aria-label="Abrir menú de navegación">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <span class="fs-nav-brand">Focus Study</span>
     </nav>
 
-    <!-- ── Contenido principal ── -->
-    <main class="dashboard-contenido">
+    <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
+        <a href="{{ url_for('dashboard') }}"     class="fs-nav-link activo" role="menuitem">Inicio</a>
+        <a href="{{ url_for('zonadestudio') }}"  class="fs-nav-link"        role="menuitem">Zona de Estudio</a>
+        <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
+        <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
+        <div class="fs-nav-divider" role="separator"></div>
+        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+    </div>
 
-        <header class="dashboard-bienvenida">
-            <h1>Bienvenido a Focus Study</h1>
-            <p>Selecciona una sección para comenzar tu sesión de estudio.</p>
-        </header>
 
-        <!-- ── Accesos directos a las secciones ── -->
-        <div class="dashboard-accesos">
+    <!-- ════════════════════════════════════════
+         PANTALLA INICIO — ÁREA PRIVADA
+         Primera pantalla después del login.
+         ════════════════════════════════════════ -->
+    <main class="inicio-main">
 
-            <div class="dashboard-tarjeta">
-                <h2>Zona de Estudio</h2>
-                <p>Aplica técnicas de estudio: Pomodoro, Feynman, Cornell y Active Recall.</p>
-                <a href="{{ url_for('zonadestudio') }}">Entrar</a>
+        <!-- ── 1. HERO ── -->
+        <section class="inicio-hero" aria-label="Bienvenida">
+
+            <!-- Partículas decorativas
+                 Animación desacoplada — desactivar con:
+                   .inicio-pt { animation: none !important; }
+                 O activando prefers-reduced-motion: reduce en el S.O. -->
+            <span class="inicio-pt pt-1" aria-hidden="true"></span>
+            <span class="inicio-pt pt-2" aria-hidden="true"></span>
+            <span class="inicio-pt pt-3" aria-hidden="true"></span>
+            <span class="inicio-pt pt-4" aria-hidden="true"></span>
+
+            <div class="inicio-hero-inner">
+
+                <div class="inicio-hero-texto">
+                    <!-- SALUDO — valor temporal: "Crack"
+                         PENDIENTE (Fase login funcional — Helmuth):
+                         Leer nombre desde data/configuracion.json → campo "nombre".
+                         Fallback: mostrar "Crack" si el campo no existe. -->
+                    <p class="inicio-saludo">Hola, Crack</p>
+
+                    <h1 class="inicio-titulo">Bienvenido a tu<br>zona de estudio</h1>
+
+                    <!-- Frase motivacional aleatoria
+                         Cargada por el script al final del body.
+                         Lista local — sin backend ni JSON. -->
+                    <p class="inicio-frase-hero" id="fraseHero">
+                        "Pequeños avances diarios generan grandes resultados."
+                    </p>
+                </div>
+
+                <!-- Ilustración: libros + planta de escritorio -->
+                <div class="inicio-hero-visual" aria-hidden="true">
+                    <div class="inicio-hero-glow"></div>
+
+                    <svg class="inicio-ilustracion"
+                         width="148" height="130" viewBox="0 0 148 130"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <!-- Sombra bajo los libros -->
+                        <ellipse cx="46" cy="122" rx="40" ry="4" fill="rgba(189,167,245,0.2)"/>
+
+                        <!-- Libro 1 — morado -->
+                        <rect x="4"  y="22" width="17" height="97" rx="2.5" fill="#BDA7F5"/>
+                        <rect x="4"  y="22" width="4"  height="97" rx="1.5" fill="#A690E0"/>
+                        <line x1="10" y1="34" x2="10" y2="110" stroke="#9880CE" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+                        <!-- Libro 2 — lavanda media -->
+                        <rect x="23" y="40" width="20" height="79" rx="2.5" fill="#CBB8F5"/>
+                        <rect x="23" y="40" width="4"  height="79" rx="1.5" fill="#B8A3E8"/>
+
+                        <!-- Libro 3 — lavanda clara, más alto -->
+                        <rect x="45" y="26" width="22" height="93" rx="2.5" fill="#DCCFFB"/>
+                        <rect x="45" y="26" width="4"  height="93" rx="1.5" fill="#C8BAF0"/>
+                        <line x1="52" y1="38" x2="52" y2="110" stroke="#B8AAEA" stroke-width="0.5" stroke-dasharray="3 3"/>
+
+                        <!-- Libro 4 — lila pálido -->
+                        <rect x="69" y="34" width="15" height="85" rx="2.5" fill="#E2D8F8"/>
+                        <rect x="69" y="34" width="3.5" height="85" rx="1.5" fill="#CFC3F2"/>
+
+                        <!-- Repisa -->
+                        <rect x="0"  y="117" width="88" height="5" rx="2.5" fill="#CFC3F2"/>
+                        <rect x="0"  y="121" width="88" height="2" rx="1"   fill="#BDB3E0" opacity="0.5"/>
+
+                        <!-- Maceta -->
+                        <path d="M104,119 L100,106 L124,106 L120,119 Z" fill="#C5B3F2"/>
+                        <rect x="98"  y="102" width="28" height="6" rx="3" fill="#BDA7F5"/>
+                        <ellipse cx="112" cy="106" rx="12" ry="3" fill="#9880C8"/>
+
+                        <!-- Tallo -->
+                        <path d="M112,103 Q110,90 112,72" stroke="#9EB892" stroke-width="2.5"
+                              fill="none" stroke-linecap="round"/>
+
+                        <!-- Hoja izquierda -->
+                        <path d="M111,90 Q93,79 97,61 Q109,67 111,90" fill="#B0C8A0"/>
+                        <path d="M111,90 Q101,78 98,63" stroke="#98B088" stroke-width="0.7"
+                              fill="none" opacity="0.6"/>
+
+                        <!-- Hoja derecha -->
+                        <path d="M113,80 Q133,68 130,49 Q119,58 113,80" fill="#BCCEA8"/>
+                        <path d="M113,80 Q124,67 129,51" stroke="#A8BC98" stroke-width="0.7"
+                              fill="none" opacity="0.6"/>
+
+                        <!-- Hoja superior -->
+                        <path d="M112,72 Q104,55 108,39 Q119,50 112,72" fill="#A8C090"/>
+                        <path d="M112,72 Q107,56 109,41" stroke="#98B080" stroke-width="0.7"
+                              fill="none" opacity="0.6"/>
+
+                        <!-- Puntos decorativos -->
+                        <circle cx="140" cy="27" r="4"   fill="#DCCFFB" opacity="0.55"/>
+                        <circle cx="146" cy="50" r="2.5" fill="#BDA7F5" opacity="0.4"/>
+                        <circle cx="3"   cy="62" r="2.8" fill="#BDA7F5" opacity="0.3"/>
+                        <circle cx="138" cy="88" r="2"   fill="#BDA7F5" opacity="0.3"/>
+                    </svg>
+                </div>
             </div>
+        </section>
 
-            <div class="dashboard-tarjeta">
-                <h2>Complementos</h2>
-                <p>Herramientas adicionales para potenciar tu estudio.</p>
-                <a href="{{ url_for('complementos') }}">Entrar</a>
+
+        <!-- ── 2. ACCESOS RÁPIDOS ── -->
+        <section class="inicio-seccion" aria-label="Accesos rápidos">
+            <p class="inicio-sec-label">Accesos rápidos</p>
+            <div class="inicio-accesos">
+
+                <a href="{{ url_for('zonadestudio') }}" class="inicio-card">
+                    <span class="inicio-card-nombre">Zona de Estudio</span>
+                    <span class="inicio-card-sub">Pomodoro, Feynman, Cornell, Active Recall</span>
+                </a>
+
+                <a href="{{ url_for('complementos') }}" class="inicio-card">
+                    <span class="inicio-card-nombre">Complementos</span>
+                    <span class="inicio-card-sub">Herramientas de apoyo externas</span>
+                </a>
+
+                <a href="{{ url_for('configuracion') }}" class="inicio-card">
+                    <span class="inicio-card-nombre">Configuración</span>
+                    <span class="inicio-card-sub">Personaliza tu experiencia</span>
+                </a>
+
             </div>
+        </section>
 
-            <div class="dashboard-tarjeta">
-                <h2>Configuración</h2>
-                <p>Ajusta tu perfil y preferencias de la plataforma.</p>
-                <a href="{{ url_for('configuracion') }}">Entrar</a>
+
+        <!-- ── 3. MÉTODO RECOMENDADO ── -->
+        <section class="inicio-seccion" aria-label="Método recomendado">
+            <p class="inicio-sec-label">Método recomendado</p>
+            <div class="inicio-metodo">
+                <div class="inicio-metodo-info">
+                    <p class="inicio-metodo-tag">Para concentración profunda</p>
+                    <p class="inicio-metodo-nombre">Prueba Pomodoro</p>
+                </div>
+                <a href="{{ url_for('pomodoro') }}" class="inicio-metodo-cta">Comenzar →</a>
             </div>
+        </section>
 
-            <div class="dashboard-tarjeta">
-                <h2>Progreso</h2>
-                <p>Consulta tu historial y estadísticas de sesiones.</p>
-                <a href="{{ url_for('progreso') }}">Entrar</a>
-            </div>
 
-        </div>
+        <!-- ── 4. FRASE INSPIRADORA ── -->
+        <!-- Frase diferente a la del hero — cargada por el mismo script JS -->
+        <footer class="inicio-frase-bloque" aria-label="Frase del día">
+            <p class="inicio-frase-texto" id="frasePie">
+                "La disciplina supera a la motivación."
+            </p>
+        </footer>
 
     </main>
+
+
+    <!-- ════════════════════════════════════════
+         SCRIPTS
+         ════════════════════════════════════════ -->
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+
+    <script>
+    /* Frases motivacionales — lista local sin backend.
+       Se elige una aleatoria para el hero y otra distinta para el pie.
+       Conectar a un endpoint Flask si se desea persistencia en fases futuras. */
+    (function () {
+        var frases = [
+            "Pequeños avances diarios generan grandes resultados.",
+            "La disciplina supera a la motivación.",
+            "La disciplina vence al talento.",
+            "Cada sesión de estudio cuenta.",
+            "Aprender hoy es invertir en tu futuro.",
+            "La disciplina vence al talento cuando el talento no trabaja."
+        ];
+
+        function rand(excluir) {
+            var i;
+            do { i = Math.floor(Math.random() * frases.length); }
+            while (i === excluir && frases.length > 1);
+            return i;
+        }
+
+        var iHero = rand(-1);
+        var iPie  = rand(iHero);
+
+        var elHero = document.getElementById('fraseHero');
+        var elPie  = document.getElementById('frasePie');
+
+        if (elHero) { elHero.textContent = '“' + frases[iHero] + '”'; }
+        if (elPie)  { elPie.textContent  = '“' + frases[iPie]  + '”'; }
+    }());
+    </script>
 
 </body>
 </html>
