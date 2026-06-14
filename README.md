@@ -7,7 +7,7 @@ Plataforma web de técnicas de estudio desarrollada por estudiantes de Ingenier�
 | Nombre | Rol |
 |---|---|
 | Sevastian | Coordinación, integración y documentación |
-| Helmuth | Flask, backend y base de datos |
+| Helmuth | Flask, backend |
 | Karla | HTML y estructura visual |
 | Monserrat | CSS y diseño visual |
 
