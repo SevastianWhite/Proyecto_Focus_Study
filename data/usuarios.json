@@ -1,3 +1,9 @@
 {
-  "usuarios": []
+  "usuarios": [
+    {
+      "nombre": "Sevastian",
+      "correo": "sevastian@gmail.com",
+      "contrasena": "12345678"
+    }
+  ]
 }

@@ -46,4 +46,26 @@
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') { closeMenu(); }
     });
+
+    /* ── Sub-menú Zona de Estudio ── */
+    var zonaToggle = document.getElementById('fsNavZonaToggle');
+    var zonaMenu   = document.getElementById('fsNavZonaMenu');
+
+    if (zonaToggle && zonaMenu) {
+        zonaToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var open = zonaMenu.classList.toggle('open');
+            zonaToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
+
+    /* Al cerrar el menú principal también cerrar el sub-menú */
+    var _origClose = closeMenu;
+    closeMenu = function () {
+        _origClose();
+        if (zonaMenu) {
+            zonaMenu.classList.remove('open');
+            if (zonaToggle) zonaToggle.setAttribute('aria-expanded', 'false');
+        }
+    };
 }());

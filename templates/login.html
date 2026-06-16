@@ -235,7 +235,7 @@
 
     <!-- El input oculto controla el flip mediante selectores CSS (~) -->
     <!-- Si Flask devuelve mostrar_registro=True (error en registro), empieza girado -->
-    <input type="checkbox" id="flip-toggle" class="flip-toggle"
+    <input type="checkbox" id="flip-toggle" class="flip-toggle" autocomplete="off"
            {% if mostrar_registro %}checked{% endif %}>
 
     <p class="fs-brand">Focus Study</p>

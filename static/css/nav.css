@@ -126,3 +126,76 @@
 .fs-nav-link--salir:hover {
   background: #fdf0f0;
 }
+
+/* ── Sub-menú Zona de Estudio ── */
+.fs-nav-group {
+  position: relative;
+}
+
+.fs-nav-link--group {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  font-size: 0.92rem;
+  color: var(--fs-texto);
+  text-decoration: none;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.fs-nav-link--group:hover {
+  background: var(--fs-gris);
+}
+
+.fs-nav-link--group.activo {
+  background: var(--fs-lavanda);
+  border-left-color: var(--fs-morado);
+  font-weight: 600;
+}
+
+.fs-nav-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+  color: var(--fs-suave);
+}
+
+.fs-nav-link--group[aria-expanded="true"] .fs-nav-arrow {
+  transform: rotate(90deg);
+}
+
+.fs-nav-submenu {
+  display: none;
+  background: var(--fs-gris);
+  border-left: 3px solid var(--fs-borde);
+  margin-left: 0;
+}
+
+.fs-nav-submenu.open {
+  display: block;
+}
+
+.fs-nav-sublink {
+  display: block;
+  padding: 9px 20px 9px 28px;
+  font-size: 0.84rem;
+  color: var(--fs-suave);
+  text-decoration: none;
+  transition: color 0.12s, background 0.12s;
+}
+
+.fs-nav-sublink:hover {
+  color: var(--fs-texto);
+  background: var(--fs-borde);
+}
+
+.fs-nav-sublink.activo {
+  color: var(--fs-texto);
+  font-weight: 600;
+}

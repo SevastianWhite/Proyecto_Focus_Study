@@ -102,7 +102,18 @@
 
     <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
         <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
-        <a href="{{ url_for('zonadestudio') }}"  class="fs-nav-link activo" role="menuitem">Zona de Estudio</a>
+        <div class="fs-nav-group">
+            <button class="fs-nav-link--group activo" id="fsNavZonaToggle" aria-expanded="true" role="menuitem">
+                Zona de Estudio <span class="fs-nav-arrow">›</span>
+            </button>
+            <div class="fs-nav-submenu open" id="fsNavZonaMenu">
+                <a href="{{ url_for('zonadestudio') }}"    class="fs-nav-sublink">Vista general</a>
+                <a href="{{ url_for('pomodoro') }}"        class="fs-nav-sublink">Pomodoro</a>
+                <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
+                <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink activo">Cornell</a>
+                <a href="{{ url_for('tecnica_recall') }}"  class="fs-nav-sublink">Active Recall</a>
+            </div>
+        </div>
         <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
         <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
         <div class="fs-nav-divider" role="separator"></div>
