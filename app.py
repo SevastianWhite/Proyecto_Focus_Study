@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request, jsonify
 
 app = Flask(__name__)
 
@@ -14,6 +14,16 @@ app = Flask(__name__)
 #   3. Usar url_for('nombre_de_la_funcion') en los enlaces HTML
 # =============================================================
 
+DEFAULT_CONFIG = {
+    "focus_minutes": 25,
+    "break_minutes": 5,
+    "long_break_minutes": 20,
+    "cycles": 4
+}
+STUDY_NOTES = {
+    "goal": "",
+    "notes": ""
+}
 
 # ── Página de inicio ──────────────────────────────────────────
 # Primera página que ve el usuario al entrar al sitio.
@@ -78,8 +88,50 @@ def zonadestudio():
 
 @app.route("/pomodoro")
 def pomodoro():
-    return render_template("pomodoro.html")
-
+    config = DEFAULT_CONFIG.copy()
+ 
+    focus = request.args.get("focus", type=int)
+    break_m = request.args.get("break", type=int)
+    cycles = request.args.get("cycles", type=int)
+ 
+    if focus:
+        config["focus_minutes"] = max(1, min(60, focus))
+    if break_m:
+        config["break_minutes"] = max(1, min(30, break_m))
+    if cycles:
+        config["cycles"] = max(1, min(10, cycles))
+ 
+    return render_template("pomodoro.html", config=config, notes=STUDY_NOTES)
+ 
+ 
+@app.route("/api/config", methods=["POST"])
+def save_config():
+    data = request.get_json()
+ 
+    focus = int(data.get("focus_minutes", DEFAULT_CONFIG["focus_minutes"]))
+    break_m = int(data.get("break_minutes", DEFAULT_CONFIG["break_minutes"]))
+    cycles = int(data.get("cycles", DEFAULT_CONFIG["cycles"]))
+ 
+    focus = max(1, min(60, focus))
+    break_m = max(1, min(30, break_m))
+    cycles = max(1, min(10, cycles))
+ 
+    config = {
+        "focus_minutes": focus,
+        "break_minutes": break_m,
+        "cycles": cycles
+    }
+ 
+    return jsonify({"status": "ok", "config": config})
+ 
+ 
+@app.route("/api/notes", methods=["POST"])
+def save_notes():
+    """Guarda la meta de estudio y las notas rápidas."""
+    data = request.get_json()
+    STUDY_NOTES["goal"] = data.get("goal", "")[:300]
+    STUDY_NOTES["notes"] = data.get("notes", "")[:2000]
+    return jsonify({"status": "ok"})
 @app.route("/descanso")
 def descanso():
     return render_template("descanso.html")

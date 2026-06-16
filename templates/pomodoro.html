@@ -1,98 +1,214 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-         <!-- Esto permite que se vean bien las tildes y la ñ -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro — Focus Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pomodoro.css') }}">
+</head>
+<body>
 
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Esto hace que la página se vea bien en celulares y tablets -->
-
-        <title>Método Pomodoro</title>
-        <!-- El nombre que aparece en la pestaña del navegador -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/pomodoro.css') }}" />
-        <style>body { padding-top: var(--fs-nav-h, 56px); }</style>
-    </head>
-
-    <body>
-
-    <!-- Menú de navegación reutilizable (nav.css + nav.js) -->
-    <!-- Ítem activo: Zona de Estudio (Pomodoro vive dentro de ella) -->
-    <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
-        <button class="fs-nav-toggle"
-                id="fsNavToggle"
-                aria-controls="fsNavMenu"
-                aria-expanded="false"
-                aria-label="Abrir menú de navegación">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <span class="fs-nav-brand">Focus Study</span>
-    </nav>
-
-    <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
-        <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
-        <a href="{{ url_for('zonadestudio') }}"  class="fs-nav-link activo" role="menuitem">Zona de Estudio</a>
-        <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
-        <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
-        <div class="fs-nav-divider" role="separator"></div>
-        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+  <!-- ── Top bar ─────────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <!--
+        Botón de volver. Apunta al panel de métodos de estudio de Focus Study.
+        Cambia el href para que coincida con la ruta real de esa página.
+      -->
+      <a href="/metodos" class="btn-back" aria-label="Volver a métodos de estudio">&#8592;</a>
+      <h1 class="page-title">Pomodoro</h1>
     </div>
 
-        <div class="titulopomodoro">
-            <h1>Pomodoro</h1>
-        </div>
-        <div class="botonze">
-            <button><a href="{{ url_for('zonadestudio') }}">Elegir otro método</a></button>
-        </div>
-        <div class="parrafospomodoro">
-            <div class="primerparrafo">
-                <h3>¿Qué es el método Pomodoro?</h3>
-                <h5>Técnica que divide el tiempo en intérvalos de trabajo <br>
-                    enfocado (25min) y descansos cortos (5min) para <br>
-                    mejorar la concentración y productividad.</h5>
-                <h3>¿Cómo aplicarlo?</h3>
-                <h5><ol>
-                        <li>Define tu objetivo o tarea.</li>
-                        <li>Trabaja con enfoque 25 minutos.</li>
-                        <li>Descansa 5 minutos.</li>
-                    </ol>
-                </h5>
-                <h3>Tips</h3>
-                <h5>Elimina distracciones.<br>
-                Mantén tu espacio ordenado. <br>
-                Sé constante, la clave es la disciplina</h5>
-            </div>
-            <div class="segundoparrafo">
-                <h3>Tu espacio de estudio <br></h3>
-                   <form>
-                        <label><h3>Escribe acá tu meta de estudio</h3></label>
-                        <input type="text"/>
-                    </form>
+    <!--
+      Botón "Cambiar método": llévalo a la página donde el usuario elige
+      entre Pomodoro, Feynman, repaso espaciado, etc.
+    -->
+    <a href="/metodos" class="btn-change-method">
+      <span class="icon-swap" aria-hidden="true">&#8646;</span>
+      Cambiar método
+    </a>
+  </header>
 
-                    <label for="miTexto">Escribe algo:</label>
-                    <input type="text" id="miTexto" placeholder="Tu texto aquí">
-    
-                    <button onclick="mostrarTexto()">Mostrar texto</button>
+  <!-- ── Main layout: 3 columns ──────────────────────────────────────── -->
+  <main class="layout">
 
-                    <!-- Aquí se mostrará el texto -->
-                    <p id="resultado"></p>
-                    <h2>por ahora dejar los dos, más adelante<br> se ve cual conviene más</h2>
+    <!-- Columna izquierda: explicación del método -->
+    <section class="col col-info" aria-label="Información del método Pomodoro">
 
-                    <h3>Notas rápidas</h3>
-                    <form>
-                        <label for="comentario">Deja tus notas aquí:</label><br>
-                        <textarea id="comentario" name="comentario" rows="8" cols="50" placeholder="Escribe aquí..."></textarea><br>
-                    </form>
-                       
-            </div>
-            <div class="tercerparrafo">
-                <h3>Cronómetro</h3>
-                <h2>espacio para el cronometro</h2>
-            </div>
+      <div class="info-block">
+        <h2 class="info-heading">
+          <span class="icon-badge icon-badge--indigo">?</span>
+          ¿Qué es el método Pomodoro?
+        </h2>
+        <p class="info-text">
+          Técnica que divide el tiempo en intervalos de trabajo enfocado
+          ({{ config.focus_minutes }} min) y descansos cortos
+          ({{ config.break_minutes }} min) para mejorar la concentración
+          y productividad.
+        </p>
+      </div>
+
+      <div class="info-block">
+        <h2 class="info-heading">
+          <span class="icon-badge icon-badge--violet">&#128203;</span>
+          ¿Cómo aplicarlo?
+        </h2>
+        <ol class="info-steps">
+          <li><span class="step-num">1</span> Define tu objetivo o tarea.</li>
+          <li><span class="step-num">2</span> Trabaja con enfoque durante {{ config.focus_minutes }} minutos.</li>
+          <li><span class="step-num">3</span> Descansa {{ config.break_minutes }} minutos.</li>
+          <li><span class="step-num">4</span> Repite el ciclo.</li>
+          <li><span class="step-num">5</span> Después de {{ config.cycles }} ciclos, toma un descanso largo (15–30 min).</li>
+        </ol>
+      </div>
+
+      <div class="info-block">
+        <h2 class="info-heading">
+          <span class="icon-badge icon-badge--indigo">&#128161;</span>
+          Tips
+        </h2>
+        <ul class="info-tips">
+          <li><span class="tip-check">&#10003;</span> Elimina distracciones.</li>
+          <li><span class="tip-check">&#10003;</span> Mantén tu espacio ordenado.</li>
+          <li><span class="tip-check">&#10003;</span> Sé constante, la clave es la disciplina.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- Columna central: espacio de estudio -->
+    <section class="col col-workspace" aria-label="Espacio de estudio">
+
+      <h2 class="workspace-heading">
+        <span class="icon-plant" aria-hidden="true">&#127807;</span>
+        Tu espacio de estudio
+      </h2>
+
+      <div class="card">
+        <h3 class="card-heading">
+          <span class="icon-badge icon-badge--violet">&#127919;</span>
+          Meta de estudio
+        </h3>
+        <input
+          type="text"
+          id="study-goal"
+          class="text-input"
+          placeholder="Escribe tu meta de estudio..."
+          value="{{ notes.goal }}"
+          maxlength="300"
+        >
+      </div>
+
+      <hr class="divider">
+
+      <div class="card card--grow">
+        <h3 class="card-heading">
+          <span class="icon-badge icon-badge--indigo">&#128221;</span>
+          Notas rápidas
+        </h3>
+        <textarea
+          id="quick-notes"
+          class="textarea-input"
+          placeholder="Escribe tus notas aquí..."
+          maxlength="2000"
+        >{{ notes.notes }}</textarea>
+      </div>
+
+    </section>
+
+    <!-- Columna derecha: temporizador -->
+    <aside class="col col-timer" aria-label="Temporizador Pomodoro">
+      <div class="timer-card">
+
+        <p class="timer-counter" id="timer-counter">Pomodoro 1/{{ config.cycles }}</p>
+
+        <div class="ring-wrap">
+          <svg class="ring-svg" viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="ring-track" cx="100" cy="100" r="88"/>
+            <circle class="ring-progress" id="ring-progress" cx="100" cy="100" r="88"/>
+          </svg>
+          <div class="ring-inner">
+            <div class="time-display" id="time-display">{{ '%02d:00' % config.focus_minutes }}</div>
+            <div class="time-label" id="time-label">Enfoque</div>
+          </div>
         </div>
-        
-    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-    </body>
-    
+
+        <button class="btn-start" id="btn-start" onclick="toggleTimer()">
+          <span class="play-icon" id="play-icon">&#9658;</span>
+          <span id="btn-start-text">Iniciar</span>
+        </button>
+
+        <div class="timer-secondary-controls">
+          <button class="btn-text-icon" onclick="resetTimer()">&#8635; Reiniciar</button>
+          <button class="btn-text-icon" onclick="skipPhase()">Saltar &#9197;</button>
+          <button class="btn-text-icon" onclick="openSettings()">&#9881; Ajustes</button>
+        </div>
+
+        <p class="next-up">
+          <strong>Siguiente:</strong> <span id="next-up-label">Descanso corto ({{ config.break_minutes }} min)</span>
+        </p>
+
+        <div class="dots" id="dots" aria-label="Progreso de ciclos">
+          {% for i in range(config.cycles) %}
+          <span class="dot {% if i == 0 %}dot--active{% endif %}" aria-hidden="true"></span>
+          {% endfor %}
+        </div>
+
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ── Settings modal ──────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeSettings(event)">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Ajustes del Pomodoro">
+      <h3 class="modal-title">Ajustes del temporizador</h3>
+
+      <div class="settings-row">
+        <span class="settings-label">Minutos de estudio</span>
+        <div class="spinner">
+          <button class="spin-btn" onclick="adjust('focus', -1)">−</button>
+          <span class="spin-val" id="inp-focus">{{ config.focus_minutes }}</span>
+          <button class="spin-btn" onclick="adjust('focus', 1)">+</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <span class="settings-label">Minutos de descanso</span>
+        <div class="spinner">
+          <button class="spin-btn" onclick="adjust('break', -1)">−</button>
+          <span class="spin-val" id="inp-break">{{ config.break_minutes }}</span>
+          <button class="spin-btn" onclick="adjust('break', 1)">+</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <span class="settings-label">Ciclos por sesión</span>
+        <div class="spinner">
+          <button class="spin-btn" onclick="adjust('cycles', -1)">−</button>
+          <span class="spin-val" id="inp-cycles">{{ config.cycles }}</span>
+          <button class="spin-btn" onclick="adjust('cycles', 1)">+</button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeSettings()">Cancelar</button>
+        <button class="btn-modal-apply" onclick="applySettings()">Aplicar cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Config inicial inyectada por Flask -->
+  <script>
+    const SERVER_CONFIG = {
+      focus_minutes: {{ config.focus_minutes }},
+      break_minutes: {{ config.break_minutes }},
+      cycles: {{ config.cycles }}
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/pomodoro.js') }}"></script>
+</body>
+</html>
