@@ -8,12 +8,12 @@
         /* ── Variables del proyecto ────────────────────────────── */
         :root {
             --fs-lavanda: #DCCFFB;
-            --fs-morado:  #BDA7F5;
-            --fs-blanco:  #FAFAFC;
-            --fs-gris:    #ECECF3;
-            --fs-borde:   #E0DCF0;
-            --fs-texto:   #2F2F38;
-            --fs-suave:   #8a7fa8;
+            --fs-morado: #BDA7F5;
+            --fs-blanco: #FAFAFC;
+            --fs-gris: #ECECF3;
+            --fs-borde: #E0DCF0;
+            --fs-texto: #2F2F38;
+            --fs-suave: #8a7fa8;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -311,46 +311,49 @@
     </div>
 
     <script>
-    // Validación del lado del cliente — el servidor también valida por seguridad
+    // Validamos en el navegador antes de enviar, pero el servidor (app.py) también
+    // valida por seguridad. Esto solo es para avisarle rápido al usuario.
 
-    function mostrarError(idSpan, msg) {
-        var el = document.getElementById(idSpan);
-        el.textContent = msg;
-        el.style.display = 'block';
+    // Muestra el mensaje de error dentro del <span> que le indiquemos.
+    function mostrarError(idDelSpan, mensaje) {
+        var span = document.getElementById(idDelSpan);
+        span.textContent = mensaje;
+        span.style.display = 'block';
     }
 
-    function validarLogin(form) {
-        var correo = form.querySelector('input[name="correo"]').value;
-        var pass   = form.querySelector('input[name="contrasena"]').value;
+    // Revisa que el correo tenga un @ con un punto después y la clave mínimo 8 caracteres.
+    function validarLogin(formulario) {
+        var correo = formulario.querySelector('input[name="correo"]').value;
+        var clave = formulario.querySelector('input[name="contrasena"]').value;
 
-        // Verificar que el correo tenga exactamente un @ y un punto después
-        var partes = correo.split('@');
-        if (partes.length !== 2 || !partes[1].includes('.')) {
+        var partesDelCorreo = correo.split('@');
+        if (partesDelCorreo.length !== 2 || !partesDelCorreo[1].includes('.')) {
             mostrarError('err-login', 'El correo no tiene un formato válido');
             return false;
         }
-        if (pass.length < 8) {
+        if (clave.length < 8) {
             mostrarError('err-login', 'La contraseña debe tener al menos 8 caracteres');
             return false;
         }
         return true;
     }
 
-    function validarRegistro(form) {
-        var nombre = form.querySelector('input[name="nombre"]').value.trim();
-        var correo = form.querySelector('input[name="correo"]').value;
-        var pass   = form.querySelector('input[name="contrasena"]').value;
+    // Igual que el login pero además revisa que hayan escrito el nombre.
+    function validarRegistro(formulario) {
+        var nombre = formulario.querySelector('input[name="nombre"]').value.trim();
+        var correo = formulario.querySelector('input[name="correo"]').value;
+        var clave = formulario.querySelector('input[name="contrasena"]').value;
 
         if (!nombre) {
             mostrarError('err-reg', 'Ingresa tu nombre');
             return false;
         }
-        var partes = correo.split('@');
-        if (partes.length !== 2 || !partes[1].includes('.')) {
+        var partesDelCorreo = correo.split('@');
+        if (partesDelCorreo.length !== 2 || !partesDelCorreo[1].includes('.')) {
             mostrarError('err-reg', 'El correo no tiene un formato válido');
             return false;
         }
-        if (pass.length < 8) {
+        if (clave.length < 8) {
             mostrarError('err-reg', 'La contraseña debe tener al menos 8 caracteres');
             return false;
         }

@@ -137,9 +137,9 @@ body {
   z-index: 1;
 }
 
-.pt-1 { width: 4px; height: 4px; top: 14%; left:  7%; opacity: 0.18; }
+.pt-1 { width: 4px; height: 4px; top: 14%; left: 7%; opacity: 0.18; }
 .pt-2 { width: 3px; height: 3px; top: 68%; left: 22%; opacity: 0.14; }
-.pt-3 { width: 5px; height: 5px; top:  9%; right: 26%; opacity: 0.15; }
+.pt-3 { width: 5px; height: 5px; top: 9%; right: 26%; opacity: 0.15; }
 .pt-4 { width: 3px; height: 3px; top: 60%; right: 10%; opacity: 0.19; }
 
 /* Animaciones solo si el sistema NO prefiere movimiento reducido.

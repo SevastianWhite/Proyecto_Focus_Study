@@ -47,13 +47,13 @@ def get_pomodoro_config():
     return {
         'focus_minutes': session.get('focus_minutes', POMODORO_DEFAULT['focus_minutes']),
         'break_minutes': session.get('break_minutes', POMODORO_DEFAULT['break_minutes']),
-        'cycles':        session.get('cycles',        POMODORO_DEFAULT['cycles'])
+        'cycles': session.get('cycles', POMODORO_DEFAULT['cycles'])
     }
 
 def get_notes():
     # Las notas del Pomodoro viven en session (no se guardan en disco)
     return {
-        'goal':  session.get('study_goal', ''),
+        'goal': session.get('study_goal', ''),
         'notes': session.get('quick_notes', '')
     }
 
@@ -79,11 +79,11 @@ def quienesomos():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        correo     = request.form.get('correo', '').strip()
+        correo = request.form.get('correo', '').strip()
         contrasena = request.form.get('contrasena', '').strip()
 
         usuarios = leer_usuarios()
-        usuario  = next(
+        usuario = next(
             (u for u in usuarios
              if u['correo'] == correo and u['contrasena'] == contrasena),
             None
@@ -91,7 +91,7 @@ def login():
 
         if usuario:
             session['usuario'] = usuario['nombre']
-            session['correo']  = usuario['correo']
+            session['correo'] = usuario['correo']
             return redirect(url_for('dashboard'))
 
         return render_template('login.html',
@@ -106,8 +106,8 @@ def login():
 
 @app.route('/registro', methods=['POST'])
 def registro():
-    nombre     = request.form.get('nombre', '').strip()
-    correo     = request.form.get('correo', '').strip()
+    nombre = request.form.get('nombre', '').strip()
+    correo = request.form.get('correo', '').strip()
     contrasena = request.form.get('contrasena', '').strip()
 
     if not nombre or not correo or not contrasena:
@@ -137,7 +137,7 @@ def registro():
     guardar_usuarios(usuarios)
 
     session['usuario'] = nombre
-    session['correo']  = correo
+    session['correo'] = correo
     return redirect(url_for('dashboard'))
 
 
@@ -145,7 +145,8 @@ def registro():
 
 @app.route('/dashboard')
 def dashboard():
-    nombre = session.get('usuario', 'Crack')
+    # Si por alguna razón no hay sesión, mostramos "Estudiante" en vez de quedar vacío.
+    nombre = session.get('usuario', 'Estudiante')
     return render_template('dashboard.html', nombre=nombre)
 
 
@@ -200,10 +201,10 @@ def pomodoro():
 
 @app.route('/descanso')
 def descanso():
-    tipo    = request.args.get('tipo', 'corto')
+    tipo = request.args.get('tipo', 'corto')
     minutos = int(request.args.get('min', 5))
-    ciclo   = int(request.args.get('ciclo', 1))
-    total   = int(request.args.get('totalCiclos', 4))
+    ciclo = int(request.args.get('ciclo', 1))
+    total = int(request.args.get('totalCiclos', 4))
     return render_template('descanso.html',
                            tipo=tipo,
                            minutos=minutos,
@@ -219,26 +220,19 @@ def api_config():
     data = request.get_json(silent=True) or {}
     session['focus_minutes'] = int(data.get('focus_minutes', POMODORO_DEFAULT['focus_minutes']))
     session['break_minutes'] = int(data.get('break_minutes', POMODORO_DEFAULT['break_minutes']))
-    session['cycles']        = int(data.get('cycles',        POMODORO_DEFAULT['cycles']))
+    session['cycles'] = int(data.get('cycles', POMODORO_DEFAULT['cycles']))
     return jsonify({'status': 'ok', 'config': get_pomodoro_config()})
 
 @app.route('/api/notes', methods=['POST'])
 def api_notes():
     data = request.get_json(silent=True) or {}
-    session['study_goal']  = data.get('goal',  '')[:300]
+    session['study_goal'] = data.get('goal', '')[:300]
     session['quick_notes'] = data.get('notes', '')[:500]
     return jsonify({'status': 'ok'})
 
 
 # ── Técnicas de estudio ───────────────────────────────────────
-
-@app.route('/tecnicas')
-def tecnicas():
-    return render_template('tecnicas.html')
-
-@app.route('/tecnica-pomodoro')
-def tecnica_pomodoro():
-    return render_template('tecnica_pomodoro.html')
+# Cada técnica tiene su propia página explicativa.
 
 @app.route('/tecnica-feynman')
 def tecnica_feynman():
@@ -251,13 +245,6 @@ def tecnica_cornell():
 @app.route('/tecnica-recall')
 def tecnica_recall():
     return render_template('tecnica_recall.html')
-
-
-# ── Metas (placeholder) ───────────────────────────────────────
-
-@app.route('/metas')
-def metas():
-    return render_template('metas.html')
 
 
 # ── Cerrar sesión ─────────────────────────────────────────────

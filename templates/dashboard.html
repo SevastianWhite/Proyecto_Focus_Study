@@ -9,10 +9,7 @@
 </head>
 <body>
 
-    <!-- ════════════════════════════════════════
-         MENÚ DE NAVEGACIÓN
-         Reutilizable: nav.css + nav.js
-         ════════════════════════════════════════ -->
+    <!-- Menú de navegación (usa nav.css + nav.js, va igual en todas las páginas privadas) -->
     <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
         <button class="fs-nav-toggle"
                 id="fsNavToggle"
@@ -47,19 +44,13 @@
     </div>
 
 
-    <!-- ════════════════════════════════════════
-         PANTALLA INICIO — ÁREA PRIVADA
-         Primera pantalla después del login.
-         ════════════════════════════════════════ -->
+    <!-- Pantalla de inicio del área privada (lo primero que se ve tras iniciar sesión) -->
     <main class="inicio-main">
 
-        <!-- ── 1. HERO ── -->
+        <!-- 1. Hero / bienvenida -->
         <section class="inicio-hero" aria-label="Bienvenida">
 
-            <!-- Partículas decorativas
-                 Animación desacoplada — desactivar con:
-                   .inicio-pt { animation: none !important; }
-                 O activando prefers-reduced-motion: reduce en el S.O. -->
+            <!-- Puntitos decorativos que se mueven de fondo -->
             <span class="inicio-pt pt-1" aria-hidden="true"></span>
             <span class="inicio-pt pt-2" aria-hidden="true"></span>
             <span class="inicio-pt pt-3" aria-hidden="true"></span>
@@ -68,17 +59,12 @@
             <div class="inicio-hero-inner">
 
                 <div class="inicio-hero-texto">
-                    <!-- SALUDO — valor temporal: "Crack"
-                         PENDIENTE (Fase login funcional — Helmuth):
-                         Leer nombre desde data/configuracion.json → campo "nombre".
-                         Fallback: mostrar "Crack" si el campo no existe. -->
-                    <p class="inicio-saludo">Hola, Crack</p>
+                    <!-- El nombre llega desde app.py (lo guardamos en la sesión al iniciar sesión) -->
+                    <p class="inicio-saludo">Hola, {{ nombre }}</p>
 
                     <h1 class="inicio-titulo">Bienvenido a tu<br>zona de estudio</h1>
 
-                    <!-- Frase motivacional aleatoria
-                         Cargada por el script al final del body.
-                         Lista local — sin backend ni JSON. -->
+                    <!-- La frase se elige al azar con el script del final del body -->
                     <p class="inicio-frase-hero" id="fraseHero">
                         "Pequeños avances diarios generan grandes resultados."
                     </p>
@@ -152,7 +138,7 @@
         </section>
 
 
-        <!-- ── 2. ACCESOS RÁPIDOS ── -->
+        <!-- 2. Accesos rápidos -->
         <section class="inicio-seccion" aria-label="Accesos rápidos">
             <p class="inicio-sec-label">Accesos rápidos</p>
             <div class="inicio-accesos">
@@ -176,7 +162,7 @@
         </section>
 
 
-        <!-- ── 3. MÉTODO RECOMENDADO ── -->
+        <!-- 3. Método recomendado -->
         <section class="inicio-seccion" aria-label="Método recomendado">
             <p class="inicio-sec-label">Método recomendado</p>
             <div class="inicio-metodo">
@@ -189,8 +175,7 @@
         </section>
 
 
-        <!-- ── 4. FRASE INSPIRADORA ── -->
-        <!-- Frase diferente a la del hero — cargada por el mismo script JS -->
+        <!-- 4. Frase del día (distinta a la del hero, la pone el mismo script) -->
         <footer class="inicio-frase-bloque" aria-label="Frase del día">
             <p class="inicio-frase-texto" id="frasePie">
                 "La disciplina supera a la motivación."
@@ -200,15 +185,11 @@
     </main>
 
 
-    <!-- ════════════════════════════════════════
-         SCRIPTS
-         ════════════════════════════════════════ -->
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 
     <script>
-    /* Frases motivacionales — lista local sin backend.
-       Se elige una aleatoria para el hero y otra distinta para el pie.
-       Conectar a un endpoint Flask si se desea persistencia en fases futuras. */
+    // Frases motivacionales. Están aquí mismo en una lista, no las traemos de ningún lado.
+    // Elegimos una al azar para el hero y otra distinta para el pie de página.
     (function () {
         var frases = [
             "Pequeños avances diarios generan grandes resultados.",
@@ -219,21 +200,23 @@
             "La disciplina vence al talento cuando el talento no trabaja."
         ];
 
-        function rand(excluir) {
-            var i;
-            do { i = Math.floor(Math.random() * frases.length); }
-            while (i === excluir && frases.length > 1);
-            return i;
+        // Devuelve una posición al azar de la lista, evitando repetir la que ya salió.
+        function fraseAlAzar(posicionAEvitar) {
+            var posicion;
+            do {
+                posicion = Math.floor(Math.random() * frases.length);
+            } while (posicion === posicionAEvitar && frases.length > 1);
+            return posicion;
         }
 
-        var iHero = rand(-1);
-        var iPie  = rand(iHero);
+        var posicionHero = fraseAlAzar(-1);
+        var posicionPie = fraseAlAzar(posicionHero);
 
-        var elHero = document.getElementById('fraseHero');
-        var elPie  = document.getElementById('frasePie');
+        var fraseHero = document.getElementById('fraseHero');
+        var frasePie = document.getElementById('frasePie');
 
-        if (elHero) { elHero.textContent = '“' + frases[iHero] + '”'; }
-        if (elPie)  { elPie.textContent  = '“' + frases[iPie]  + '”'; }
+        if (fraseHero) { fraseHero.textContent = '“' + frases[posicionHero] + '”'; }
+        if (frasePie) { frasePie.textContent = '“' + frases[posicionPie] + '”'; }
     }());
     </script>
 

@@ -7,7 +7,7 @@
  *
  * Requiere en el HTML:
  *   <button id="fsNavToggle" aria-controls="fsNavMenu" aria-expanded="false">
- *   <div    id="fsNavMenu"   class="fs-nav-menu">
+ *   <div id="fsNavMenu" class="fs-nav-menu">
  *
  * Sin dependencias externas. Compatible con todos los navegadores modernos.
  */
@@ -15,7 +15,7 @@
     'use strict';
 
     var toggle = document.getElementById('fsNavToggle');
-    var menu   = document.getElementById('fsNavMenu');
+    var menu = document.getElementById('fsNavMenu');
 
     if (!toggle || !menu) { return; }
 
@@ -49,7 +49,7 @@
 
     /* ── Sub-menú Zona de Estudio ── */
     var zonaToggle = document.getElementById('fsNavZonaToggle');
-    var zonaMenu   = document.getElementById('fsNavZonaMenu');
+    var zonaMenu = document.getElementById('fsNavZonaMenu');
 
     if (zonaToggle && zonaMenu) {
         zonaToggle.addEventListener('click', function (e) {

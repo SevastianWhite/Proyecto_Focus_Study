@@ -12,13 +12,13 @@
 
 :root {
   --fs-lavanda: #DCCFFB;
-  --fs-morado:  #BDA7F5;
-  --fs-blanco:  #FAFAFC;
-  --fs-gris:    #ECECF3;
-  --fs-borde:   #E0DCF0;
-  --fs-texto:   #2F2F38;
-  --fs-suave:   #8a7fa8;
-  --fs-nav-h:   56px;
+  --fs-morado: #BDA7F5;
+  --fs-blanco: #FAFAFC;
+  --fs-gris: #ECECF3;
+  --fs-borde: #E0DCF0;
+  --fs-texto: #2F2F38;
+  --fs-suave: #8a7fa8;
+  --fs-nav-h: 56px;
 }
 
 /* ── Barra de navegación fija ── */

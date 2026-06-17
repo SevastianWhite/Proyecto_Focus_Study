@@ -146,15 +146,15 @@
           </div>
         </div>
 
-        <button class="btn-start" id="btn-start" onclick="toggleTimer()">
+        <button class="btn-start" id="btn-start" onclick="iniciarOPausar()">
           <span class="play-icon" id="play-icon">&#9658;</span>
           <span id="btn-start-text">Iniciar</span>
         </button>
 
         <div class="timer-secondary-controls">
-          <button class="btn-text-icon" onclick="resetTimer()">&#8635; Reiniciar</button>
-          <button class="btn-text-icon" onclick="skipPhase()">Saltar &#9197;</button>
-          <button class="btn-text-icon" onclick="openSettings()">&#9881; Ajustes</button>
+          <button class="btn-text-icon" onclick="reiniciarTemporizador()">&#8635; Reiniciar</button>
+          <button class="btn-text-icon" onclick="saltarFase()">Saltar &#9197;</button>
+          <button class="btn-text-icon" onclick="abrirAjustes()">&#9881; Ajustes</button>
         </div>
 
         <p class="next-up">
@@ -173,40 +173,40 @@
   </main>
 
   <!-- ── Settings modal ──────────────────────────────────────────────── -->
-  <div class="modal-overlay" id="modal-overlay" onclick="closeSettings(event)">
+  <div class="modal-overlay" id="modal-overlay" onclick="cerrarAjustes(event)">
     <div class="modal-card" role="dialog" aria-modal="true" aria-label="Ajustes del Pomodoro">
       <h3 class="modal-title">Ajustes del temporizador</h3>
 
       <div class="settings-row">
         <span class="settings-label">Minutos de estudio</span>
         <div class="spinner">
-          <button class="spin-btn" onclick="adjust('focus', -1)">−</button>
+          <button class="spin-btn" onclick="ajustarValor('enfoque', -1)">−</button>
           <span class="spin-val" id="inp-focus">{{ config.focus_minutes }}</span>
-          <button class="spin-btn" onclick="adjust('focus', 1)">+</button>
+          <button class="spin-btn" onclick="ajustarValor('enfoque', 1)">+</button>
         </div>
       </div>
 
       <div class="settings-row">
         <span class="settings-label">Minutos de descanso</span>
         <div class="spinner">
-          <button class="spin-btn" onclick="adjust('break', -1)">−</button>
+          <button class="spin-btn" onclick="ajustarValor('descanso', -1)">−</button>
           <span class="spin-val" id="inp-break">{{ config.break_minutes }}</span>
-          <button class="spin-btn" onclick="adjust('break', 1)">+</button>
+          <button class="spin-btn" onclick="ajustarValor('descanso', 1)">+</button>
         </div>
       </div>
 
       <div class="settings-row">
         <span class="settings-label">Ciclos por sesión</span>
         <div class="spinner">
-          <button class="spin-btn" onclick="adjust('cycles', -1)">−</button>
+          <button class="spin-btn" onclick="ajustarValor('ciclos', -1)">−</button>
           <span class="spin-val" id="inp-cycles">{{ config.cycles }}</span>
-          <button class="spin-btn" onclick="adjust('cycles', 1)">+</button>
+          <button class="spin-btn" onclick="ajustarValor('ciclos', 1)">+</button>
         </div>
       </div>
 
       <div class="modal-actions">
-        <button class="btn-modal-cancel" onclick="closeSettings()">Cancelar</button>
-        <button class="btn-modal-apply" onclick="applySettings()">Aplicar cambios</button>
+        <button class="btn-modal-cancel" onclick="cerrarAjustes()">Cancelar</button>
+        <button class="btn-modal-apply" onclick="aplicarAjustes()">Aplicar cambios</button>
       </div>
     </div>
   </div>

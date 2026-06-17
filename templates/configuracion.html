@@ -165,22 +165,22 @@
 
         <h1>Configuración</h1>
 
-        <!-- NOMBRE VISIBLE
-             Sin lógica activa todavía.
-             PENDIENTE (Fase login funcional — Helmuth):
-             Leer y guardar en data/configuracion.json → campo "nombre".
-             Este nombre alimentará el saludo en dashboard.html. -->
+        <!-- Nombre visible: al guardar, se manda a app.py (ruta /configuracion por POST),
+             que lo actualiza en la sesión y en usuarios.json. Ese nombre es el que
+             aparece en el saludo del Inicio. -->
         <section class="conf-sec" aria-label="Nombre visible">
             <h2>Nombre visible</h2>
-            <p>Aparecerá en el saludo de la pantalla Inicio. Por implementar en la siguiente fase.</p>
-            <div class="conf-fila">
+            <p>Aparecerá en el saludo de la pantalla Inicio.</p>
+            <form class="conf-fila" method="POST" action="{{ url_for('configuracion') }}">
                 <input class="conf-input"
                        type="text"
+                       name="nombre"
+                       value="{{ nombre_actual }}"
                        placeholder="Ej: Alex, Sofía, White"
                        aria-label="Nombre visible"
                        maxlength="30"/>
-                <button class="conf-btn">Guardar</button>
-            </div>
+                <button class="conf-btn" type="submit">Guardar</button>
+            </form>
         </section>
 
         <!-- TEMA — placeholder visual -->
