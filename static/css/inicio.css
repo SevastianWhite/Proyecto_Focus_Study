@@ -92,10 +92,10 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 32px 48px;
+  padding: 72px 32px 36px;
   position: relative;
   z-index: 1;
-  gap: 16px;
+  gap: 12px;
 }
 
 /* Logo en el hero */
@@ -103,13 +103,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 6px;
+  margin-bottom: 2px;
 }
 
 .hero-logo-wrap svg,
 .hero-logo-img {
-  height: 220px;
+  height: 185px;
   width: auto;
   filter: drop-shadow(0 6px 28px rgba(80, 100, 200, 0.28));
   mix-blend-mode: multiply;
@@ -136,11 +136,12 @@ body {
 }
 
 .hero-titulo {
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 600;
   color: #2F2F38;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .hero-sub {

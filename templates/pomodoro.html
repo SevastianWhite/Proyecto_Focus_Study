@@ -14,43 +14,41 @@
 <body>
 
   <!-- ── Navegación ────────────────────────────────────────────────────── -->
-  <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
-      <button class="fs-nav-toggle" id="fsNavToggle"
-              aria-controls="fsNavMenu" aria-expanded="false" aria-label="Abrir menú">
+  <nav class="fs-nav">
+      <button class="fs-nav-toggle" id="fsNavToggle">
           <span></span><span></span><span></span>
       </button>
       <span class="fs-nav-brand">Focus Study</span>
   </nav>
 
-  <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
-      <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
+  <div class="fs-nav-menu" id="fsNavMenu">
+      <a href="{{ url_for('dashboard') }}" class="fs-nav-link">Inicio</a>
       <div class="fs-nav-group">
-          <button class="fs-nav-link--group activo" id="fsNavZonaToggle" aria-expanded="true" role="menuitem">
+          <button class="fs-nav-link--group activo" id="fsNavZonaToggle">
               Zona de Estudio <span class="fs-nav-arrow">›</span>
           </button>
           <div class="fs-nav-submenu open" id="fsNavZonaMenu">
-              <a href="{{ url_for('zonadestudio') }}"    class="fs-nav-sublink">Vista general</a>
-              <a href="{{ url_for('pomodoro') }}"        class="fs-nav-sublink activo">Pomodoro</a>
+              <a href="{{ url_for('zonadestudio') }}" class="fs-nav-sublink">Vista general</a>
+              <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink activo">Pomodoro</a>
               <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
               <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink">Cornell</a>
-              <a href="{{ url_for('tecnica_recall') }}"  class="fs-nav-sublink">Active Recall</a>
+              <a href="{{ url_for('tecnica_recall') }}" class="fs-nav-sublink">Active Recall</a>
           </div>
       </div>
-      <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
-      <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
-      <div class="fs-nav-divider" role="separator"></div>
-      <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+      <a href="{{ url_for('complementos') }}" class="fs-nav-link">Complementos</a>
+      <a href="{{ url_for('configuracion') }}" class="fs-nav-link">Configuración</a>
+      <div class="fs-nav-divider"></div>
+      <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
   </div>
 
   <!-- ── Main layout: 3 columns ──────────────────────────────────────── -->
   <main class="layout">
 
     <!-- Columna izquierda: explicación del método -->
-    <section class="col col-info" aria-label="Información del método Pomodoro">
+    <section class="col col-info">
 
       <div class="info-block">
         <h2 class="info-heading">
-          <span class="icon-badge icon-badge--indigo">?</span>
           ¿Qué es el método Pomodoro?
         </h2>
         <p class="info-text">
@@ -63,7 +61,6 @@
 
       <div class="info-block">
         <h2 class="info-heading">
-          <span class="icon-badge icon-badge--violet">&#128203;</span>
           ¿Cómo aplicarlo?
         </h2>
         <ol class="info-steps">
@@ -77,29 +74,26 @@
 
       <div class="info-block">
         <h2 class="info-heading">
-          <span class="icon-badge icon-badge--indigo">&#128161;</span>
           Tips
         </h2>
         <ul class="info-tips">
-          <li><span class="tip-check">&#10003;</span> Elimina distracciones.</li>
-          <li><span class="tip-check">&#10003;</span> Mantén tu espacio ordenado.</li>
-          <li><span class="tip-check">&#10003;</span> Sé constante, la clave es la disciplina.</li>
+          <li>Elimina distracciones.</li>
+          <li>Mantén tu espacio ordenado.</li>
+          <li>Sé constante, la clave es la disciplina.</li>
         </ul>
       </div>
 
     </section>
 
     <!-- Columna central: espacio de estudio -->
-    <section class="col col-workspace" aria-label="Espacio de estudio">
+    <section class="col col-workspace">
 
       <h2 class="workspace-heading">
-        <span class="icon-plant" aria-hidden="true">&#127807;</span>
         Tu espacio de estudio
       </h2>
 
       <div class="card">
         <h3 class="card-heading">
-          <span class="icon-badge icon-badge--violet">&#127919;</span>
           Meta de estudio
         </h3>
         <input
@@ -116,7 +110,6 @@
 
       <div class="card card--grow">
         <h3 class="card-heading">
-          <span class="icon-badge icon-badge--indigo">&#128221;</span>
           Notas rápidas
         </h3>
         <textarea
@@ -130,13 +123,13 @@
     </section>
 
     <!-- Columna derecha: temporizador -->
-    <aside class="col col-timer" aria-label="Temporizador Pomodoro">
+    <aside class="col col-timer">
       <div class="timer-card">
 
         <p class="timer-counter" id="timer-counter">Pomodoro 1/{{ config.cycles }}</p>
 
         <div class="ring-wrap">
-          <svg class="ring-svg" viewBox="0 0 200 200" aria-hidden="true">
+          <svg class="ring-svg" viewBox="0 0 200 200">
             <circle class="ring-track" cx="100" cy="100" r="88"/>
             <circle class="ring-progress" id="ring-progress" cx="100" cy="100" r="88"/>
           </svg>
@@ -161,9 +154,9 @@
           <strong>Siguiente:</strong> <span id="next-up-label">Descanso corto ({{ config.break_minutes }} min)</span>
         </p>
 
-        <div class="dots" id="dots" aria-label="Progreso de ciclos">
+        <div class="dots" id="dots">
           {% for i in range(config.cycles) %}
-          <span class="dot {% if i == 0 %}dot--active{% endif %}" aria-hidden="true"></span>
+          <span class="dot {% if i == 0 %}dot--active{% endif %}"></span>
           {% endfor %}
         </div>
 
@@ -174,7 +167,7 @@
 
   <!-- ── Settings modal ──────────────────────────────────────────────── -->
   <div class="modal-overlay" id="modal-overlay" onclick="cerrarAjustes(event)">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Ajustes del Pomodoro">
+    <div class="modal-card">
       <h3 class="modal-title">Ajustes del temporizador</h3>
 
       <div class="settings-row">

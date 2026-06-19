@@ -10,12 +10,9 @@
 <body>
 
     <!-- Menú de navegación (usa nav.css + nav.js, va igual en todas las páginas privadas) -->
-    <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
+    <nav class="fs-nav">
         <button class="fs-nav-toggle"
-                id="fsNavToggle"
-                aria-controls="fsNavMenu"
-                aria-expanded="false"
-                aria-label="Abrir menú de navegación">
+                id="fsNavToggle">
             <span></span>
             <span></span>
             <span></span>
@@ -23,24 +20,24 @@
         <span class="fs-nav-brand">Focus Study</span>
     </nav>
 
-    <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
-        <a href="{{ url_for('dashboard') }}"     class="fs-nav-link activo" role="menuitem">Inicio</a>
+    <div class="fs-nav-menu" id="fsNavMenu">
+        <a href="{{ url_for('dashboard') }}" class="fs-nav-link activo">Inicio</a>
         <div class="fs-nav-group">
-            <button class="fs-nav-link--group" id="fsNavZonaToggle" aria-expanded="false" role="menuitem">
+            <button class="fs-nav-link--group" id="fsNavZonaToggle">
                 Zona de Estudio <span class="fs-nav-arrow">›</span>
             </button>
             <div class="fs-nav-submenu" id="fsNavZonaMenu">
-                <a href="{{ url_for('zonadestudio') }}"    class="fs-nav-sublink">Vista general</a>
-                <a href="{{ url_for('pomodoro') }}"        class="fs-nav-sublink">Pomodoro</a>
+                <a href="{{ url_for('zonadestudio') }}" class="fs-nav-sublink">Vista general</a>
+                <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink">Pomodoro</a>
                 <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
                 <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink">Cornell</a>
-                <a href="{{ url_for('tecnica_recall') }}"  class="fs-nav-sublink">Active Recall</a>
+                <a href="{{ url_for('tecnica_recall') }}" class="fs-nav-sublink">Active Recall</a>
             </div>
         </div>
-        <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
-        <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
-        <div class="fs-nav-divider" role="separator"></div>
-        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+        <a href="{{ url_for('complementos') }}" class="fs-nav-link">Complementos</a>
+        <a href="{{ url_for('configuracion') }}" class="fs-nav-link">Configuración</a>
+        <div class="fs-nav-divider"></div>
+        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
 
@@ -48,98 +45,24 @@
     <main class="inicio-main">
 
         <!-- 1. Hero / bienvenida -->
-        <section class="inicio-hero" aria-label="Bienvenida">
-
-            <!-- Puntitos decorativos que se mueven de fondo -->
-            <span class="inicio-pt pt-1" aria-hidden="true"></span>
-            <span class="inicio-pt pt-2" aria-hidden="true"></span>
-            <span class="inicio-pt pt-3" aria-hidden="true"></span>
-            <span class="inicio-pt pt-4" aria-hidden="true"></span>
+        <section class="inicio-hero">
 
             <div class="inicio-hero-inner">
+                <!-- El nombre llega desde app.py (lo guardamos en la sesión al iniciar sesión) -->
+                <p class="inicio-saludo">Hola, {{ nombre }}</p>
 
-                <div class="inicio-hero-texto">
-                    <!-- El nombre llega desde app.py (lo guardamos en la sesión al iniciar sesión) -->
-                    <p class="inicio-saludo">Hola, {{ nombre }}</p>
+                <h1 class="inicio-titulo">Bienvenido a tu<br>zona de estudio</h1>
 
-                    <h1 class="inicio-titulo">Bienvenido a tu<br>zona de estudio</h1>
-
-                    <!-- La frase se elige al azar con el script del final del body -->
-                    <p class="inicio-frase-hero" id="fraseHero">
-                        "Pequeños avances diarios generan grandes resultados."
-                    </p>
-                </div>
-
-                <!-- Ilustración: libros + planta de escritorio -->
-                <div class="inicio-hero-visual" aria-hidden="true">
-                    <div class="inicio-hero-glow"></div>
-
-                    <svg class="inicio-ilustracion"
-                         width="148" height="130" viewBox="0 0 148 130"
-                         xmlns="http://www.w3.org/2000/svg">
-
-                        <!-- Sombra bajo los libros -->
-                        <ellipse cx="46" cy="122" rx="40" ry="4" fill="rgba(189,167,245,0.2)"/>
-
-                        <!-- Libro 1 — morado -->
-                        <rect x="4"  y="22" width="17" height="97" rx="2.5" fill="#BDA7F5"/>
-                        <rect x="4"  y="22" width="4"  height="97" rx="1.5" fill="#A690E0"/>
-                        <line x1="10" y1="34" x2="10" y2="110" stroke="#9880CE" stroke-width="0.5" stroke-dasharray="3 3"/>
-
-                        <!-- Libro 2 — lavanda media -->
-                        <rect x="23" y="40" width="20" height="79" rx="2.5" fill="#CBB8F5"/>
-                        <rect x="23" y="40" width="4"  height="79" rx="1.5" fill="#B8A3E8"/>
-
-                        <!-- Libro 3 — lavanda clara, más alto -->
-                        <rect x="45" y="26" width="22" height="93" rx="2.5" fill="#DCCFFB"/>
-                        <rect x="45" y="26" width="4"  height="93" rx="1.5" fill="#C8BAF0"/>
-                        <line x1="52" y1="38" x2="52" y2="110" stroke="#B8AAEA" stroke-width="0.5" stroke-dasharray="3 3"/>
-
-                        <!-- Libro 4 — lila pálido -->
-                        <rect x="69" y="34" width="15" height="85" rx="2.5" fill="#E2D8F8"/>
-                        <rect x="69" y="34" width="3.5" height="85" rx="1.5" fill="#CFC3F2"/>
-
-                        <!-- Repisa -->
-                        <rect x="0"  y="117" width="88" height="5" rx="2.5" fill="#CFC3F2"/>
-                        <rect x="0"  y="121" width="88" height="2" rx="1"   fill="#BDB3E0" opacity="0.5"/>
-
-                        <!-- Maceta -->
-                        <path d="M104,119 L100,106 L124,106 L120,119 Z" fill="#C5B3F2"/>
-                        <rect x="98"  y="102" width="28" height="6" rx="3" fill="#BDA7F5"/>
-                        <ellipse cx="112" cy="106" rx="12" ry="3" fill="#9880C8"/>
-
-                        <!-- Tallo -->
-                        <path d="M112,103 Q110,90 112,72" stroke="#9EB892" stroke-width="2.5"
-                              fill="none" stroke-linecap="round"/>
-
-                        <!-- Hoja izquierda -->
-                        <path d="M111,90 Q93,79 97,61 Q109,67 111,90" fill="#B0C8A0"/>
-                        <path d="M111,90 Q101,78 98,63" stroke="#98B088" stroke-width="0.7"
-                              fill="none" opacity="0.6"/>
-
-                        <!-- Hoja derecha -->
-                        <path d="M113,80 Q133,68 130,49 Q119,58 113,80" fill="#BCCEA8"/>
-                        <path d="M113,80 Q124,67 129,51" stroke="#A8BC98" stroke-width="0.7"
-                              fill="none" opacity="0.6"/>
-
-                        <!-- Hoja superior -->
-                        <path d="M112,72 Q104,55 108,39 Q119,50 112,72" fill="#A8C090"/>
-                        <path d="M112,72 Q107,56 109,41" stroke="#98B080" stroke-width="0.7"
-                              fill="none" opacity="0.6"/>
-
-                        <!-- Puntos decorativos -->
-                        <circle cx="140" cy="27" r="4"   fill="#DCCFFB" opacity="0.55"/>
-                        <circle cx="146" cy="50" r="2.5" fill="#BDA7F5" opacity="0.4"/>
-                        <circle cx="3"   cy="62" r="2.8" fill="#BDA7F5" opacity="0.3"/>
-                        <circle cx="138" cy="88" r="2"   fill="#BDA7F5" opacity="0.3"/>
-                    </svg>
-                </div>
+                <!-- La frase se elige al azar con el script del final del body -->
+                <p class="inicio-frase-hero" id="fraseHero">
+                    "Pequeños avances diarios generan grandes resultados."
+                </p>
             </div>
         </section>
 
 
         <!-- 2. Accesos rápidos -->
-        <section class="inicio-seccion" aria-label="Accesos rápidos">
+        <section class="inicio-seccion">
             <p class="inicio-sec-label">Accesos rápidos</p>
             <div class="inicio-accesos">
 
@@ -163,7 +86,7 @@
 
 
         <!-- 3. Método recomendado -->
-        <section class="inicio-seccion" aria-label="Método recomendado">
+        <section class="inicio-seccion">
             <p class="inicio-sec-label">Método recomendado</p>
             <div class="inicio-metodo">
                 <div class="inicio-metodo-info">
@@ -176,7 +99,7 @@
 
 
         <!-- 4. Frase del día (distinta a la del hero, la pone el mismo script) -->
-        <footer class="inicio-frase-bloque" aria-label="Frase del día">
+        <footer class="inicio-frase-bloque">
             <p class="inicio-frase-texto" id="frasePie">
                 "La disciplina supera a la motivación."
             </p>

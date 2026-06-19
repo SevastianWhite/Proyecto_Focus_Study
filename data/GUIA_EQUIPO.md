@@ -10,17 +10,18 @@ Está escrita para que cualquier integrante pueda entenderla sin conocimientos a
 ```
 Proyecto_Focus_Study/
 │
-├── app.py                  ← El "centro de control" de Flask (Helmuth)
+├── app.py                  ← El "centro de control" de Flask (Helmuth y Sevastian)
 ├── requirements.txt        ← Lista de herramientas que necesita el proyecto
 ├── README.md               ← Descripción general del proyecto
-├── GUIA_EQUIPO.md          ← Este archivo
-├── RESUMEN_MIGRACION.md    ← Registro de cambios realizados
 │
-├── modulos/                ← Lógica del backend (Helmuth)
-├── data/                   ← Archivos de datos (Helmuth)
+├── data/                   ← usuarios.json y las guías del equipo
+├── justificaciones/        ← Explicaciones de lo que hicimos (para la presentación)
 ├── templates/              ← Páginas HTML (Karla)
 └── static/
-    └── css/                ← Estilos visuales (Monserrat)
+    ├── css/                ← Estilos visuales (Monserrat)
+    ├── js/                 ← JavaScript (menú y temporizador)
+    ├── img/                ← Logo e imágenes
+    └── video/              ← Video de fondo del inicio
 ```
 
 ---
@@ -40,17 +41,16 @@ Flask sirve estos archivos directamente al navegador.
 
 **Regla:** todo archivo `.css` va dentro de `static/css/`.
 
-### `static/img/`  ← (se creará en Fase 2)
-Aquí irán las imágenes y el video de fondo.
+### `static/img/` y `static/video/`
+Aquí están el logo, las imágenes y el video de fondo del inicio.
 
-### `modulos/`
-Aquí vive la lógica del backend: login, manejo de usuarios, etc.
-Por ahora estos archivos tienen solo comentarios — se implementarán en fases futuras.
-
-**Regla:** solo Helmuth trabaja aquí.
+### `static/js/`
+Aquí vive el JavaScript: `nav.js` (el menú) y `pomodoro.js` (el temporizador).
 
 ### `data/`
-Aquí vive `usuarios.json`, el archivo donde se guardarán los datos de los usuarios.
+Aquí vive `usuarios.json`, el archivo donde se guardan los datos de los usuarios.
+La lógica del backend (login, registro, manejo de usuarios) está en `app.py`, no en una
+carpeta aparte, porque para el tamaño del proyecto es más simple tenerlo todo en un archivo.
 
 ---
 
@@ -60,8 +60,8 @@ Aquí vive `usuarios.json`, el archivo donde se guardarán los datos de los usua
 |---|---|
 | **Karla** | Todo lo que hay en `templates/` (archivos `.html`) |
 | **Monserrat** | Todo lo que hay en `static/css/` (archivos `.css`) |
-| **Helmuth** | `app.py`, `modulos/`, `data/usuarios.json` |
-| **Sevastian** | `README.md`, `GUIA_EQUIPO.md`, `RESUMEN_MIGRACION.md`, coordinación general |
+| **Helmuth y Sevastian** | `app.py`, `data/usuarios.json`, el JavaScript de `static/js/` |
+| **Sevastian** | `README.md`, las guías, la organización general del proyecto |
 
 ---
 
@@ -112,15 +112,12 @@ Agrégalo en el CSS específico de esa página.
 Ejemplo: estilos solo para el Pomodoro → `static/css/pomodoro.css`
 
 ### Si el estilo se va a usar en varias páginas
-Agrégalo en uno de los archivos globales según corresponda:
+Lo compartido vive en `static/css/nav.css`. Ahí están las variables de color del proyecto
+(`--fs-lavanda`, `--fs-morado`, etc.) y los estilos del menú de navegación, que se usa en
+todas las páginas privadas.
 
-| Archivo | Para qué sirve | Ejemplo |
-|---|---|---|
-| `base.css` | Colores, tipografía base, reset | Variables de color, fuente del cuerpo |
-| `componentes.css` | Piezas reutilizables | Botones, tarjetas, etiquetas |
-| `layout.css` | Estructura y posición | Navbar, columnas, tamaños |
-
-**Regla simple:** si algo se repite en 2 o más páginas, va en los archivos globales.
+**Regla simple:** si algo es solo de una página, va en el CSS de esa página; si se repite en
+varias (como los colores o la barra de navegación), va en `nav.css`.
 
 ---
 
@@ -129,10 +126,10 @@ Agrégalo en uno de los archivos globales según corresponda:
 En Flask los archivos estáticos se enlazan con `url_for`, no con rutas relativas.
 
 ```html
-<!-- ✗ MAL — ruta relativa, no funciona en Flask -->
+<!-- MAL — ruta relativa, no funciona en Flask -->
 <link rel="stylesheet" href="inicio.css">
 
-<!-- ✓ BIEN — url_for, siempre funciona -->
+<!-- BIEN — url_for, siempre funciona -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
 ```
 
@@ -141,10 +138,10 @@ En Flask los archivos estáticos se enlazan con `url_for`, no con rutas relativa
 ## ¿Cómo enlazar entre páginas?
 
 ```html
-<!-- ✗ MAL — ruta directa al archivo, no funciona bien en Flask -->
+<!-- MAL — ruta directa al archivo, no funciona bien en Flask -->
 <a href="quienesomos.html">Quiénes Somos</a>
 
-<!-- ✓ BIEN — url_for con el nombre de la función en app.py -->
+<!-- BIEN — url_for con el nombre de la función en app.py -->
 <a href="{{ url_for('quienesomos') }}">Quiénes Somos</a>
 ```
 
@@ -159,23 +156,18 @@ en `app.py` (no con el nombre del archivo).
 |---|---|---|
 | `/` | `inicio.html` | Completa |
 | `/quienesomos` | `quienesomos.html` | Completa |
-| `/login` | `login.html` | Incompleta (ver Fase 2) |
-| `/registro` | `registro.html` | Placeholder |
-| `/dashboard` | `dashboard.html` | Placeholder |
+| `/login` | `login.html` | Completa (login y registro funcionan) |
+| `/registro` | (usa `login.html`) | Es la acción del formulario de registro, no una página aparte |
+| `/dashboard` | `dashboard.html` | Completa |
 | `/zonadestudio` | `zonadestudio.html` | Completa |
 | `/pomodoro` | `pomodoro.html` | Completa |
-| `/descanso` | `descanso.html` | Completa |
-| `/tecnicas` | `tecnicas.html` | Placeholder |
-| `/tecnica-pomodoro` | `tecnica_pomodoro.html` | Placeholder |
-| `/tecnica-feynman` | `tecnica_feynman.html` | Placeholder |
-| `/tecnica-cornell` | `tecnica_cornell.html` | Placeholder |
-| `/tecnica-recall` | `tecnica_recall.html` | Placeholder |
-| `/metas` | `metas.html` | Solo técnico — ver nota abajo |
+| `/descanso` | `descanso.html` | En desarrollo (falta el temporizador) |
+| `/complementos` | `complementos.html` | Placeholder (herramientas por agregar) |
+| `/configuracion` | `configuracion.html` | El nombre se guarda; tema e idioma quedan pendientes |
+| `/tecnica-feynman` | `tecnica_feynman.html` | Página explicativa (Próximamente) |
+| `/tecnica-cornell` | `tecnica_cornell.html` | Página explicativa (Próximamente) |
+| `/tecnica-recall` | `tecnica_recall.html` | Página explicativa (Próximamente) |
 | `/cerrar-sesion` | — | Redirige a inicio |
-
-> **Nota sobre `/metas`:** esta ruta existe solo para evitar errores técnicos.
-> Las metas NO serán una página independiente en el producto final.
-> La funcionalidad de metas vivirá integrada dentro de cada método de estudio.
 
 ---
 
@@ -183,12 +175,10 @@ en `app.py` (no con el nombre del archivo).
 
 | Archivo | Por qué |
 |---|---|
-| `app.py` | Cualquier error aquí rompe todo el sitio. Cambios solo con Helmuth. |
-| `data/usuarios.json` | Contiene datos de usuarios. Cambios solo con Helmuth. |
-| `modulos/` | Lógica del backend. Cambios solo con Helmuth. |
-| `static/css/base.css` | Afecta a todas las páginas. Cambios coordinados con Monserrat. |
-| `static/css/componentes.css` | Igual que base.css. |
-| `static/css/layout.css` | Igual que base.css. |
+| `app.py` | Cualquier error aquí rompe todo el sitio. Cambios solo con Helmuth o Sevastian. |
+| `data/usuarios.json` | Contiene los datos de los usuarios. Cambios solo con Helmuth o Sevastian. |
+| `static/css/nav.css` | Tiene los colores y el menú que usan todas las páginas. Coordinar con Monserrat. |
+| `static/js/nav.js` y `static/js/pomodoro.js` | Lógica del menú y del temporizador. Coordinar antes de tocar. |
 
 ---
 

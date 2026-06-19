@@ -83,11 +83,13 @@ def login():
         contrasena = request.form.get('contrasena', '').strip()
 
         usuarios = leer_usuarios()
-        usuario = next(
-            (u for u in usuarios
-             if u['correo'] == correo and u['contrasena'] == contrasena),
-            None
-        )
+
+        # Recorremos la lista buscando uno cuyo correo y contraseña coincidan.
+        usuario = None
+        for u in usuarios:
+            if u['correo'] == correo and u['contrasena'] == contrasena:
+                usuario = u
+                break
 
         if usuario:
             session['usuario'] = usuario['nombre']
@@ -127,7 +129,14 @@ def registro():
 
     usuarios = leer_usuarios()
 
-    if any(u['correo'] == correo for u in usuarios):
+    # Revisamos uno por uno si ya hay alguien registrado con ese correo.
+    correo_repetido = False
+    for u in usuarios:
+        if u['correo'] == correo:
+            correo_repetido = True
+            break
+
+    if correo_repetido:
         return render_template('login.html',
                                error_reg='Ya existe una cuenta con ese correo',
                                mostrar_registro=True)

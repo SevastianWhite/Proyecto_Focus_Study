@@ -3,27 +3,17 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- Esto permite que se vean bien las tildes y la ñ -->
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Esto hace que la página se vea bien en celulares y tablets -->
-
-  <title>Focus Study</title>
+  <title>Descanso — Focus Study</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/descanso.css') }}">
-  <style>body { padding-top: var(--fs-nav-h, 56px); }</style>
-  <!-- El nombre que aparece en la pestaña del navegador -->
+  <style>body { padding-top: var(--fs-nav-h); }</style>
 </head>
 
 <body>
-  <!-- Menú de navegación reutilizable (nav.css + nav.js) -->
-  <!-- Ítem activo: Zona de Estudio (Descanso es parte del flujo Pomodoro) -->
-  <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
-      <button class="fs-nav-toggle"
-              id="fsNavToggle"
-              aria-controls="fsNavMenu"
-              aria-expanded="false"
-              aria-label="Abrir menú de navegación">
+  <!-- Menú de navegación (nav.css + nav.js). Activo: Zona de Estudio (Descanso es parte del flujo Pomodoro) -->
+  <nav class="fs-nav">
+      <button class="fs-nav-toggle" id="fsNavToggle">
           <span></span>
           <span></span>
           <span></span>
@@ -31,25 +21,26 @@
       <span class="fs-nav-brand">Focus Study</span>
   </nav>
 
-  <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
-      <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
+  <div class="fs-nav-menu" id="fsNavMenu">
+      <a href="{{ url_for('dashboard') }}" class="fs-nav-link">Inicio</a>
       <div class="fs-nav-group">
-          <button class="fs-nav-link--group activo" id="fsNavZonaToggle" aria-expanded="true" role="menuitem">
+          <button class="fs-nav-link--group activo" id="fsNavZonaToggle">
               Zona de Estudio <span class="fs-nav-arrow">›</span>
           </button>
           <div class="fs-nav-submenu open" id="fsNavZonaMenu">
-              <a href="{{ url_for('zonadestudio') }}"    class="fs-nav-sublink">Vista general</a>
-              <a href="{{ url_for('pomodoro') }}"        class="fs-nav-sublink">Pomodoro</a>
+              <a href="{{ url_for('zonadestudio') }}" class="fs-nav-sublink">Vista general</a>
+              <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink">Pomodoro</a>
               <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
               <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink">Cornell</a>
-              <a href="{{ url_for('tecnica_recall') }}"  class="fs-nav-sublink">Active Recall</a>
+              <a href="{{ url_for('tecnica_recall') }}" class="fs-nav-sublink">Active Recall</a>
           </div>
       </div>
-      <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
-      <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
-      <div class="fs-nav-divider" role="separator"></div>
-      <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+      <a href="{{ url_for('complementos') }}" class="fs-nav-link">Complementos</a>
+      <a href="{{ url_for('configuracion') }}" class="fs-nav-link">Configuración</a>
+      <div class="fs-nav-divider"></div>
+      <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
   </div>
+
   <div class="textocentral">
     <img src="https://previews.123rf.com/images/avaicon/avaicon2201/avaicon220100857/180707839-coffee-cup-icon-cup-a-coffee-sign-and-symbol.jpg" alt="café" height="50" width="50">
     <h1>¡Descanso!</h1>
@@ -73,6 +64,7 @@
     <button class="botonomitirdescanso">Omitir descanso</button>
     <h4>El siguiente ciclo comenzará pronto.</h4>
   </div>
+
   <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 </body>
 

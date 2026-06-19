@@ -131,7 +131,6 @@ Se crearon dos archivos de documentación:
 
 - El contenido visual de ningún template HTML
 - Ningún archivo CSS
-- La carpeta `modulos/`
 - La carpeta `data/`
 - La carpeta `css/` externa (se revisará en Fase 2)
 - Las imágenes y el video
@@ -142,10 +141,10 @@ Se crearon dos archivos de documentación:
 
 | Aspecto | Estado |
 |---|---|
-| Flask arranca sin errores | ✓ |
-| Todas las rutas están registradas | ✓ |
-| Estructura de carpetas ordenada | ✓ |
-| Documentación base creada | ✓ |
+| Flask arranca sin errores | Listo |
+| Todas las rutas están registradas | Listo |
+| Estructura de carpetas ordenada | Listo |
+| Documentación base creada | Listo |
 | CSS con rutas correctas | Pendiente (Fase 2) |
 | Imágenes organizadas en `static/img/` | Pendiente (Fase 2) |
 | Templates con `url_for` correcto | Pendiente (Fase 2) |
@@ -161,7 +160,7 @@ Se crearon dos archivos de documentación:
 |---|---|---|
 | **Karla** | HTML y estructura visual | `templates/*.html` |
 | **Monserrat** | CSS y diseño visual | `static/css/*.css` |
-| **Helmuth** | Flask, backend y autenticación | `app.py`, `modulos/`, `data/` |
+| **Helmuth y Sevastian** | Flask, backend y autenticación | `app.py`, `data/` |
 | **Sevastian** | Coordinación, integración y documentación | `README.md`, `GUIA_EQUIPO.md`, revisión general |
 
 ---

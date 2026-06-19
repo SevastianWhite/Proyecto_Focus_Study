@@ -33,9 +33,7 @@ body {
 }
 
 
-/* ══════════════════════════════════════
-   HERO PRINCIPAL
-   ══════════════════════════════════════ */
+/* Hero principal */
 .inicio-hero {
   position: relative;
   border-radius: 18px;
@@ -61,12 +59,8 @@ body {
   border-radius: inherit;
 }
 
-/* Grid: texto a la izquierda, ilustración a la derecha */
+/* Contenido del hero (solo texto) */
 .inicio-hero-inner {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 20px;
-  align-items: center;
   position: relative;
   z-index: 2; /* sobre la trama ::after */
 }
@@ -95,81 +89,10 @@ body {
   min-height: 2.6em; /* evita salto de layout mientras JS carga la frase */
 }
 
-/* ── Ilustración ── */
-.inicio-hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  position: relative;
-}
-
-/* Resplandor detrás de la ilustración — profundidad */
-.inicio-hero-glow {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle, rgba(189, 167, 245, 0.32) 0%, transparent 70%);
-  border-radius: 50%;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 0;
-}
-
-.inicio-ilustracion {
-  position: relative;
-  z-index: 1;
-}
-
-
-/* ══════════════════════════════════════
-   PARTÍCULAS FLOTANTES
-   Desactivar para bajo rendimiento:
-     .inicio-pt { animation: none !important; }
-   O envolver el body en la clase .fs-no-anim
-   para apagar todo de una vez.
-   ══════════════════════════════════════ */
-.inicio-pt {
-  position: absolute;
-  border-radius: 50%;
-  background: #BDA7F5;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.pt-1 { width: 4px; height: 4px; top: 14%; left: 7%; opacity: 0.18; }
-.pt-2 { width: 3px; height: 3px; top: 68%; left: 22%; opacity: 0.14; }
-.pt-3 { width: 5px; height: 5px; top: 9%; right: 26%; opacity: 0.15; }
-.pt-4 { width: 3px; height: 3px; top: 60%; right: 10%; opacity: 0.19; }
-
-/* Animaciones solo si el sistema NO prefiere movimiento reducido.
-   Único cambio necesario para desactivarlas globalmente:
-   añadir prefers-reduced-motion: reduce en el sistema operativo,
-   o sobreescribir la regla debajo. */
-@media (prefers-reduced-motion: no-preference) {
-  .pt-1 { animation: fsFloat1 11s ease-in-out infinite; }
-  .pt-2 { animation: fsFloat2 14s ease-in-out infinite; animation-delay: -4s; }
-  .pt-3 { animation: fsFloat1 13s ease-in-out infinite; animation-delay: -7s; }
-  .pt-4 { animation: fsFloat2 10s ease-in-out infinite; animation-delay: -2s; }
-
-  /* Entrada del texto — aparición suave con stagger */
-  .inicio-saludo     { animation: fsFadeUp 0.5s ease both; animation-delay: 0.05s; }
-  .inicio-titulo     { animation: fsFadeUp 0.5s ease both; animation-delay: 0.18s; }
-  .inicio-frase-hero { animation: fsFadeUp 0.5s ease both; animation-delay: 0.30s; }
-}
-
-/* Solo transform y opacity — GPU-acelerado, costo mínimo de rendimiento */
-@keyframes fsFloat1 {
-  0%, 100% { transform: translate(0,  0); }
-  33%       { transform: translate(3px,  -9px); }
-  66%       { transform: translate(-4px, -5px); }
-}
-
-@keyframes fsFloat2 {
-  0%, 100% { transform: translate(0,  0); }
-  40%       { transform: translate(-5px, -13px); }
-  70%       { transform: translate( 6px,  -6px); }
-}
+/* El texto aparece de a poco, uno tras otro */
+.inicio-saludo { animation: fsFadeUp 0.5s ease both; animation-delay: 0.05s; }
+.inicio-titulo { animation: fsFadeUp 0.5s ease both; animation-delay: 0.18s; }
+.inicio-frase-hero { animation: fsFadeUp 0.5s ease both; animation-delay: 0.30s; }
 
 @keyframes fsFadeUp {
   from { opacity: 0; transform: translateY(10px); }
@@ -177,9 +100,7 @@ body {
 }
 
 
-/* ══════════════════════════════════════
-   SECCIONES GENERALES
-   ══════════════════════════════════════ */
+/* Secciones generales */
 .inicio-sec-label {
   font-size: 0.68rem;
   font-weight: 700;
@@ -287,9 +208,7 @@ body {
 }
 
 
-/* ══════════════════════════════════════
-   RESPONSIVE — móvil y tablets pequeñas
-   ══════════════════════════════════════ */
+/* Responsive — móvil y tablets pequeñas */
 @media (max-width: 640px) {
   .inicio-main {
     padding: 28px 16px 60px;
@@ -298,15 +217,6 @@ body {
 
   .inicio-hero {
     padding: 24px 18px;
-  }
-
-  /* En mobile: texto apila sobre sí mismo, ilustración se oculta */
-  .inicio-hero-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .inicio-hero-visual {
-    display: none;
   }
 
   .inicio-titulo {

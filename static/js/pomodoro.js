@@ -25,7 +25,12 @@ var config = {
   ciclos: SERVER_CONFIG.cycles
 };
 
-var configTemporal = { ...config };
+// Copia de la config que se edita en el modal sin tocar la original hasta guardar.
+var configTemporal = {
+  enfoque: config.enfoque,
+  descanso: config.descanso,
+  ciclos: config.ciclos
+};
 
 var faseActual = 'enfoque';
 var enMarcha = false;
@@ -142,14 +147,14 @@ function avanzarFase() {
     faseActual = 'descanso';
     segundosRestantes = config.descanso * 60;
     segundosTotales = config.descanso * 60;
-    mostrarAviso('¡Buen trabajo! Tiempo de descanso ☕');
+    mostrarAviso('¡Buen trabajo! Tiempo de descanso');
   } else {
     faseActual = 'enfoque';
     if (cicloActual < config.ciclos) {
       cicloActual++;
     } else {
       cicloActual = 1;
-      mostrarAviso('¡Sesión completa! Excelente trabajo 🎉');
+      mostrarAviso('¡Sesión completa! Excelente trabajo');
     }
     segundosRestantes = config.enfoque * 60;
     segundosTotales = config.enfoque * 60;
@@ -234,7 +239,7 @@ function aplicarAjustes() {
       config.ciclos = respuesta.config.cycles;
       modalAjustes.classList.remove('show');
       reiniciarTemporizador();
-      mostrarAviso('Configuración aplicada ✓');
+      mostrarAviso('Configuración aplicada');
     }
   })
   .catch(function () { mostrarAviso('Error al guardar la configuración'); });

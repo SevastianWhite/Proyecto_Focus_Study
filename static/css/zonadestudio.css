@@ -144,31 +144,22 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ══════════════════════════════════════
-   ANIMACIONES DE ENTRADA — DESACOPLADAS
-   Para desactivar: sobreescribir con
-     .ze-card { animation: none !important; }
-   O activar prefers-reduced-motion en el S.O.
-   ══════════════════════════════════════ */
-@media (prefers-reduced-motion: no-preference) {
-  .ze-main > h1 { animation: zeFadeUp 0.5s ease both; }
-  .ze-subtitulo { animation: zeFadeUp 0.5s ease both; animation-delay: 0.08s; }
+/* Animación de entrada: el título y las tarjetas aparecen de a poco */
+.ze-main > h1 { animation: zeFadeUp 0.5s ease both; }
+.ze-subtitulo { animation: zeFadeUp 0.5s ease both; animation-delay: 0.08s; }
 
-  .ze-card { animation: zeFadeUp 0.48s ease both; }
-  .ze-card:nth-child(1) { animation-delay: 0.14s; }
-  .ze-card:nth-child(2) { animation-delay: 0.22s; }
-  .ze-card:nth-child(3) { animation-delay: 0.30s; }
-  .ze-card:nth-child(4) { animation-delay: 0.38s; }
-}
+.ze-card { animation: zeFadeUp 0.48s ease both; }
+.ze-card:nth-child(1) { animation-delay: 0.14s; }
+.ze-card:nth-child(2) { animation-delay: 0.22s; }
+.ze-card:nth-child(3) { animation-delay: 0.30s; }
+.ze-card:nth-child(4) { animation-delay: 0.38s; }
 
 @keyframes zeFadeUp {
   from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ══════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════ */
+/* Responsive */
 @media (max-width: 540px) {
   .ze-main {
     padding: 24px 16px 60px;

@@ -10,12 +10,9 @@
 <body>
 
     <!-- Menú de navegación (nav.css + nav.js). Acá el activo es "Zona de Estudio" -->
-    <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
+    <nav class="fs-nav">
         <button class="fs-nav-toggle"
-                id="fsNavToggle"
-                aria-controls="fsNavMenu"
-                aria-expanded="false"
-                aria-label="Abrir menú de navegación">
+                id="fsNavToggle">
             <span></span>
             <span></span>
             <span></span>
@@ -23,24 +20,24 @@
         <span class="fs-nav-brand">Focus Study</span>
     </nav>
 
-    <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
-        <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
+    <div class="fs-nav-menu" id="fsNavMenu">
+        <a href="{{ url_for('dashboard') }}" class="fs-nav-link">Inicio</a>
         <div class="fs-nav-group">
-            <button class="fs-nav-link--group activo" id="fsNavZonaToggle" aria-expanded="true" role="menuitem">
+            <button class="fs-nav-link--group activo" id="fsNavZonaToggle">
                 Zona de Estudio <span class="fs-nav-arrow">›</span>
             </button>
             <div class="fs-nav-submenu open" id="fsNavZonaMenu">
-                <a href="{{ url_for('zonadestudio') }}"    class="fs-nav-sublink activo">Vista general</a>
-                <a href="{{ url_for('pomodoro') }}"        class="fs-nav-sublink">Pomodoro</a>
+                <a href="{{ url_for('zonadestudio') }}" class="fs-nav-sublink activo">Vista general</a>
+                <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink">Pomodoro</a>
                 <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
                 <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink">Cornell</a>
-                <a href="{{ url_for('tecnica_recall') }}"  class="fs-nav-sublink">Active Recall</a>
+                <a href="{{ url_for('tecnica_recall') }}" class="fs-nav-sublink">Active Recall</a>
             </div>
         </div>
-        <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
-        <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
-        <div class="fs-nav-divider" role="separator"></div>
-        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+        <a href="{{ url_for('complementos') }}" class="fs-nav-link">Complementos</a>
+        <a href="{{ url_for('configuracion') }}" class="fs-nav-link">Configuración</a>
+        <div class="fs-nav-divider"></div>
+        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
 
@@ -56,15 +53,6 @@
             <!-- ── Pomodoro ── -->
             <!-- Ruta: /pomodoro (timer + espacio de trabajo) -->
             <a href="{{ url_for('pomodoro') }}" class="ze-card ze-card--pomodoro">
-                <!-- Icono: barras de intervalos (25min trabajo / 5min descanso) -->
-                <svg class="ze-card-icon" width="36" height="20" viewBox="0 0 36 20"
-                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect x="0"  y="4"  width="5" height="16" rx="2" fill="#BDA7F5"/>
-                    <rect x="7"  y="10" width="5" height="10" rx="2" fill="#DCCFFB"/>
-                    <rect x="14" y="2"  width="5" height="18" rx="2" fill="#BDA7F5"/>
-                    <rect x="21" y="10" width="5" height="10" rx="2" fill="#DCCFFB"/>
-                    <rect x="28" y="4"  width="5" height="16" rx="2" fill="#BDA7F5"/>
-                </svg>
                 <span class="ze-card-nombre">Pomodoro</span>
                 <p class="ze-card-desc">Divide el tiempo en bloques de trabajo y descanso para mantener el enfoque durante toda la sesión.</p>
                 <span class="ze-card-beneficio">Concentración sostenida</span>
@@ -74,14 +62,6 @@
             <!-- ── Método Feynman ── -->
             <!-- Ruta: /tecnica-feynman (en desarrollo — Fase siguiente) -->
             <a href="{{ url_for('tecnica_feynman') }}" class="ze-card ze-card--feynman">
-                <!-- Icono: dos nodos conectados (tú → explicas → otro) -->
-                <svg class="ze-card-icon" width="44" height="20" viewBox="0 0 44 20"
-                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="8"  cy="10" r="7" fill="#CBB8F5"/>
-                    <line x1="15" y1="10" x2="29" y2="10" stroke="#BDA7F5"
-                          stroke-width="1.5" stroke-dasharray="3 2"/>
-                    <circle cx="36" cy="10" r="5" fill="#DCCFFB"/>
-                </svg>
                 <span class="ze-card-nombre">Método Feynman</span>
                 <p class="ze-card-desc">Aprende un concepto explicándolo con tus propias palabras, como si enseñaras a alguien más.</p>
                 <span class="ze-card-beneficio">Comprensión profunda</span>
@@ -91,13 +71,6 @@
             <!-- ── Cornell Notes ── -->
             <!-- Ruta: /tecnica-cornell (en desarrollo — Fase siguiente) -->
             <a href="{{ url_for('tecnica_cornell') }}" class="ze-card ze-card--cornell">
-                <!-- Icono: formato Cornell — columna izquierda + franja resumen inferior -->
-                <svg class="ze-card-icon" width="36" height="22" viewBox="0 0 36 22"
-                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect x="0" y="0" width="36" height="22" rx="3" fill="#DCCFFB"/>
-                    <line x1="11" y1="0"  x2="11" y2="17" stroke="#BDA7F5" stroke-width="1.3"/>
-                    <line x1="0"  y1="17" x2="36" y2="17" stroke="#BDA7F5" stroke-width="1.3"/>
-                </svg>
                 <span class="ze-card-nombre">Cornell Notes</span>
                 <p class="ze-card-desc">Estructura tus apuntes en columnas de preguntas, notas y resumen para retener mejor la información.</p>
                 <span class="ze-card-beneficio">Retención organizada</span>
@@ -107,14 +80,6 @@
             <!-- ── Active Recall ── -->
             <!-- Ruta: /tecnica-recall (en desarrollo — Fase siguiente) -->
             <a href="{{ url_for('tecnica_recall') }}" class="ze-card ze-card--recall">
-                <!-- Icono: arco de recuperación de memoria -->
-                <svg class="ze-card-icon" width="26" height="24" viewBox="0 0 26 24"
-                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M13 2 A10 10 0 1 0 22.5 18"
-                          stroke="#A690E0" stroke-width="2.5"
-                          fill="none" stroke-linecap="round"/>
-                    <polygon points="19,14 25,20 14.5,20" fill="#A690E0"/>
-                </svg>
                 <span class="ze-card-nombre">Active Recall</span>
                 <p class="ze-card-desc">Recupera activamente lo aprendido haciéndote preguntas en lugar de releer para fortalecer la memoria.</p>
                 <span class="ze-card-beneficio">Memoria a largo plazo</span>

@@ -127,12 +127,9 @@
 <body>
 
     <!-- Menú de navegación reutilizable (nav.css + nav.js) -->
-    <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
+    <nav class="fs-nav">
         <button class="fs-nav-toggle"
-                id="fsNavToggle"
-                aria-controls="fsNavMenu"
-                aria-expanded="false"
-                aria-label="Abrir menú de navegación">
+                id="fsNavToggle">
             <span></span>
             <span></span>
             <span></span>
@@ -140,24 +137,24 @@
         <span class="fs-nav-brand">Focus Study</span>
     </nav>
 
-    <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
-        <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
+    <div class="fs-nav-menu" id="fsNavMenu">
+        <a href="{{ url_for('dashboard') }}" class="fs-nav-link">Inicio</a>
         <div class="fs-nav-group">
-            <button class="fs-nav-link--group" id="fsNavZonaToggle" aria-expanded="false" role="menuitem">
+            <button class="fs-nav-link--group" id="fsNavZonaToggle">
                 Zona de Estudio <span class="fs-nav-arrow">›</span>
             </button>
             <div class="fs-nav-submenu" id="fsNavZonaMenu">
-                <a href="{{ url_for('zonadestudio') }}"    class="fs-nav-sublink">Vista general</a>
-                <a href="{{ url_for('pomodoro') }}"        class="fs-nav-sublink">Pomodoro</a>
+                <a href="{{ url_for('zonadestudio') }}" class="fs-nav-sublink">Vista general</a>
+                <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink">Pomodoro</a>
                 <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
                 <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink">Cornell</a>
-                <a href="{{ url_for('tecnica_recall') }}"  class="fs-nav-sublink">Active Recall</a>
+                <a href="{{ url_for('tecnica_recall') }}" class="fs-nav-sublink">Active Recall</a>
             </div>
         </div>
-        <a href="{{ url_for('complementos') }}"  class="fs-nav-link"        role="menuitem">Complementos</a>
-        <a href="{{ url_for('configuracion') }}" class="fs-nav-link activo" role="menuitem">Configuración</a>
-        <div class="fs-nav-divider" role="separator"></div>
-        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+        <a href="{{ url_for('complementos') }}" class="fs-nav-link">Complementos</a>
+        <a href="{{ url_for('configuracion') }}" class="fs-nav-link activo">Configuración</a>
+        <div class="fs-nav-divider"></div>
+        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
 
@@ -168,7 +165,7 @@
         <!-- Nombre visible: al guardar, se manda a app.py (ruta /configuracion por POST),
              que lo actualiza en la sesión y en usuarios.json. Ese nombre es el que
              aparece en el saludo del Inicio. -->
-        <section class="conf-sec" aria-label="Nombre visible">
+        <section class="conf-sec">
             <h2>Nombre visible</h2>
             <p>Aparecerá en el saludo de la pantalla Inicio.</p>
             <form class="conf-fila" method="POST" action="{{ url_for('configuracion') }}">
@@ -177,27 +174,26 @@
                        name="nombre"
                        value="{{ nombre_actual }}"
                        placeholder="Ej: Alex, Sofía, White"
-                       aria-label="Nombre visible"
                        maxlength="30"/>
                 <button class="conf-btn" type="submit">Guardar</button>
             </form>
         </section>
 
         <!-- TEMA — placeholder visual -->
-        <section class="conf-sec" aria-label="Tema">
+        <section class="conf-sec">
             <h2>Tema <span class="conf-pronto">Próximamente</span></h2>
             <p>Elige entre modo claro y modo oscuro.</p>
-            <div class="conf-opciones" aria-disabled="true">
+            <div class="conf-opciones">
                 <div class="conf-opcion">Claro</div>
                 <div class="conf-opcion">Oscuro</div>
             </div>
         </section>
 
         <!-- IDIOMA — placeholder visual -->
-        <section class="conf-sec" aria-label="Idioma">
+        <section class="conf-sec">
             <h2>Idioma <span class="conf-pronto">Próximamente</span></h2>
             <p>Cambia el idioma de la plataforma.</p>
-            <div class="conf-opciones" aria-disabled="true">
+            <div class="conf-opciones">
                 <div class="conf-opcion">Español</div>
                 <div class="conf-opcion">English</div>
             </div>

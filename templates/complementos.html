@@ -1,85 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complementos — Focus Study</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: var(--fs-blanco);
-            color: var(--fs-texto);
-            padding-top: var(--fs-nav-h);
-        }
-
-        .comp-main {
-            max-width: 840px;
-            margin: 0 auto;
-            padding: 40px 24px 72px;
-        }
-
-        .comp-header {
-            margin-bottom: 32px;
-        }
-
-        .comp-header h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--fs-texto);
-            margin-bottom: 8px;
-        }
-
-        .comp-header p {
-            font-size: 0.9rem;
-            color: var(--fs-suave);
-        }
-
-        /* Estructura reservada para herramientas futuras */
-        .comp-placeholder {
-            background: var(--fs-gris);
-            border-radius: 12px;
-            padding: 32px 24px;
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .comp-placeholder h2 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--fs-texto);
-            margin-bottom: 8px;
-        }
-
-        .comp-placeholder p {
-            font-size: 0.83rem;
-            color: var(--fs-suave);
-            line-height: 1.55;
-        }
-
-        /* Aviso legal — obligatorio según spec del proyecto */
-        .comp-aviso-legal {
-            background: var(--fs-gris);
-            border-left: 3px solid var(--fs-borde);
-            border-radius: 8px;
-            padding: 14px 16px;
-            font-size: 0.73rem;
-            color: var(--fs-suave);
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complementos — Focus Study</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/complementos.css') }}">
+  <style>body { padding-top: calc(var(--fs-nav-h) + 20px); }</style>
 </head>
-<body>
 
-    <!-- Menú de navegación reutilizable (nav.css + nav.js) -->
-    <nav class="fs-nav" role="navigation" aria-label="Navegación principal">
-        <button class="fs-nav-toggle"
-                id="fsNavToggle"
-                aria-controls="fsNavMenu"
-                aria-expanded="false"
-                aria-label="Abrir menú de navegación">
+<body>
+    <!-- Menú de navegación (nav.css + nav.js). Activo: Complementos -->
+    <nav class="fs-nav">
+        <button class="fs-nav-toggle" id="fsNavToggle">
             <span></span>
             <span></span>
             <span></span>
@@ -87,50 +21,75 @@
         <span class="fs-nav-brand">Focus Study</span>
     </nav>
 
-    <div class="fs-nav-menu" id="fsNavMenu" role="menu" aria-labelledby="fsNavToggle">
-        <a href="{{ url_for('dashboard') }}"     class="fs-nav-link"        role="menuitem">Inicio</a>
+    <div class="fs-nav-menu" id="fsNavMenu">
+        <a href="{{ url_for('dashboard') }}" class="fs-nav-link">Inicio</a>
         <div class="fs-nav-group">
-            <button class="fs-nav-link--group" id="fsNavZonaToggle" aria-expanded="false" role="menuitem">
+            <button class="fs-nav-link--group" id="fsNavZonaToggle">
                 Zona de Estudio <span class="fs-nav-arrow">›</span>
             </button>
             <div class="fs-nav-submenu" id="fsNavZonaMenu">
-                <a href="{{ url_for('zonadestudio') }}"    class="fs-nav-sublink">Vista general</a>
-                <a href="{{ url_for('pomodoro') }}"        class="fs-nav-sublink">Pomodoro</a>
+                <a href="{{ url_for('zonadestudio') }}" class="fs-nav-sublink">Vista general</a>
+                <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink">Pomodoro</a>
                 <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
                 <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink">Cornell</a>
-                <a href="{{ url_for('tecnica_recall') }}"  class="fs-nav-sublink">Active Recall</a>
+                <a href="{{ url_for('tecnica_recall') }}" class="fs-nav-sublink">Active Recall</a>
             </div>
         </div>
-        <a href="{{ url_for('complementos') }}"  class="fs-nav-link activo" role="menuitem">Complementos</a>
-        <a href="{{ url_for('configuracion') }}" class="fs-nav-link"        role="menuitem">Configuración</a>
-        <div class="fs-nav-divider" role="separator"></div>
-        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir" role="menuitem">Cerrar sesión</a>
+        <a href="{{ url_for('complementos') }}" class="fs-nav-link activo">Complementos</a>
+        <a href="{{ url_for('configuracion') }}" class="fs-nav-link">Configuración</a>
+        <div class="fs-nav-divider"></div>
+        <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
-
-    <main class="comp-main">
-
-        <header class="comp-header">
-            <h1>Complementos</h1>
-            <p>Herramientas externas recomendadas para potenciar tu aprendizaje.</p>
-        </header>
-
-        <!-- Estructura preparada para Fase siguiente
-             Herramientas a integrar: Notion, Google Calendar,
-             NotebookLM, Obsidian, Todoist -->
-        <div class="comp-placeholder">
-            <h2>Herramientas recomendadas</h2>
-            <p>Próximamente: Notion, Google Calendar, NotebookLM, Obsidian y Todoist.</p>
+    <div class="textoarriba">
+        <img src="https://i.etsystatic.com/10919371/r/il/a38424/1932901609/il_570xN.1932901609_lcoa.jpg" alt="imagen" height="45" width="50"/>
+        <h1>Complementos recomendados</h1>
+        <h4>Estos recursos externos pueden ayudar a potenciar tu aprendizaje y organización.</h4>
+    </div>
+    <div>
+        <div class="brillo"></div>
+        <div class="brillo2"></div>
+        <button class="botonvolver"><a href="{{ url_for('dashboard') }}">Volver</a> </button>
+    </div>
+    <div class="bloques">
+        <div class="notion">
+            <img src="https://luna1.co/28ec04.png" alt="imagen" height="50" width="50"/>
+            <h5>Organización</h5>
+            <h2>Notion</h2>
+            <h4>Todo en uno para tomar<br>notas, organizar tareas<br>y gestionar proyectos<br>de forma visual.</h4>
+            <button class="botonotion"><a href="https://www.notion.com/es">Ver recurso</a></button>
         </div>
-
-        <!-- Aviso legal obligatorio -->
-        <div class="comp-aviso-legal" role="note">
-            Focus Study recomienda estas herramientas únicamente con fines educativos.
-            Las marcas y plataformas mencionadas pertenecen a sus respectivos propietarios.
+        <div class="googlecalendar">
+            <img src="https://cloud.gmelius.com/public/logos/google/Google_Calendar_Logo.svg" alt="imagen" height="50" width="50"/>
+            <h5>Planificación</h5>
+            <h2>Google Calendar</h2>
+            <h4>Agenda tus horarios<br>de estudio, recordatorios<br>y eventos importantes<br>de manera sencilla.</h4>
+            <button class="botongooglecalendar"><a href="https://calendar.google.com/calendar/u/0/r?pli=1">Ver recurso</a></button>
         </div>
-
-    </main>
+        <div class="todoist">
+            <img src="https://e7.pngegg.com/pngimages/225/39/png-clipart-todoist-task-management-android-android-angle-rectangle-thumbnail.png" alt="imagen" height="50" width="50"/>
+            <h5>Productividad</h5>
+            <h2>Todoist</h2>
+            <h4>organiza tus tareas<br>diarias, establece<br>prioridades y mantén<br>el enfoque.</h4>
+            <button class="botontodoist"><a href="https://www.todoist.com/es">Ver recurso</a> </button>
+        </div>
+        <div class="forest">
+            <img src="https://trees.org/wp-content/uploads/2025/01/forest-logomark_treesforthefuture.jpg" alt="imagen" height="50" width="50"/>
+            <h5>Enfoque</h5>
+            <h2>Forest</h2>
+            <h4>Mantente enfocado<br>mientras estudias y<br>haz crecer tu bosque<br>virtual.</h4>
+            <button class="botonforest"><a href="https://forestapp.cc/">Ver recurso</a> </button>
+        </div>
+        <div class="coggle">
+            <img src="https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/fb86744c-dad6-4bef-9c00-a81bc324adab.png?w=80&h=80&fit=max&dpr=3&auto=format&q=50" alt="imagen" height="50" width="50"/>
+            <h5>Aprendizaje</h5>
+            <h2>Coggle</h2>
+            <h4>Crea mapas mentales<br>de forma intuitiva para<br>entender y conectar<br>ideas fácilmente.</h4>
+            <button class="botoncoggle"><a href="https://coggle.it/?lang=es">Ver recurso</a>  </button>
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 </body>
+
 </html>

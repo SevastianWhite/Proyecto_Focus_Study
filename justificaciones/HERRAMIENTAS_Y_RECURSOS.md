@@ -34,6 +34,12 @@ Para convertir la imagen del logo (PNG/JPG generada con IA) a formato SVG vector
 **Recraft.ai** — [recraft.ai](https://recraft.ai)
 Alternativa explorada para generar SVG directo con IA sin pasar por imagen intermedia. Genera íconos y logos en formato vectorial nativo con soporte de gradientes y estilos definidos por el usuario.
 
+**Pillow (Python)** — [python-pillow.org](https://python-pillow.org)
+Es una librería de Python para editar imágenes. La usamos para recortar el logo del inicio:
+la imagen que teníamos tenía el logo chiquito en medio de un montón de espacio en blanco, así
+que con Pillow detectamos el área real del logo y recortamos todo el sobrante. Así el logo se
+ve grande sin tener que regenerarlo.
+
 **Photopea** — [photopea.com](https://photopea.com)
 Es un editor de imagen gratuito que funciona directo en el navegador, parecido a Photoshop. Lo usamos para quitar el fondo blanco del logo que generamos con ChatGPT, ya que DALL-E no genera imágenes con fondo transparente. El proceso fue: abrir la imagen → herramienta de varita mágica → seleccionar el fondo blanco → borrar → exportar como SVG. Antes intentamos con remove.bg pero no funcionó bien porque confundía el blanco del logo con el fondo.
 
@@ -65,6 +71,12 @@ El proyecto usa la fuente del sistema (`-apple-system, BlinkMacSystemFont, 'Sego
 
 La página del Pomodoro usa **Inter** y **Space Grotesk** cargadas desde Google Fonts, que ya venían en el diseño original del timer. Estas se mantienen por consistencia con ese módulo específico.
 
+El título principal de la página de inicio ("Menos horas, mejores resultados") usa la fuente
+**Fraunces**, cargada desde **Google Fonts** ([fonts.google.com](https://fonts.google.com/specimen/Fraunces)).
+Es una fuente serif de uso libre (licencia SIL Open Font License). La elegimos porque tiene
+más personalidad que una sans común y le da un aire más cuidado y editorial al título, que
+combina bien con la idea de estudio y enfoque.
+
 ---
 
 ## Otras utilidades mencionadas
@@ -72,6 +84,58 @@ La página del Pomodoro usa **Inter** y **Space Grotesk** cargadas desde Google 
 **Canva** — usado por integrantes del equipo para explorar ideas de diseño visual antes de llevarlo a código.
 
 **Google Fonts** — fuente Inter y Space Grotesk para el módulo Pomodoro vía CDN.
+
+---
+
+## Buenas prácticas que aprendimos (y de dónde)
+
+Hay cosas en el código que no son "decoración", sino prácticas recomendadas que aplicamos
+después de buscarlas. Las dejamos anotadas con su fuente por si preguntan de dónde salieron.
+
+**Atributos de accesibilidad (ARIA)** — fuente: **MDN Web Docs** (developer.mozilla.org)
+Son etiquetas como `aria-label`, `role="navigation"` o `aria-expanded` que le explican la
+página a los lectores de pantalla (el software que usan las personas ciegas para navegar).
+Por ejemplo, en el botón del menú pusimos `aria-label="Abrir menú"` para que el lector diga
+qué hace ese botón aunque solo muestre un ícono.
+- ¿Qué pasa si se quitan? Para quien usa mouse y ve la pantalla, nada cambia: se ve y
+  funciona igual. Solo afecta a usuarios con lector de pantalla, que tendrían más difícil
+  entender la página. Los dejamos porque es buena práctica y no estorban.
+
+**`prefers-reduced-motion`** — fuente: **MDN Web Docs**
+Es una regla CSS (en `dashboard.css`) que detecta si el usuario activó "reducir movimiento"
+en la configuración de su computadora (lo usan personas a las que las animaciones les marean)
+y, si es así, apaga las animaciones.
+- ¿Qué pasa si se quita? Para casi todos, nada: las animaciones se ven igual. Solo afecta a
+  quien pidió menos movimiento en su sistema. O sea, mantenerlo NO le quita dinamismo a la
+  página, solo agrega un respaldo para esas personas.
+
+---
+
+## Elementos dinámicos y de dónde vienen
+
+Para que la página no se vea plana usamos varios efectos. Estos los apoyamos en páginas o
+herramientas concretas:
+
+- **Tarjeta giratoria del login (flip card)** — la idea del efecto la sacamos de **uiverse.io**
+  y la adaptamos a nuestra paleta. Se hace con CSS puro (sin librerías).
+- **Glassmorphism** (el efecto de "vidrio esmerilado" del menú y la barra) — nos guiamos por
+  generadores como **css.glass** para los valores de `backdrop-filter`.
+- **Íconos SVG, el logo y la ilustración del Inicio** — el logo y la ilustración de libros y
+  lámpara que aparece en la pantalla de Inicio los generamos con **ayuda de IA (ChatGPT / DALL-E)**
+  y luego los recortamos/ajustamos a la paleta (el recorte lo hicimos con Pillow, ver más arriba). Es lo mismo que el
+  video de fondo, que hicimos con **Higgsfield**.
+
+**Apoyo de IA en el JavaScript** — fuente: **ChatGPT**
+El JavaScript (el temporizador del Pomodoro en `pomodoro.js` y el menú en `nav.js`) lo
+hicimos con apoyo de IA, porque era la parte que menos dominábamos. Lo usamos para
+funcionalidades puntuales: la cuenta regresiva, el cambio entre enfoque y descanso, y el
+guardado de los ajustes. Después lo revisamos, le pusimos nombres en español y comentarios
+nuestros para entenderlo bien y poder explicarlo. O sea, no lo copiamos sin más: lo
+entendimos y lo dejamos a nuestro nivel. La explicación de cada variable está en
+`justificaciones/CAMBIOS_FASE3.md` y `justificaciones/ESTRUCTURAS_Y_CONCEPTOS.md`.
+
+La idea de dejar esto escrito es que cada efecto "llamativo" tenga de dónde agarrarse si
+preguntan, sin tener que quitarlo.
 
 ---
 

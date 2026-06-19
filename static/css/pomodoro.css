@@ -1,18 +1,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --indigo: #4F46E5;
-  --indigo-dark: #3730A3;
-  --indigo-light: #EEF0FD;
-  --violet: #7C6FE8;
+  --indigo: #7A5FC0;
+  --indigo-dark: #6549A8;
+  --indigo-light: #EEE8FB;
+  --violet: #BDA7F5;
   --violet-light: #F1EEFC;
   --bg: #FAFAFC;
   --surface: #FFFFFF;
   --surface-soft: #F7F7FB;
-  --border: #E8E8F0;
-  --text: #1E1B3A;
-  --text-muted: #6B6B85;
-  --text-faint: #9A9AB0;
+  --border: #E0DCF0;
+  --text: #2F2F38;
+  --text-muted: #8A7FA8;
+  --text-faint: #B5AFC8;
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 8px;
@@ -290,7 +290,7 @@ body {
   transition: stroke-dashoffset 1s linear, stroke 0.4s;
 }
 
-.ring-progress.break-mode { stroke: #378ADD; }
+.ring-progress.break-mode { stroke: #BDA7F5; }
 
 .ring-inner {
   position: absolute;
@@ -381,7 +381,7 @@ body {
 }
 .dot--done { background: var(--text-faint); border-color: var(--text-faint); }
 .dot--active { background: var(--indigo); border-color: var(--indigo); }
-.dot--active-break { background: #378ADD; border-color: #378ADD; }
+.dot--active-break { background: #BDA7F5; border-color: #BDA7F5; }
 
 /* ── Settings modal ──────────────────────────────────────────── */
 .modal-overlay {
@@ -496,8 +496,4 @@ body {
 @media (max-width: 600px) {
   .topbar { padding: 1rem 1.25rem; }
   .layout { padding: 1.5rem; gap: 1.75rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ring-progress { transition: none; }
 }
