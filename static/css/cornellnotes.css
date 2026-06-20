@@ -1,0 +1,227 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    color: #5f4bc4; /* color de ciertas letras*/ 
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f7f7fa;/*color de fondo*/
+    margin:0;
+    padding:30px;
+}
+
+h1, h5 {
+    padding-left: 5px;
+}
+
+.cornellvolver{
+    margin: 12px 0 20px 5px;
+}
+
+/* Contenedor de las dos columnas (preguntas/notas a la izquierda, consejos a la derecha) */
+.contenedorcornell{
+    display:flex;
+    gap:25px;
+}
+
+/* ===== COLUMNA IZQUIERDA ===== */
+
+.bloqueizq{
+    width: 900px;
+    background:white;/*color del fondo de la izquierda*/
+    border:1px solid #111197; /*bordes de ese cuadrado*/
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 2px 8px rgba(0,0,0,.03);
+}
+
+/* ===== FECHA ===== */
+
+.bloquesarriba{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:20px;
+}
+
+.fecha{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+
+
+.fecha input{
+    padding:12px;
+    border:1px solid #649924; /*lineas del cuadrado del calendario*/
+    border-radius:12px;
+    background:#fafafa;/*relleno*/
+}
+
+/* ===== ZONA PRINCIPAL ===== */
+
+.bloquesmedios{
+    display:grid;
+    grid-template-columns:250px 1fr;
+    border:1px solid #43200b; /*linea de calendario, bueno el de abajo*/
+    border-radius:18px;
+    overflow:hidden;
+    min-height:500px;
+    margin-bottom:20px;
+}
+
+.preguntasclave{
+    padding:20px;
+    border-right:1px solid #e8e8ef; /*linea entre el cuadrito y notas*/
+    background:#fcfbff;
+}
+
+.notas{
+    padding:20px;
+}
+
+/* ===== TITULOS ===== */
+
+.preguntasclave h3,
+.notas h3,
+.resumen h3{
+    display:inline-block;
+    background:#f1ecff;
+    color:#5f4bc4;
+    padding:10px 18px;
+    border-radius:12px;
+    margin-bottom:15px;
+    font-size:17px;
+}
+
+/* ===== TEXTAREAS ===== */
+
+textarea{
+    width:100%;
+    border:none;
+    outline:none;
+    resize:none;
+    background:transparent;
+    font-size:15px;
+    line-height:1.8;
+}
+
+#preguntascornell{
+    min-height:400px;
+}
+
+#notascornell{
+    min-height:400px;
+}
+
+/* ===== RESUMEN ===== */
+
+.resumen{
+    border:1px solid #e8e8ef;
+    border-radius:18px;
+    background:white;
+    padding:20px;
+}
+
+#resumencornell{
+    min-height:120px;
+}
+
+/* ===== COLUMNA DERECHA ===== */
+
+.bloqueder{
+    width:280px;
+    flex-shrink: 0;
+}
+
+/* ===== TARJETAS ===== */
+
+.bloqueder ol,
+.consejoeimg{
+    background:white;
+    border:1px solid #ececf3;
+    border-radius:20px;
+}
+
+.bloqueder h2{
+    font-size:18px;
+    color:#5f4bc4;
+    margin-bottom:12px;
+    padding-left:5px;
+}
+
+.bloqueder ol{
+    padding:25px;
+    list-style:none;
+}
+
+.bloqueder li{
+    font-weight:700;
+    margin-top:15px;
+}
+
+.bloqueder h5{
+    font-weight:400;
+    color:#666;
+    line-height:1.7;
+    margin-bottom:10px;
+}
+
+/* ===== CONSEJO ===== */
+
+.consejoeimg{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
+
+.consejocornell{
+    width:70%;
+}
+
+.consejocornell h3{
+    margin-bottom:10px;
+}
+
+.consejocornell h5{
+    color:#666;
+    font-weight:400;
+}
+
+.img img{
+    width: 100px;
+    display: flex;
+    align-items: center;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:1000px){
+
+    .contenedorcornell{
+        flex-direction:column;
+    }
+
+    .bloqueizq,
+    .bloqueder{
+        width:100%;
+    }
+
+    .bloquesmedios{
+        grid-template-columns: 1fr;
+    }
+
+    .preguntasclave{
+        border-right:none;
+        border-bottom:1px solid #e8e8ef;
+    }
+}
+button{
+    width: 70px;
+    height: 70px;
+    padding: 4px;
+    font-size: 11px;
+}

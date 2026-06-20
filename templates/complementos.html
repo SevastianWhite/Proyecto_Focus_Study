@@ -42,9 +42,10 @@
     </div>
 
     <div class="textoarriba">
-        <img src="https://i.etsystatic.com/10919371/r/il/a38424/1932901609/il_570xN.1932901609_lcoa.jpg" alt="imagen" height="45" width="50"/>
+        <img src="{{ url_for('static', filename='img/complementos_header.svg') }}" alt="imagen" height="45" width="50"/>
         <h1>Complementos recomendados</h1>
         <h4>Estos recursos externos pueden ayudar a potenciar tu aprendizaje y organización.</h4>
+        <p class="avisocomplementos">Estas herramientas se recomiendan únicamente con fines educativos, no son de nuestra autoría. La idea es que te ayuden a optimizar aún más tu desempeño a la hora de estudiar.</p>
     </div>
     <div>
         <div class="brillo"></div>
@@ -53,39 +54,39 @@
     </div>
     <div class="bloques">
         <div class="notion">
-            <img src="https://luna1.co/28ec04.png" alt="imagen" height="50" width="50"/>
+            <img src="{{ url_for('static', filename='img/logo_notion.png') }}" alt="imagen" height="50" width="50"/>
             <h5>Organización</h5>
             <h2>Notion</h2>
             <h4>Todo en uno para tomar<br>notas, organizar tareas<br>y gestionar proyectos<br>de forma visual.</h4>
             <button class="botonotion"><a href="https://www.notion.com/es">Ver recurso</a></button>
         </div>
         <div class="googlecalendar">
-            <img src="https://cloud.gmelius.com/public/logos/google/Google_Calendar_Logo.svg" alt="imagen" height="50" width="50"/>
+            <img src="{{ url_for('static', filename='img/logo_googlecalendar.svg') }}" alt="imagen" height="50" width="50"/>
             <h5>Planificación</h5>
             <h2>Google Calendar</h2>
             <h4>Agenda tus horarios<br>de estudio, recordatorios<br>y eventos importantes<br>de manera sencilla.</h4>
             <button class="botongooglecalendar"><a href="https://calendar.google.com/calendar/u/0/r?pli=1">Ver recurso</a></button>
         </div>
-        <div class="todoist">
-            <img src="https://e7.pngegg.com/pngimages/225/39/png-clipart-todoist-task-management-android-android-angle-rectangle-thumbnail.png" alt="imagen" height="50" width="50"/>
-            <h5>Productividad</h5>
-            <h2>Todoist</h2>
-            <h4>organiza tus tareas<br>diarias, establece<br>prioridades y mantén<br>el enfoque.</h4>
-            <button class="botontodoist"><a href="https://www.todoist.com/es">Ver recurso</a> </button>
+        <div class="notebooklm">
+            <img src="{{ url_for('static', filename='img/logo_notebooklm.svg') }}" alt="imagen" height="50" width="50"/>
+            <h5>Resúmenes</h5>
+            <h2>NotebookLM</h2>
+            <h4>Sube tus apuntes y la<br>IA te ayuda a resumir,<br>organizar y entender<br>mejor el contenido.</h4>
+            <button class="botonnotebooklm"><a href="https://notebooklm.google.com/">Ver recurso</a></button>
         </div>
-        <div class="forest">
-            <img src="https://trees.org/wp-content/uploads/2025/01/forest-logomark_treesforthefuture.jpg" alt="imagen" height="50" width="50"/>
-            <h5>Enfoque</h5>
-            <h2>Forest</h2>
-            <h4>Mantente enfocado<br>mientras estudias y<br>haz crecer tu bosque<br>virtual.</h4>
-            <button class="botonforest"><a href="https://forestapp.cc/">Ver recurso</a> </button>
-        </div>
-        <div class="coggle">
-            <img src="https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/fb86744c-dad6-4bef-9c00-a81bc324adab.png?w=80&h=80&fit=max&dpr=3&auto=format&q=50" alt="imagen" height="50" width="50"/>
+        <div class="miro">
+            <img src="{{ url_for('static', filename='img/logo_miro.svg') }}" alt="imagen" height="50" width="50"/>
             <h5>Aprendizaje</h5>
-            <h2>Coggle</h2>
-            <h4>Crea mapas mentales<br>de forma intuitiva para<br>entender y conectar<br>ideas fácilmente.</h4>
-            <button class="botoncoggle"><a href="https://coggle.it/?lang=es">Ver recurso</a>  </button>
+            <h2>Miro</h2>
+            <h4>Pizarra colaborativa<br>para crear mapas<br>mentales y conectar<br>ideas fácilmente.</h4>
+            <button class="botonmiro"><a href="https://miro.com/es/">Ver recurso</a></button>
+        </div>
+        <div class="scholar">
+            <img src="{{ url_for('static', filename='img/logo_scholar.svg') }}" alt="imagen" height="50" width="50"/>
+            <h5>Investigación</h5>
+            <h2>Google Scholar</h2>
+            <h4>Busca artículos y<br>papers académicos<br>confiables para tus<br>trabajos de investigación.</h4>
+            <button class="botonscholar"><a href="https://scholar.google.com/">Ver recurso</a></button>
         </div>
     </div>
 

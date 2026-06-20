@@ -1,95 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cornell Notes — Focus Study</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: var(--fs-blanco);
-            color: var(--fs-texto);
-            padding-top: var(--fs-nav-h);
-        }
-
-        .met-main {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 40px 24px 72px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .met-breadcrumb {
-            font-size: 0.7rem;
-            color: #b5afc8;
-            letter-spacing: 0.03em;
-        }
-
-        .met-titulo {
-            font-size: clamp(1.6rem, 4vw, 2rem);
-            font-weight: 700;
-            color: var(--fs-texto);
-            line-height: 1.2;
-        }
-
-        .met-desc {
-            font-size: 0.92rem;
-            color: var(--fs-suave);
-            line-height: 1.7;
-        }
-
-        .met-bloque {
-            background: var(--fs-gris);
-            border-left: 4px solid #CFC3F2;
-            border-radius: 0 10px 10px 0;
-            padding: 18px 20px;
-        }
-
-        .met-bloque p {
-            font-size: 0.83rem;
-            color: var(--fs-suave);
-            line-height: 1.6;
-        }
-
-        .met-badge {
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            background: rgba(220, 207, 251, 0.28);
-            color: #6b5fa0;
-            border-radius: 5px;
-            padding: 3px 9px;
-            display: inline-block;
-        }
-
-        .met-volver {
-            display: inline-block;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--fs-texto);
-            background: var(--fs-gris);
-            border-radius: 9px;
-            padding: 11px 18px;
-            text-decoration: none;
-            transition: background 0.15s ease;
-        }
-
-        .met-volver:hover { background: var(--fs-lavanda); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cornell Notes — Focus Study</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cornellnotes.css') }}">
+  <style>body { padding-top: var(--fs-nav-h); }</style>
 </head>
 <body>
-
-    <!-- Menú de navegación reutilizable (nav.css + nav.js) -->
-    <!-- Ítem activo: Zona de Estudio -->
+    <!-- Menú de navegación (nav.css + nav.js). Activo: Zona de Estudio → Cornell -->
     <nav class="fs-nav">
-        <button class="fs-nav-toggle"
-                id="fsNavToggle">
+        <button class="fs-nav-toggle" id="fsNavToggle">
             <span></span>
             <span></span>
             <span></span>
@@ -117,28 +39,61 @@
         <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
-
-    <main class="met-main">
-
-        <p class="met-breadcrumb">Inicio → Zona de Estudio → Cornell Notes</p>
-
-        <h1 class="met-titulo">Cornell Notes</h1>
-
-        <p class="met-desc">
-            Divide tu página en tres zonas: una columna de preguntas a la izquierda,
-            el área de notas a la derecha, y un resumen al pie. Esta estructura facilita
-            la revisión y la retención activa del contenido.
-        </p>
-
-        <div class="met-bloque">
-            <p>Beneficio principal: <strong>Retención organizada</strong> — el formato estructurado activa la revisión periódica y conecta conceptos entre sí.</p>
+    <h1>Cornell Notes</h1>
+    <h5>Organiza tus ideas de forma estructurada.</h5>
+    <button class="cornellvolver"><a href="{{ url_for('zonadestudio') }}">Elegir otro método</a> </button>
+    <div class="contenedorcornell">
+        <div class="bloqueizq">
+            <div class="bloquesarriba">
+                <div class="temaestudio">
+                    <form>
+                        <label for="temaest"> <h5>Tema de estudio</h5></label>
+                        <textarea id="temaest" name="temacn" rows="1" cols="40" placeholder="Escribe el tema aquí:"></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                    </form>
+                </div>
+                <div class="fecha">
+                    <label for="fecha"><h5>Fecha</h5></label>
+                    <input type="date" id="fecha" name="fechactual">
+                </div>
+            </div>
+            <div class="bloquesmedios">
+                <div class="preguntasclave">
+                    <h3>Preguntas clave</h3>
+                    <textarea id="preguntascornell" name="pregclaves" rows="13" cols="40" placeholder="Escribe aquí las preguntas o conceptos importantes del tema."></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                </div>
+                <div class="notas">
+                    <h3>Notas</h3>
+                    <textarea id="notascornell" name="notascor" rows="13" cols="84" placeholder="Escribe aquí tus apuntes, ideas, definiciones, ejemplos y detalles importantes."></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                </div>
+            </div>
+            <div class="resumen">
+                <h3>Resumen</h3>
+                <textarea id="resumencornell" name="resumencor" rows="6" cols="130" placeholder="Escribe aquí un resumen breve del tema con tus propias palabras."></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+            </div>
         </div>
-
-        <span class="met-badge">Próximamente</span>
-
-        <a href="{{ url_for('zonadestudio') }}" class="met-volver">← Volver a Zona de Estudio</a>
-
-    </main>
+        <div class="bloqueder">
+            <h2>¿Cómo usar Cornell Notes?</h2>
+            <ol>
+                <li>Toma apuntes</li>
+                <h5>Escribe tus notas en la columna<br>derecha durante la clase o estudio.</h5>
+                <li>Crea preguntas</li>
+                <h5>Convierte los títulos o ideas clave en<br>preguntas en la columna izquierda.</h5>
+                <li>Escribe un resumen</li>
+                <h5>Al final, resume lo más importante<br>en la parte inferior.</h5>
+                <li>Repasa y recuerda</li>
+                <h5>Cubre tus apuntes y trata de<br>responder las preguntas clave.</h5>
+            </ol>
+            <div class="consejoeimg">
+                <div class="consejocornell">
+                    <h3>Consejo del método</h3>
+                    <h5>Intenta responder las preguntas<br>sin mirar tus apuntes para<br>reforzar tu memoria.</h5>
+                </div>
+                <div class="img">
+                    <img src="{{ url_for('static', filename='img/logo_notas_adhesivas.jpg') }}" alt="notescornell" height="80" width="90"/>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 </body>

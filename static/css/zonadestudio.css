@@ -93,12 +93,6 @@ body {
   box-shadow: 0 6px 20px rgba(189, 167, 245, 0.16);
 }
 
-/* ── Icono SVG representativo del método ── */
-.ze-card-icon {
-  display: block;
-  margin-bottom: 4px;
-}
-
 /* ── Nombre del método ── */
 .ze-card-nombre {
   font-size: 1.05rem;

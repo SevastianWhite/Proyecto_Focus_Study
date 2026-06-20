@@ -1,95 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Active Recall — Focus Study</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: var(--fs-blanco);
-            color: var(--fs-texto);
-            padding-top: var(--fs-nav-h);
-        }
-
-        .met-main {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 40px 24px 72px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .met-breadcrumb {
-            font-size: 0.7rem;
-            color: #b5afc8;
-            letter-spacing: 0.03em;
-        }
-
-        .met-titulo {
-            font-size: clamp(1.6rem, 4vw, 2rem);
-            font-weight: 700;
-            color: var(--fs-texto);
-            line-height: 1.2;
-        }
-
-        .met-desc {
-            font-size: 0.92rem;
-            color: var(--fs-suave);
-            line-height: 1.7;
-        }
-
-        .met-bloque {
-            background: var(--fs-gris);
-            border-left: 4px solid #A690E0;
-            border-radius: 0 10px 10px 0;
-            padding: 18px 20px;
-        }
-
-        .met-bloque p {
-            font-size: 0.83rem;
-            color: var(--fs-suave);
-            line-height: 1.6;
-        }
-
-        .met-badge {
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            background: rgba(166, 144, 224, 0.15);
-            color: #6b5fa0;
-            border-radius: 5px;
-            padding: 3px 9px;
-            display: inline-block;
-        }
-
-        .met-volver {
-            display: inline-block;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--fs-texto);
-            background: var(--fs-gris);
-            border-radius: 9px;
-            padding: 11px 18px;
-            text-decoration: none;
-            transition: background 0.15s ease;
-        }
-
-        .met-volver:hover { background: var(--fs-lavanda); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Recall — Focus Study</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/activerecall.css') }}">
+  <style>body { padding-top: var(--fs-nav-h); }</style>
 </head>
 <body>
-
-    <!-- Menú de navegación reutilizable (nav.css + nav.js) -->
-    <!-- Ítem activo: Zona de Estudio -->
+    <!-- Menú de navegación (nav.css + nav.js). Activo: Zona de Estudio → Active Recall -->
     <nav class="fs-nav">
-        <button class="fs-nav-toggle"
-                id="fsNavToggle">
+        <button class="fs-nav-toggle" id="fsNavToggle">
             <span></span>
             <span></span>
             <span></span>
@@ -117,28 +39,51 @@
         <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
-
-    <main class="met-main">
-
-        <p class="met-breadcrumb">Inicio → Zona de Estudio → Active Recall</p>
-
-        <h1 class="met-titulo">Active Recall</h1>
-
-        <p class="met-desc">
-            Hazte preguntas sobre lo que estudiaste en lugar de releer el material.
-            Recuperar activamente la información desde la memoria es la forma más efectiva
-            de consolidar el aprendizaje a largo plazo.
-        </p>
-
-        <div class="met-bloque">
-            <p>Beneficio principal: <strong>Memoria a largo plazo</strong> — el esfuerzo de recuperación fortalece las conexiones neuronales más que cualquier técnica pasiva.</p>
+    <div class="bloquearriba">
+        <h1>Active Recall</h1>
+        <h3 class="morado">Recupera antes de revisar</h3>
+        <h4>Tu cerebro se fortalece cuando intentas<br>recuperar información desde tu memoria.</h4>
+        <div class="bloquesitomorado">
+            <img class="cerebro" src="{{ url_for('static', filename='img/logo_cerebro.jpg') }}" alt="cerebro" height="45" width="50"/>
+            <h5 class="textochiquito">Intentar recordar es una de las formas<br>más efectivas de aprender a largo plazo.</h5>
         </div>
-
-        <span class="met-badge">Próximamente</span>
-
-        <a href="{{ url_for('zonadestudio') }}" class="met-volver">← Volver a Zona de Estudio</a>
-
-    </main>
+    </div>
+    <button class="volver-actrec"><a href="{{ url_for('zonadestudio') }}">Volver</a> </button>
+    <div class="todoslosbloques">
+        <div class="tresbloques">
+            <div class="bloqueshorizontales">
+                <div class="estudiando">
+                    <h3>1. ¿Qué estás estudiando hoy?</h3>
+                    <h5>Define el tema de tu sesión de active recall.</h5>
+                    <form>
+                        <textarea id="sesion-ar" name="sesionactrec" rows="1" cols="24"></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                    </form>
+                </div>
+                <div class="preg-actrec">
+                    <h3>2. Crea tus preguntas</h3>
+                    <h5>Escribe las preguntas que quieres intentar recordar.</h5>
+                    <section class="crearpreguntas">
+                        <input type="text" id="pregunta">
+                        <button>Agregar</button>
+                    </section>
+                </div>
+            </div>
+            <div class="practica">
+                <h3>3- Sesión de práctica</h3>
+                <section class="sesion">
+                    <h2 id="preguntaactual"></h2>
+                    <textarea>Escribe tu respuesta aquí...</textarea>
+                </section>
+            </div>
+        </div>
+        <div class="consejosactrec">
+            <h3 class="titulomorado">Consejos para recordar mejor</h3>
+            <h5>Intenta responder antes de<br>revisar tus apuntes.<br></h5>
+            <h5>No busques la perfección,<br>busca recordar.<br></h5>
+            <h5>Equivocarte también es<br>parte del aprendizaje.</h5>
+            <img src="{{ url_for('static', filename='img/logo_bombilla.svg') }}" alt="imagen" height="60" width="50"/>
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 </body>

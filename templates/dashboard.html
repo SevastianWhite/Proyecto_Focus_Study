@@ -48,15 +48,22 @@
         <section class="inicio-hero">
 
             <div class="inicio-hero-inner">
-                <!-- El nombre llega desde app.py (lo guardamos en la sesión al iniciar sesión) -->
-                <p class="inicio-saludo">Hola, {{ nombre }}</p>
 
-                <h1 class="inicio-titulo">Bienvenido a tu<br>zona de estudio</h1>
+                <div class="inicio-hero-texto">
+                    <!-- El nombre llega desde app.py (lo guardamos en la sesión al iniciar sesión) -->
+                    <p class="inicio-saludo">Hola, {{ nombre }}</p>
 
-                <!-- La frase se elige al azar con el script del final del body -->
-                <p class="inicio-frase-hero" id="fraseHero">
-                    "Pequeños avances diarios generan grandes resultados."
-                </p>
+                    <h1 class="inicio-titulo">Bienvenido a tu<br>zona de estudio</h1>
+
+                    <!-- La frase se elige al azar con el script del final del body -->
+                    <p class="inicio-frase-hero" id="fraseHero">
+                        "Pequeños avances diarios generan grandes resultados."
+                    </p>
+                </div>
+
+                <!-- Imagen decorativa del hero, hecha con ayuda de IA -->
+                <img src="{{ url_for('static', filename='img/hero_estudio.png') }}"
+                     alt="Libros y planta de estudio" class="inicio-hero-img">
             </div>
         </section>
 

@@ -26,60 +26,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── Top bar ─────────────────────────────────────────────── */
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 2.5rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-
-.topbar-left {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-}
-
-.btn-back {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-sm);
-  background: var(--surface-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--text);
-  font-size: 16px;
-  transition: background 0.15s;
-}
-.btn-back:hover { background: var(--indigo-light); }
-
-.page-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.btn-change-method {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--indigo);
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 10px 20px;
-  border-radius: var(--radius-md);
-  transition: background 0.15s;
-}
-.btn-change-method:hover { background: var(--indigo-dark); }
-.icon-swap { font-size: 15px; }
-
 /* ── Layout: 3 columns ──────────────────────────────────────── */
 .layout {
   display: grid;
@@ -105,20 +51,6 @@ body {
   color: var(--text);
   margin-bottom: 0.9rem;
 }
-
-.icon-badge {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  color: #fff;
-  flex-shrink: 0;
-}
-.icon-badge--indigo { background: var(--indigo); }
-.icon-badge--violet { background: var(--violet); }
 
 .info-text {
   font-size: 14.5px;
@@ -170,19 +102,6 @@ body {
   color: var(--text-muted);
 }
 
-.tip-check {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--indigo);
-  color: #fff;
-  font-size: 11px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
 /* ── Workspace column ───────────────────────────────────────── */
 .workspace-heading {
   display: flex;
@@ -192,7 +111,6 @@ body {
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
-.icon-plant { font-size: 19px; }
 
 .card {
   background: var(--surface);
@@ -290,8 +208,6 @@ body {
   transition: stroke-dashoffset 1s linear, stroke 0.4s;
 }
 
-.ring-progress.break-mode { stroke: #BDA7F5; }
-
 .ring-inner {
   position: absolute;
   top: 50%;
@@ -381,7 +297,6 @@ body {
 }
 .dot--done { background: var(--text-faint); border-color: var(--text-faint); }
 .dot--active { background: var(--indigo); border-color: var(--indigo); }
-.dot--active-break { background: #BDA7F5; border-color: #BDA7F5; }
 
 /* ── Settings modal ──────────────────────────────────────────── */
 .modal-overlay {

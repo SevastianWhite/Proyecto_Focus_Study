@@ -211,6 +211,9 @@
       break_minutes: {{ config.break_minutes }},
       cycles: {{ config.cycles }}
     };
+    // En qué ciclo arranca el timer. Normalmente 1, pero si el usuario viene
+    // de la pantalla de descanso, llega el ciclo en el que se había quedado.
+    const CICLO_INICIAL = {{ ciclo_inicial }};
   </script>
   <script src="{{ url_for('static', filename='js/pomodoro.js') }}"></script>
   <script src="{{ url_for('static', filename='js/nav.js') }}"></script>

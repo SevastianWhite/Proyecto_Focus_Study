@@ -1,0 +1,134 @@
+.bloqueshorizontales {
+    display: flex;
+    gap: 70px; /* Espacio entre los bloques*/
+    justify-content: space-between;
+    text-align: center;
+    margin:30px; /*distancia entre los botones y arriba*/
+}
+.bloquesitomorado{
+    display: flex;
+    gap:20px;
+}
+.estudiando {
+    border:2px solid #f9e6f9;
+    border-radius: 25px;
+    background-color: white;
+    width: 400px;     /* Ancho fijo */
+    height: 150px;    /* Alto fijo */
+    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
+}
+.preg-actrec {
+    border:2px solid #f9e6f9;
+    border-radius: 25px;
+    padding-left: -20px;
+    background-color: white;
+    width: 550px;     /* Ancho fijo */
+    height: 150px;    /* Alto fijo */
+    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
+}
+.consejosactrec {
+    border:2px solid #f9e6f9;
+    border-radius: 25px;
+    background-color: white;
+    width: 400px;     /* Ancho fijo */
+    height: 350px;    /* Alto fijo */
+    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
+    text-align:center;
+    background-color: #f7f6fe;
+}
+.practica {
+    border:2px solid #f9e6f9;
+    border-radius: 25px;
+    background-color: white;
+    width:920px;     /* Ancho fijo */
+    height: 150px;    /* Alto fijo */
+    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
+    
+    padding-left: 15px;
+}
+.todoslosbloques {
+    display: flex;
+    gap:20px;
+    margin-top:20px;
+}
+.volver-actrec {
+    position: absolute;
+    right:30px;
+    top: calc(var(--fs-nav-h) + 15px);
+}
+.bloquearriba{
+    border: 2px solid #f9e6f9;
+    border-radius: 25px;
+    color: rgb(0, 0, 0);/*color de la letra dentro del cuadro*/
+    background-color: #f7f6fe;
+    /* From Uiverse.io by jaykdoe */ 
+  width: 100%;
+  /* height: 100%; */
+  /* Add your background pattern here */
+  background: linear-gradient(
+    -45deg,
+    #ede9fe,
+    #ddd6fe,
+    #f5e1ff,
+    #e0f2fe,
+    #ecfdf5,
+    #e0f2fe
+  );
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+  height: 200%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+body{
+    user-select: none;
+    background-color: #f5feff;
+}
+
+.crearpreguntas button{
+  background-color: #ddd6fe;
+  color: blue;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.crearpreguntas button:hover{
+  background-color: antiquewhite;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+
+
+}
+.crearpreguntas button:active{
+  background-color: aqua;
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1)
+
+
+}
+.practica textarea{
+  width: 500px;
+  height: 90px;
+  margin-top: -15px;
+}

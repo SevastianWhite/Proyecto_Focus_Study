@@ -3,10 +3,12 @@
 /*
  * pomodoro.js — Lógica del temporizador Pomodoro
  *
+ * Esta página solo corre la cuenta regresiva de ENFOQUE. Cuando se acaba, manda
+ * al usuario a /descanso (otra página) en vez de seguir contando acá mismo.
+ *
  * Variables principales que usamos en todo el archivo:
  *   config → minutos de enfoque, de descanso y cantidad de ciclos (los que están activos)
  *   configTemporal → copia que se edita en el modal de ajustes antes de guardar
- *   faseActual → 'enfoque' o 'descanso', según en qué parte del ciclo estamos
  *   enMarcha → true cuando el reloj está corriendo, false cuando está pausado
  *   intervalo → el setInterval que descuenta un segundo cada vez
  *   segundosRestantes → cuántos segundos faltan en la fase actual
@@ -32,12 +34,11 @@ var configTemporal = {
   ciclos: config.ciclos
 };
 
-var faseActual = 'enfoque';
 var enMarcha = false;
 var intervalo = null;
 var segundosRestantes = config.enfoque * 60;
 var segundosTotales = config.enfoque * 60;
-var cicloActual = 1;
+var cicloActual = CICLO_INICIAL;
 
 // Largo del contorno del círculo (radio 88 en el SVG). Sirve para dibujar el avance.
 var CIRCUNFERENCIA = 2 * Math.PI * 88;
@@ -61,25 +62,21 @@ function formatearTiempo(totalSegundos) {
 }
 
 // Vuelve a pintar todo en pantalla con los valores actuales.
+// Esta página solo cuenta la fase de enfoque: el descanso vive en /descanso.
 function actualizarPantalla() {
   pantallaTiempo.textContent = formatearTiempo(segundosRestantes);
-  etiquetaFase.textContent = faseActual === 'enfoque' ? 'Enfoque' : 'Descanso';
+  etiquetaFase.textContent = 'Enfoque';
   contadorCiclo.textContent = 'Pomodoro ' + cicloActual + '/' + config.ciclos;
 
-  if (faseActual === 'enfoque') {
-    etiquetaSiguiente.textContent = 'Descanso corto (' + config.descanso + ' min)';
-  } else {
-    etiquetaSiguiente.textContent = cicloActual === config.ciclos
-      ? 'Descanso largo (15–30 min)'
-      : 'Enfoque (' + config.enfoque + ' min)';
-  }
+  etiquetaSiguiente.textContent = cicloActual === config.ciclos
+    ? 'Descanso largo (15–30 min)'
+    : 'Descanso corto (' + config.descanso + ' min)';
 
   // El anillo se va "vaciando" según el tiempo que queda.
   var proporcion = segundosRestantes / segundosTotales;
   var desfase = CIRCUNFERENCIA * (1 - proporcion);
   anilloProgreso.style.strokeDasharray = CIRCUNFERENCIA;
   anilloProgreso.style.strokeDashoffset = desfase;
-  anilloProgreso.classList.toggle('break-mode', faseActual === 'descanso');
 
   dibujarPuntos();
 }
@@ -89,11 +86,10 @@ function dibujarPuntos() {
   contenedorPuntos.innerHTML = '';
   for (var i = 1; i <= config.ciclos; i++) {
     var punto = document.createElement('span');
-    punto.setAttribute('aria-hidden', 'true');
     if (i < cicloActual) {
       punto.className = 'dot dot--done';
     } else if (i === cicloActual) {
-      punto.className = faseActual === 'enfoque' ? 'dot dot--active' : 'dot dot--active-break';
+      punto.className = 'dot dot--active';
     } else {
       punto.className = 'dot';
     }
@@ -141,32 +137,23 @@ function iniciarOPausar() {
   }
 }
 
-// Pasa de enfoque a descanso y viceversa, contando los ciclos.
+// Cuando termina (o se salta) un ciclo de enfoque, mandamos al usuario a la
+// pantalla de descanso. Esa página ya recibe el ciclo y los minutos por URL.
 function avanzarFase() {
-  if (faseActual === 'enfoque') {
-    faseActual = 'descanso';
-    segundosRestantes = config.descanso * 60;
-    segundosTotales = config.descanso * 60;
-    mostrarAviso('¡Buen trabajo! Tiempo de descanso');
-  } else {
-    faseActual = 'enfoque';
-    if (cicloActual < config.ciclos) {
-      cicloActual++;
-    } else {
-      cicloActual = 1;
-      mostrarAviso('¡Sesión completa! Excelente trabajo');
-    }
-    segundosRestantes = config.enfoque * 60;
-    segundosTotales = config.enfoque * 60;
-  }
-  actualizarPantalla();
+  var esUltimoCiclo = cicloActual >= config.ciclos;
+  var parametros = new URLSearchParams({
+    tipo: esUltimoCiclo ? 'largo' : 'corto',
+    min: esUltimoCiclo ? 20 : config.descanso,
+    ciclo: cicloActual,
+    totalCiclos: config.ciclos
+  });
+  window.location.href = '/descanso?' + parametros.toString();
 }
 
 // Vuelve todo al inicio (enfoque, ciclo 1, reloj parado).
 function reiniciarTemporizador() {
   clearInterval(intervalo);
   enMarcha = false;
-  faseActual = 'enfoque';
   cicloActual = 1;
   segundosRestantes = config.enfoque * 60;
   segundosTotales = config.enfoque * 60;

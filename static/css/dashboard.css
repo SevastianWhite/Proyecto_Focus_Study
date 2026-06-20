@@ -59,10 +59,28 @@ body {
   border-radius: inherit;
 }
 
-/* Contenido del hero (solo texto) */
+/* Contenido del hero: texto a la izquierda, imagen decorativa a la derecha */
 .inicio-hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   position: relative;
   z-index: 2; /* sobre la trama ::after */
+}
+
+.inicio-hero-texto {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Imagen decorativa — altura fija para que nunca agrande la caja del hero */
+.inicio-hero-img {
+  height: 90px;
+  width: auto;
+  max-width: 220px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 /* ── Texto del hero ── */
@@ -217,6 +235,11 @@ body {
 
   .inicio-hero {
     padding: 24px 18px;
+  }
+
+  /* En mobile la imagen ocupa demasiado lado a lado con el texto, se oculta */
+  .inicio-hero-img {
+    display: none;
   }
 
   .inicio-titulo {

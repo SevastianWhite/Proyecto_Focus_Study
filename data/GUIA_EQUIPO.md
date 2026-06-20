@@ -162,9 +162,9 @@ en `app.py` (no con el nombre del archivo).
 | `/zonadestudio` | `zonadestudio.html` | Completa |
 | `/pomodoro` | `pomodoro.html` | Completa |
 | `/descanso` | `descanso.html` | En desarrollo (falta el temporizador) |
-| `/complementos` | `complementos.html` | Placeholder (herramientas por agregar) |
+| `/complementos` | `complementos.html` | Completa (Notion, Calendar, Todoist, Forest, Coggle) |
 | `/configuracion` | `configuracion.html` | El nombre se guarda; tema e idioma quedan pendientes |
-| `/tecnica-feynman` | `tecnica_feynman.html` | Página explicativa (Próximamente) |
+| `/tecnica-feynman` | `tecnica_feynman.html` | Completa (formulario de práctica) |
 | `/tecnica-cornell` | `tecnica_cornell.html` | Página explicativa (Próximamente) |
 | `/tecnica-recall` | `tecnica_recall.html` | Página explicativa (Próximamente) |
 | `/cerrar-sesion` | — | Redirige a inicio |

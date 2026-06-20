@@ -61,7 +61,7 @@ El flujo básico de la aplicación es:
 2. Hace click en "Iniciar sesión" → va a `/login`
 3. Se loguea o registra → Flask guarda en `session` y redirige a `/dashboard`
 4. Desde el dashboard puede ir a `/zonadestudio`, `/pomodoro`, `/configuracion`, etc.
-5. Al cerrar sesión → `/cerrar_sesion` limpia la sesión y vuelve a `/`
+5. Al cerrar sesión → `/cerrar-sesion` limpia la sesión y vuelve a `/`
 
 El nav que aparece en todas las páginas del área privada está duplicado en cada template (no hay template base por ahora). Si se cambia algo del nav hay que actualizarlo en todos los archivos.
 

@@ -17,7 +17,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     background:
         linear-gradient(145deg, rgba(220,207,251,0.72) 0%, rgba(237,232,255,0.68) 100%),
-        url("fotolog.jpg") center/cover no-repeat fixed;
+        url("../img/fotolog.jpg") center/cover no-repeat fixed;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

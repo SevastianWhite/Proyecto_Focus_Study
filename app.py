@@ -199,9 +199,12 @@ def zonadestudio():
 
 @app.route('/pomodoro')
 def pomodoro():
+    # Si viene de /descanso, la URL trae el ciclo en el que se quedó (?ciclo=2)
+    ciclo_inicial = int(request.args.get('ciclo', 1))
     return render_template('pomodoro.html',
                            config=get_pomodoro_config(),
-                           notes=get_notes())
+                           notes=get_notes(),
+                           ciclo_inicial=ciclo_inicial)
 
 
 # ── Descanso ──────────────────────────────────────────────────
@@ -214,11 +217,14 @@ def descanso():
     minutos = int(request.args.get('min', 5))
     ciclo = int(request.args.get('ciclo', 1))
     total = int(request.args.get('totalCiclos', 4))
+    # Si ya hizo el último ciclo, el botón "Omitir descanso" vuelve a empezar en el 1
+    siguiente_ciclo = 1 if ciclo >= total else ciclo + 1
     return render_template('descanso.html',
                            tipo=tipo,
                            minutos=minutos,
                            ciclo=ciclo,
-                           total_ciclos=total)
+                           total_ciclos=total,
+                           siguiente_ciclo=siguiente_ciclo)
 
 
 # ── API del Pomodoro ──────────────────────────────────────────

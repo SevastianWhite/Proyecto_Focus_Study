@@ -129,7 +129,7 @@ Para la página de inicio (inicio.html) usé una etiqueta `<img>` en vez de cód
 
 ```html
 <div class="hero-logo-wrap">
-  <img src="{{ url_for('static', filename='img/logo_hero.svg') }}" alt="Focus Study" class="hero-logo-img">
+  <img src="{{ url_for('static', filename='img/logo_hero.png') }}" alt="Focus Study" class="hero-logo-img">
   <p class="hero-logo-nombre">Focus Study</p>
 </div>
 ```

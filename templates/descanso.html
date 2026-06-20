@@ -44,7 +44,7 @@
   <div class="textocentral">
     <img src="https://previews.123rf.com/images/avaicon/avaicon2201/avaicon220100857/180707839-coffee-cup-icon-cup-a-coffee-sign-and-symbol.jpg" alt="café" height="50" width="50">
     <h1>¡Descanso!</h1>
-    <h4>Haz completado un ciclo. Tómate un tiempo para recargar energías.</h4>
+    <h4>Completaste el ciclo {{ ciclo }} de {{ total_ciclos }}. Tómate {{ minutos }} minutos para recargar energías.</h4>
   </div>
   <div class="bloques">
     <div class="bloqueizquierdo">
@@ -61,8 +61,8 @@
     </div>
   </div>
   <div class="textoabajo">
-    <button class="botonomitirdescanso">Omitir descanso</button>
-    <h4>El siguiente ciclo comenzará pronto.</h4>
+    <button class="botonomitirdescanso" onclick="location.href='{{ url_for('pomodoro', ciclo=siguiente_ciclo) }}'">Omitir descanso</button>
+    <h4>El ciclo {{ siguiente_ciclo }} comenzará cuando vuelvas al Pomodoro.</h4>
   </div>
 
   <script src="{{ url_for('static', filename='js/nav.js') }}"></script>

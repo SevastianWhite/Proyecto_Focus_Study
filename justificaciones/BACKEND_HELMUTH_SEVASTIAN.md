@@ -51,10 +51,11 @@ La ruta `/login` acepta GET y POST.
 - POST → busca en el JSON si existe alguien con ese correo y contraseña
 
 ```python
-usuario = next(
-    (u for u in usuarios if u['correo'] == correo and u['contrasena'] == contrasena),
-    None
-)
+usuario = None
+for u in usuarios:
+    if u['correo'] == correo and u['contrasena'] == contrasena:
+        usuario = u
+        break
 ```
 
 Si lo encuentra, guarda el nombre y correo en la sesión y redirige al dashboard. Si no, devuelve el template con un mensaje de error y el correo que había escrito para no obligar al usuario a repetirlo.
@@ -82,7 +83,7 @@ Usamos `session` de Flask para mantener al usuario "logueado" mientras navega. S
 Lo que guardamos en sesión:
 - `session['usuario']` → el nombre
 - `session['correo']` → el correo (para saber qué usuario actualizar en el JSON)
-- `session['pomodoro_config']` → los ajustes del temporizador si los cambia
+- `session['focus_minutes']`, `session['break_minutes']`, `session['cycles']` → los ajustes del temporizador si los cambia
 - `session['study_goal']` y `session['quick_notes']` → las notas del pomodoro
 
 Para cerrar sesión simplemente se limpia todo:
@@ -116,6 +117,22 @@ Hay dos rutas que no devuelven HTML, devuelven JSON. Las usa el JavaScript de po
 
 ---
 
+## Cómo se conecta el Pomodoro con el Descanso
+
+Cuando se acaba el tiempo de enfoque, `pomodoro.js` manda al usuario a `/descanso` pasando
+los datos por la URL (cuántos minutos de descanso, en qué ciclo va, cuántos ciclos en total):
+
+```javascript
+window.location.href = '/descanso?tipo=corto&min=5&ciclo=2&totalCiclos=4';
+```
+
+La ruta `/descanso` en `app.py` lee esos datos y además calcula a qué ciclo hay que volver
+después del descanso (`siguiente_ciclo`). El botón "Omitir descanso" usa ese número para
+volver a `/pomodoro?ciclo=3`, y `app.py` se lo pasa al JavaScript del Pomodoro para que el
+temporizador arranque en el ciclo correcto en vez de reiniciar siempre desde el 1.
+
+---
+
 ## Rutas protegidas
 
-Por ahora las rutas del área privada no tienen un decorador de protección formal, pero el dashboard y las demás páginas reciben `nombre=session.get('usuario', 'Crack')`. Si no hay sesión activa devuelve el valor por defecto. Esto es algo a mejorar más adelante si se quiere un login obligatorio real.
+Por ahora las rutas del área privada no tienen un decorador de protección formal, pero el dashboard recibe `nombre=session.get('usuario', 'Estudiante')`. Si no hay sesión activa devuelve el valor por defecto. Esto es algo a mejorar más adelante si se quiere un login obligatorio real.

@@ -139,7 +139,7 @@ El logo principal en el hero tiene sombra y usa `mix-blend-mode`:
 
 ```css
 .hero-logo-img {
-  height: 220px;
+  height: 185px;
   width: auto;
   filter: drop-shadow(0 6px 28px rgba(80, 100, 200, 0.28));
   mix-blend-mode: multiply;
