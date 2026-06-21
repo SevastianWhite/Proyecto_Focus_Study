@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    color: #5f4bc4; /* color de ciertas letras*/ 
+    color: #2F2F38; /* mismo color de texto que el resto del proyecto */
 }
 
 body{
@@ -14,16 +14,14 @@ body{
 
 h1, h5 {
     padding-left: 5px;
-}
-
-.cornellvolver{
-    margin: 12px 0 20px 5px;
+    margin-bottom: 6px;
 }
 
 /* Contenedor de las dos columnas (preguntas/notas a la izquierda, consejos a la derecha) */
 .contenedorcornell{
     display:flex;
     gap:25px;
+    margin-top: 20px;
 }
 
 /* ===== COLUMNA IZQUIERDA ===== */
@@ -31,7 +29,7 @@ h1, h5 {
 .bloqueizq{
     width: 900px;
     background:white;/*color del fondo de la izquierda*/
-    border:1px solid #111197; /*bordes de ese cuadrado*/
+    border:1px solid var(--fs-borde); /*bordes de ese cuadrado*/
     border-radius:20px;
     padding:25px;
     box-shadow:0 2px 8px rgba(0,0,0,.03);
@@ -55,7 +53,7 @@ h1, h5 {
 
 .fecha input{
     padding:12px;
-    border:1px solid #649924; /*lineas del cuadrado del calendario*/
+    border:1px solid var(--fs-borde); /*lineas del cuadrado del calendario*/
     border-radius:12px;
     background:#fafafa;/*relleno*/
 }
@@ -65,21 +63,23 @@ h1, h5 {
 .bloquesmedios{
     display:grid;
     grid-template-columns:250px 1fr;
-    border:1px solid #43200b; /*linea de calendario, bueno el de abajo*/
+    gap:2px; /*deja ver el fondo de abajo como linea divisoria*/
+    background:var(--fs-borde);
+    border:1px solid var(--fs-borde);
     border-radius:18px;
     overflow:hidden;
     min-height:500px;
-    margin-bottom:20px;
+    margin-bottom:24px;
 }
 
 .preguntasclave{
     padding:20px;
-    border-right:1px solid #e8e8ef; /*linea entre el cuadrito y notas*/
     background:#fcfbff;
 }
 
 .notas{
     padding:20px;
+    background:white;
 }
 
 /* ===== TITULOS ===== */
@@ -88,8 +88,8 @@ h1, h5 {
 .notas h3,
 .resumen h3{
     display:inline-block;
-    background:#f1ecff;
-    color:#5f4bc4;
+    background:#EEE8FB;
+    color:#6b50b8;
     padding:10px 18px;
     border-radius:12px;
     margin-bottom:15px;
@@ -119,10 +119,11 @@ textarea{
 /* ===== RESUMEN ===== */
 
 .resumen{
-    border:1px solid #e8e8ef;
+    border:1px solid var(--fs-borde);
     border-radius:18px;
     background:white;
     padding:20px;
+    margin-top:4px; /*separa un poco mas del bloque de preguntas/notas*/
 }
 
 #resumencornell{
@@ -141,13 +142,13 @@ textarea{
 .bloqueder ol,
 .consejoeimg{
     background:white;
-    border:1px solid #ececf3;
+    border:1px solid var(--fs-borde);
     border-radius:20px;
 }
 
 .bloqueder h2{
     font-size:18px;
-    color:#5f4bc4;
+    color:#6b50b8;
     margin-bottom:12px;
     padding-left:5px;
 }

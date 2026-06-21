@@ -43,48 +43,98 @@
         <h1>Active Recall</h1>
         <h3 class="morado">Recupera antes de revisar</h3>
         <h4>Tu cerebro se fortalece cuando intentas<br>recuperar información desde tu memoria.</h4>
-        <div class="bloquesitomorado">
-            <img class="cerebro" src="{{ url_for('static', filename='img/logo_cerebro.jpg') }}" alt="cerebro" height="45" width="50"/>
-            <h5 class="textochiquito">Intentar recordar es una de las formas<br>más efectivas de aprender a largo plazo.</h5>
-        </div>
     </div>
-    <button class="volver-actrec"><a href="{{ url_for('zonadestudio') }}">Volver</a> </button>
-    <div class="todoslosbloques">
-        <div class="tresbloques">
-            <div class="bloqueshorizontales">
+
+    <div class="contenedoractrec">
+        <div class="columnaprincipal">
+            <!-- Secciones 1 y 2 lado a lado -->
+            <div class="filainicial">
                 <div class="estudiando">
                     <h3>1. ¿Qué estás estudiando hoy?</h3>
                     <h5>Define el tema de tu sesión de active recall.</h5>
-                    <form>
-                        <textarea id="sesion-ar" name="sesionactrec" rows="1" cols="24"></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
-                    </form>
+                    <textarea id="sesion-ar" name="sesionactrec" rows="1"></textarea>
                 </div>
+
                 <div class="preg-actrec">
                     <h3>2. Crea tus preguntas</h3>
-                    <h5>Escribe las preguntas que quieres intentar recordar.</h5>
+                    <h5>Escribe las preguntas que quieres intentar recordar y dale a Agregar.</h5>
                     <section class="crearpreguntas">
-                        <input type="text" id="pregunta">
-                        <button>Agregar</button>
+                        <input type="text" id="pregunta" placeholder="Ej: ¿Qué es el active recall?">
+                        <button id="btnagregar" type="button">Agregar</button>
                     </section>
+                    <ul id="listapreguntas" class="listapreguntas"></ul>
                 </div>
             </div>
-            <div class="practica">
-                <h3>3- Sesión de práctica</h3>
-                <section class="sesion">
-                    <h2 id="preguntaactual"></h2>
-                    <textarea>Escribe tu respuesta aquí...</textarea>
-                </section>
+
+            <!-- Sección 3: la práctica en sí -->
+            <div class="tarjetapractica">
+                <h3>3. Sesión de práctica</h3>
+
+                <div id="estadovacio" class="estadovacio">
+                    <h5>Agrega al menos una pregunta arriba para que aparezca tu sesión de práctica.</h5>
+                </div>
+
+                <div id="tarjeta" class="tarjeta oculto">
+                    <div class="practicacontenido">
+                        <!-- Lista de preguntas para saltar directo a cualquiera -->
+                        <ol id="listapasos" class="listapasos"></ol>
+
+                        <!-- Pregunta actual y respuesta -->
+                        <div class="practicacentro">
+                            <h2 id="preguntaactual"></h2>
+                            <textarea id="respuesta-ar" placeholder="Escribe tu respuesta aquí, antes de revisar tus apuntes..."></textarea>
+                        </div>
+
+                        <!-- Autoevaluación -->
+                        <div class="autoeval">
+                            <h5>Autoevaluación</h5>
+                            <p class="autoevalpregunta">¿Cómo te fue?</p>
+                            <button id="btnsabia" type="button" class="btnsabia">Lo sabía</button>
+                            <button id="btnmasomenos" type="button" class="btnmasomenos">Más o menos</button>
+                            <button id="btnnosabia" type="button" class="btnnosabia">No lo sabía</button>
+                        </div>
+                    </div>
+
+                    <!-- Pie: navegación y contador -->
+                    <div class="practicapie">
+                        <button id="btnanterior" type="button" class="btnanterior">← Anterior</button>
+                        <span id="contadorpreg" class="contadorpreg"></span>
+                        <button id="btnsiguiente" type="button" class="btnsiguiente">Siguiente →</button>
+                    </div>
+                    <p id="marcador" class="marcador">Lo sabía: 0 · Más o menos: 0 · No lo sabía: 0</p>
+                </div>
             </div>
         </div>
-        <div class="consejosactrec">
-            <h3 class="titulomorado">Consejos para recordar mejor</h3>
-            <h5>Intenta responder antes de<br>revisar tus apuntes.<br></h5>
-            <h5>No busques la perfección,<br>busca recordar.<br></h5>
-            <h5>Equivocarte también es<br>parte del aprendizaje.</h5>
-            <img src="{{ url_for('static', filename='img/logo_bombilla.svg') }}" alt="imagen" height="60" width="50"/>
+
+        <!-- Columna derecha: explicación del método -->
+        <div class="infoactrec">
+            <div class="quees">
+                <h3 class="titulomorado">¿Qué es el Active Recall?</h3>
+                <h5>Es una técnica de estudio que consiste en intentar recordar la información
+                    de memoria, en vez de solo releer tus apuntes. Al hacer el esfuerzo de
+                    recordar, tu cerebro fija mejor el contenido.</h5>
+            </div>
+
+            <div class="comousar">
+                <h3 class="titulomorado">¿Cómo usarlo?</h3>
+                <ol class="pasosactrec">
+                    <li>Escribe el tema que vas a estudiar.</li>
+                    <li>Crea preguntas sobre lo que quieres recordar.</li>
+                    <li>Intenta responder cada una sin mirar tus apuntes.</li>
+                    <li>Marca cómo te fue y repite las que te costaron.</li>
+                </ol>
+            </div>
+
+            <div class="consejosactrec">
+                <h3 class="titulomorado">Consejos para recordar mejor</h3>
+                <h5>Intenta responder antes de revisar tus apuntes.</h5>
+                <h5>No busques la perfección, busca recordar.</h5>
+                <h5>Equivocarte también es parte del aprendizaje.</h5>
+            </div>
         </div>
     </div>
 
+    <script src="{{ url_for('static', filename='js/activerecall.js') }}"></script>
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 </body>
 </html>

@@ -167,6 +167,14 @@ Descartamos poner el logo como imagen en el nav porque a ese tamaño quedaba muy
 
 ---
 
+## Parejando los colores entre páginas
+
+Cuando ya teníamos varias técnicas armadas (Cornell, Feynman, Active Recall, Complementos) cada una se fue trabajando por separado y terminamos con tonos distintos en cada una: Cornell tenía un azul fuerte y un café que se usaron al principio solo para distinguir bordes mientras se armaba el diseño, Complementos tenía colores distintos por categoría (cian, verde, azul, naranja) y Feynman tenía un gris de texto distinto al resto. Se notaba que no seguían la misma paleta que Inicio, Pomodoro o Vista General.
+
+Pasamos todo a la misma familia de morados que ya usábamos en `nav.css` y en el Inicio, y el texto a `#2F2F38` en todos lados (antes en algunas páginas quedaba el negro por defecto del navegador). En Complementos las categorías ya no tienen un color distinto cada una, todas quedaron del mismo morado — se siguen distinguiendo por el nombre de la etiqueta (Organización, Planificación, etc.), no hacía falta el color para eso.
+
+---
+
 ## Detalles generales
 
 - Usé `border-radius` generoso en las tarjetas (16-18px) para que se vea más amigable

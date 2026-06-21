@@ -5,7 +5,7 @@
 }
 .botonvolver {
     position:absolute;
-    top:16px;
+    top: calc(var(--fs-nav-h) + 16px);
     right: 30px;
     padding:12px 16px;
 }
@@ -19,55 +19,45 @@
 }
 .notion {
     background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:black; /*color de la letra*/
+    color:#2F2F38; /*color de la letra*/
     border-radius: 8px; /*bordes redondeados*/
     padding:40px; /*espacio para que no esté apretado*/
 }
 .googlecalendar {
     background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:black; /*color de la letra*/
+    color:#2F2F38; /*color de la letra*/
     border-radius: 8px; /*bordes redondeados*/
     padding:40px; /*espacio para que no esté apretado*/
 }
 .notebooklm {
     background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:black; /*color de la letra*/
+    color:#2F2F38; /*color de la letra*/
     border-radius: 8px; /*bordes redondeados*/
     padding:40px; /*espacio para que no esté apretado*/
 }
 .miro {
     background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:black; /*color de la letra*/
+    color:#2F2F38; /*color de la letra*/
     border-radius: 8px; /*bordes redondeados*/
     padding:40px; /*espacio para que no esté apretado*/
 }
 .scholar {
     background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:black; /*color de la letra*/
+    color:#2F2F38; /*color de la letra*/
     border-radius: 8px; /*bordes redondeados*/
     padding:40px; /*espacio para que no esté apretado*/
 }
-h5{
-.organizacion{
-    background: #F3ECFF;
-    color: #8B5CF6;
-}
-.planificación{
-    background: #EAFBF4;
-    color: #10B981;
-}
-.productividad{
-    background: #FFECEC;
-    color: #EF4444;
-}
-.enfoque{
-    background: #F0FDF4;
-    color: #22C55E;
-}
-.aprendizaje{
-    background: #EFF6FF;
-    color: #3B82F6;
-}
+/* Etiqueta de categoría (Organización, Planificación, etc.) — quedaba mal anidada
+   dentro de h5{} y por eso nunca se aplicaba, las dejamos como reglas normales.
+   Antes cada categoría tenía un color distinto (cian/verde/azul/naranja) pero no
+   pegaba con el morado del resto del proyecto, así que las dejamos todas igual */
+.bloques h5 {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #6b50b8;
 }
 
 body::after{
@@ -129,7 +119,7 @@ body{
     height: 12px;
     top: 100px;
     right: 220px;
-    background: #eab8ff;
+    background: #BDA7F5;
     transform: rotate(45deg);
     z-index: 9999;
 }

@@ -6,16 +6,16 @@ body{
   background-repeat: no-repeat;
   background-attachment:fixed ;
   padding: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   line-height: 1.7;
 }
 
-/* Esto fuerza el color negro visible en todo el texto */
+/* Esto fuerza el color de texto del proyecto en todo el contenido */
 body, h1, h2, h3, p, a, li {
-  color: #0f172a;
+  color: #2F2F38;
 }
 h1,h2,h3 {
-    color: #075985;
+    color: #6b50b8;
 }
 .contenedorqs {
     text-align:center
@@ -25,14 +25,8 @@ h1,h2,h3 {
 }
 .focus-text {
   text-align: center;
-  font-size: 1rem;  /* tamaño chiquito */
-  color: #075985;
-  font-weight: 600;
-  letter-spacing: 2px;  /* separa las letras */
-  text-transform: uppercase; /* FOCUS STUDY */
-  
-  /* Línea abajo */
-  border-bottom: 3px solid #22d3ee;
-  padding-bottom: 5px;
-  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #7a5fc0;
 }

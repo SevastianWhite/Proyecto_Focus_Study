@@ -1,134 +1,367 @@
-.bloqueshorizontales {
-    display: flex;
-    gap: 70px; /* Espacio entre los bloques*/
-    justify-content: space-between;
-    text-align: center;
-    margin:30px; /*distancia entre los botones y arriba*/
+body{
+    user-select: none;
+    background-color: #FAFAFC;
+    color: #2F2F38;
 }
-.bloquesitomorado{
-    display: flex;
-    gap:20px;
-}
-.estudiando {
-    border:2px solid #f9e6f9;
-    border-radius: 25px;
-    background-color: white;
-    width: 400px;     /* Ancho fijo */
-    height: 150px;    /* Alto fijo */
-    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
-}
-.preg-actrec {
-    border:2px solid #f9e6f9;
-    border-radius: 25px;
-    padding-left: -20px;
-    background-color: white;
-    width: 550px;     /* Ancho fijo */
-    height: 150px;    /* Alto fijo */
-    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
-}
-.consejosactrec {
-    border:2px solid #f9e6f9;
-    border-radius: 25px;
-    background-color: white;
-    width: 400px;     /* Ancho fijo */
-    height: 350px;    /* Alto fijo */
-    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
-    text-align:center;
-    background-color: #f7f6fe;
-}
-.practica {
-    border:2px solid #f9e6f9;
-    border-radius: 25px;
-    background-color: white;
-    width:920px;     /* Ancho fijo */
-    height: 150px;    /* Alto fijo */
-    max-width: 100%;  /* Evita que sea más ancho que la pantalla */
-    
-    padding-left: 15px;
-}
-.todoslosbloques {
-    display: flex;
-    gap:20px;
-    margin-top:20px;
-}
-.volver-actrec {
-    position: absolute;
-    right:30px;
-    top: calc(var(--fs-nav-h) + 15px);
-}
+
 .bloquearriba{
-    border: 2px solid #f9e6f9;
+    border: 1px solid var(--fs-borde);
     border-radius: 25px;
-    color: rgb(0, 0, 0);/*color de la letra dentro del cuadro*/
-    background-color: #f7f6fe;
-    /* From Uiverse.io by jaykdoe */ 
-  width: 100%;
-  /* height: 100%; */
-  /* Add your background pattern here */
-  background: linear-gradient(
-    -45deg,
-    #ede9fe,
-    #ddd6fe,
-    #f5e1ff,
-    #e0f2fe,
-    #ecfdf5,
-    #e0f2fe
-  );
-  background-size: 400% 400%;
-  animation: gradient 30s ease infinite;
-  height: 200%;
+    color: #2F2F38;
+    text-align: center;
+    padding: 24px;
+    margin: 0 30px;
+    /* Fondo animado adaptado de Uiverse.io by jaykdoe, con los tonos morados del proyecto */
+    background: linear-gradient(
+        -45deg,
+        #F1EEFC,
+        #E3E0F7,
+        #DCCFFB,
+        #EEE8FB
+    );
+    background-size: 400% 400%;
+    animation: gradient 30s ease infinite;
+}
+
+.bloquearriba .morado{
+    color: #6b50b8;
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  25% {
-    background-position: 50% 100%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  75% {
-    background-position: 50% 0%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
 }
-body{
-    user-select: none;
-    background-color: #f5feff;
+
+/* ===== ESTRUCTURA GENERAL: columna principal + columna de info ===== */
+
+.contenedoractrec{
+    display: flex;
+    gap: 20px;
+    margin: 25px 30px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.columnaprincipal{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 68%;
+    min-width: 320px;
+}
+
+/* Secciones 1 y 2 una al lado de la otra */
+.filainicial{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.estudiando{
+    width: 38%;
+    min-width: 240px;
+}
+
+.preg-actrec{
+    flex: 1;
+    min-width: 280px;
+}
+
+.estudiando,
+.preg-actrec,
+.tarjetapractica{
+    border: 1px solid var(--fs-borde);
+    border-radius: 20px;
+    background-color: white;
+    padding: 20px;
+}
+
+.estudiando textarea{
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* ===== SECCIÓN 2: crear preguntas ===== */
+
+.crearpreguntas{
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.crearpreguntas input{
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--fs-borde);
+    border-radius: 8px;
+    font-family: inherit;
 }
 
 .crearpreguntas button{
-  background-color: #ddd6fe;
-  color: blue;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #BDA7F5;
+    color: #2F2F38;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
+
 .crearpreguntas button:hover{
-  background-color: antiquewhite;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-
-
+    background-color: #A690E0;
 }
-.crearpreguntas button:active{
-  background-color: aqua;
-  transform: translateY(1px) scale(0.98);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1)
 
-
+.listapreguntas{
+    margin-top: 12px;
+    list-style: none;
 }
-.practica textarea{
-  width: 500px;
-  height: 90px;
-  margin-top: -15px;
+
+.listapreguntas li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--fs-borde);
+    color: #5a5370;
+}
+
+.listapreguntas li:last-child{
+    border-bottom: none;
+}
+
+.btnborrarpreg{
+    background: none;
+    border: 1px solid var(--fs-borde);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: #8a7fa8;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btnborrarpreg:hover{
+    border-color: #BDA7F5;
+    color: #6b50b8;
+}
+
+/* ===== SECCIÓN 3: práctica ===== */
+
+.estadovacio{
+    background: #F4F2FC;
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    color: #8a7fa8;
+    margin-top: 12px;
+}
+
+.tarjeta{
+    margin-top: 12px;
+}
+
+/* Tres columnas: lista de preguntas | pregunta y respuesta | autoevaluación */
+.practicacontenido{
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.listapasos{
+    list-style: none;
+    width: 130px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.listapasos li{
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid var(--fs-borde);
+    font-size: 13px;
+    color: #8a7fa8;
+    cursor: pointer;
+}
+
+.listapasos li:hover{
+    border-color: #BDA7F5;
+}
+
+.listapasos li.pasoactivo{
+    background: #EEE8FB;
+    border-color: #BDA7F5;
+    color: #6b50b8;
+    font-weight: 600;
+}
+
+.practicacentro{
+    flex: 1;
+    min-width: 240px;
+}
+
+#preguntaactual{
+    color: #6b50b8;
+    margin-bottom: 12px;
+}
+
+.practicacentro textarea{
+    width: 100%;
+    height: 110px;
+    border: 1px solid var(--fs-borde);
+    border-radius: 10px;
+    padding: 10px;
+    font-family: inherit;
+}
+
+/* Columna de autoevaluación: botones apilados */
+.autoeval{
+    width: 180px;
+    flex-shrink: 0;
+    border: 1px solid var(--fs-borde);
+    border-radius: 14px;
+    padding: 16px;
+    background: #FAFAFC;
+}
+
+.autoeval h5{
+    color: #6b50b8;
+    margin-bottom: 4px;
+}
+
+.autoevalpregunta{
+    font-size: 13px;
+    color: #8a7fa8;
+    margin-bottom: 12px;
+}
+
+.btnsabia,
+.btnmasomenos,
+.btnnosabia{
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Estos tres sí usan colores fuera de la paleta morada a propósito:
+   verde/ámbar/rojo significan algo (cómo te fue), no son solo decoración */
+.btnsabia{
+    background-color: #D9F2DF;
+    color: #2c6b3f;
+}
+
+.btnmasomenos{
+    background-color: #FBEFD2;
+    color: #8a6a1f;
+}
+
+.btnnosabia{
+    background-color: #F7DEE1;
+    color: #9c3b46;
+}
+
+/* Pie de la práctica: anterior, contador, siguiente */
+.practicapie{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--fs-borde);
+}
+
+.contadorpreg{
+    font-size: 13px;
+    color: #8a7fa8;
+}
+
+.btnanterior,
+.btnsiguiente{
+    border: 1px solid var(--fs-borde);
+    border-radius: 8px;
+    padding: 8px 16px;
+    background: white;
+    color: #6b50b8;
+    cursor: pointer;
+}
+
+.btnsiguiente{
+    background: #BDA7F5;
+    border-color: #BDA7F5;
+    color: #2F2F38;
+    font-weight: 600;
+}
+
+.marcador{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #8a7fa8;
+}
+
+.oculto{
+    display: none;
+}
+
+/* ===== COLUMNA DERECHA: explicación del método ===== */
+
+.infoactrec{
+    width: 28%;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.quees,
+.comousar,
+.consejosactrec{
+    border: 1px solid var(--fs-borde);
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #F4F2FC;
+}
+
+.titulomorado{
+    color: #6b50b8;
+    margin-bottom: 10px;
+}
+
+.infoactrec h5{
+    color: #5a5370;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Pasos numerados de "¿Cómo usarlo?" */
+.pasosactrec{
+    padding-left: 20px;
+    color: #5a5370;
+    line-height: 1.6;
+}
+
+.pasosactrec li{
+    margin-bottom: 8px;
+}
+
+/* Cada consejo separado del siguiente */
+.consejosactrec h5{
+    margin-bottom: 10px;
+}
+
+.consejosactrec h5:last-child{
+    margin-bottom: 0;
 }

@@ -16,7 +16,7 @@ body{
     padding:30px;
     font-family:'Segoe UI',sans-serif;
     background:linear-gradient(to bottom,#faf8ff,#f2edff);
-    color:#2b2b2b;
+    color:#2F2F38;
 }
 
 .fondo{
@@ -99,14 +99,14 @@ body{
     flex:1;
 }
 
-/* Colores parecidos al mockup */
+/* Bordes de los pasos 3 y 4, en tono con el resto del proyecto */
 
 .paso3{
-    border-color:#ffd4dd;
+    border-color:#E3E0F7;
 }
 
 .paso4{
-    border-color:#c8efd6;
+    border-color:#CBC6F0;
 }
 
 /* Textareas */
@@ -124,7 +124,7 @@ textarea{
 
 textarea:focus{
     outline:none;
-    border-color:#8b5cf6;
+    border-color:#7A5FC0;
 }
 
 /* Consejo final */
@@ -141,16 +141,16 @@ textarea:focus{
 /* Títulos */
 
 h1{
-    color:#20194d;
+    color:#6b50b8;
     font-size:48px;
 }
 
 h2{
-    color:#20194d;
+    color:#6b50b8;
 }
 
 h3{
-    color:#6f42ff;
+    color:#7A5FC0;
 }
 
 h5{
