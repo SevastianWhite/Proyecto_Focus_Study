@@ -1,32 +1,202 @@
-body{
-  min-height: 100vh;
-  background: url(../img/imagenqui.png);
-  margin: 0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment:fixed ;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  line-height: 1.7;
+/* Quiénes somos — página pública (va junto al login y la interfaz inicial).
+   Misma identidad que el landing: fondo lavanda, tipografía Fraunces y la
+   paleta --fs-*. Sin menú hamburguesa: solo un botón para volver al inicio. */
+
+:root {
+  --fs-lavanda: #DCCFFB;
+  --fs-morado: #BDA7F5;
+  --fs-blanco: #FAFAFC;
+  --fs-borde: #E0DCF0;
+  --fs-texto: #2F2F38;
+  --fs-suave: #8a7fa8;
+  --fs-indigo: #7a5fc0;
 }
 
-/* Esto fuerza el color de texto del proyecto en todo el contenido */
-body, h1, h2, h3, p, a, li {
-  color: #2F2F38;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  color: var(--fs-texto);
+  min-height: 100vh;
+  background:
+    linear-gradient(145deg, rgba(220,207,251,0.72) 0%, rgba(237,232,255,0.68) 100%),
+    url("../img/fotolog.jpg") center/cover no-repeat fixed;
 }
-h1,h2,h3 {
-    color: #6b50b8;
+
+/* ── Barra superior ── */
+.qs-topbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(189,167,245,0.2);
+  z-index: 10;
 }
-.contenedorqs {
-    text-align:center
-}
-.texto-justificado{
-    text-align:justify;
-}
-.focus-text {
-  text-align: center;
+
+.qs-brand {
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #7a5fc0;
+  background: linear-gradient(135deg, #5a9282, #7a5fc0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.qs-volver {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(135deg, #8a72c8, #7a5fc0);
+  padding: 9px 20px;
+  border-radius: 8px;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.qs-volver:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ── Contenido ── */
+.qs-main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 56px 28px 72px;
+}
+
+/* Hero */
+.qs-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+  margin-bottom: 52px;
+}
+
+.qs-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fs-suave);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.qs-titulo {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+.qs-lead {
+  font-size: 1.02rem;
+  color: #5a5370;
+  line-height: 1.6;
+  max-width: 430px;
+}
+
+/* Panel del hero con el logo. Aquí más adelante puede ir una ilustración. */
+.qs-hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 240px;
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(220,207,251,0.85), rgba(189,167,245,0.45));
+  border: 1px solid rgba(189,167,245,0.4);
+  box-shadow: 0 10px 34px rgba(122,95,192,0.16);
+}
+
+.qs-hero-logo {
+  height: 160px;
+  width: auto;
+  filter: drop-shadow(0 6px 22px rgba(80,100,200,0.22));
+  mix-blend-mode: multiply;
+}
+
+/* Tarjetas */
+.qs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.qs-card {
+  background: var(--fs-blanco);
+  border: 1px solid var(--fs-borde);
+  border-radius: 18px;
+  padding: 26px 24px;
+  box-shadow: 0 6px 28px rgba(189,167,245,0.14);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.qs-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 34px rgba(189,167,245,0.24);
+}
+
+.qs-card-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--fs-lavanda);
+  color: var(--fs-indigo);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.qs-card h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.qs-card p {
+  font-size: 0.92rem;
+  color: var(--fs-suave);
+  line-height: 1.6;
+}
+
+/* Frase de cierre */
+.qs-cierre {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--fs-texto);
+  line-height: 1.35;
+  max-width: 620px;
+  margin: 0 auto 40px;
+}
+
+/* Entrada suave de los bloques */
+.qs-hero, .qs-card { animation: qs-aparecer 0.5s ease both; }
+.qs-card:nth-child(1) { animation-delay: 0.05s; }
+.qs-card:nth-child(2) { animation-delay: 0.10s; }
+.qs-card:nth-child(3) { animation-delay: 0.15s; }
+.qs-card:nth-child(4) { animation-delay: 0.20s; }
+
+@keyframes qs-aparecer {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+  .qs-hero { grid-template-columns: 1fr; gap: 24px; }
+  .qs-hero-visual { height: 190px; }
+  .qs-hero-logo { height: 130px; }
+  .qs-grid { grid-template-columns: 1fr; }
+  .qs-titulo { font-size: 2.2rem; }
 }

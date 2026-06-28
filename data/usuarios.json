@@ -1,12 +1,12 @@
 {
   "usuarios": [
     {
-      "nombre": "Sevastian",
+      "nombre": "juan",
       "correo": "sevastian@gmail.com",
       "contrasena": "12345678"
     },
     {
-      "nombre": "m",
+      "nombre": "Estudiante",
       "correo": "a@a.a",
       "contrasena": "aaaaaaaa"
     }

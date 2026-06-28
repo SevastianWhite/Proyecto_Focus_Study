@@ -68,7 +68,7 @@
           <li><span class="step-num">2</span> Trabaja con enfoque durante {{ config.focus_minutes }} minutos.</li>
           <li><span class="step-num">3</span> Descansa {{ config.break_minutes }} minutos.</li>
           <li><span class="step-num">4</span> Repite el ciclo.</li>
-          <li><span class="step-num">5</span> Después de {{ config.cycles }} ciclos, toma un descanso largo (15–30 min).</li>
+          <li><span class="step-num">5</span> Después de {{ config.cycles }} ciclos, toma un descanso largo (15 min).</li>
         </ol>
       </div>
 
@@ -170,32 +170,17 @@
     <div class="modal-card">
       <h3 class="modal-title">Ajustes del temporizador</h3>
 
-      <div class="settings-row">
-        <span class="settings-label">Minutos de estudio</span>
-        <div class="spinner">
-          <button class="spin-btn" onclick="ajustarValor('enfoque', -1)">−</button>
-          <span class="spin-val" id="inp-focus">{{ config.focus_minutes }}</span>
-          <button class="spin-btn" onclick="ajustarValor('enfoque', 1)">+</button>
-        </div>
+      <p class="ajustes-label">Minutos de enfoque</p>
+      <div class="opciones-enfoque" id="opciones-enfoque">
+        <button type="button" class="opcion-min" data-min="15" onclick="seleccionarEnfoque(15)">15 min</button>
+        <button type="button" class="opcion-min" data-min="20" onclick="seleccionarEnfoque(20)">20 min</button>
+        <button type="button" class="opcion-min" data-min="25" onclick="seleccionarEnfoque(25)">25 min</button>
+        <button type="button" class="opcion-min" data-min="30" onclick="seleccionarEnfoque(30)">30 min</button>
+        <button type="button" class="opcion-min" data-min="40" onclick="seleccionarEnfoque(40)">40 min</button>
+        <button type="button" class="opcion-min" data-min="50" onclick="seleccionarEnfoque(50)">50 min</button>
+        <button type="button" class="opcion-min" data-min="60" onclick="seleccionarEnfoque(60)">60 min</button>
       </div>
-
-      <div class="settings-row">
-        <span class="settings-label">Minutos de descanso</span>
-        <div class="spinner">
-          <button class="spin-btn" onclick="ajustarValor('descanso', -1)">−</button>
-          <span class="spin-val" id="inp-break">{{ config.break_minutes }}</span>
-          <button class="spin-btn" onclick="ajustarValor('descanso', 1)">+</button>
-        </div>
-      </div>
-
-      <div class="settings-row">
-        <span class="settings-label">Ciclos por sesión</span>
-        <div class="spinner">
-          <button class="spin-btn" onclick="ajustarValor('ciclos', -1)">−</button>
-          <span class="spin-val" id="inp-cycles">{{ config.cycles }}</span>
-          <button class="spin-btn" onclick="ajustarValor('ciclos', 1)">+</button>
-        </div>
-      </div>
+      <p class="opciones-nota">El descanso es fijo: 5 min y, después de 4 sesiones, uno largo de 15 min. Lo recomendado son 25 min de enfoque.</p>
 
       <div class="modal-actions">
         <button class="btn-modal-cancel" onclick="cerrarAjustes()">Cancelar</button>
@@ -203,6 +188,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Suena al terminar el enfoque, justo antes de pasar al descanso -->
+  <audio id="sonido-fin" src="{{ url_for('static', filename='sounds/fin.mp3') }}" preload="auto"></audio>
 
   <!-- Config inicial inyectada por Flask -->
   <script>

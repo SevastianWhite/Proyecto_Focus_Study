@@ -144,6 +144,32 @@ body{
 body{
     user-select: none;
 }
-.logo-text{
-    
+
+/* Botones "Ver recurso" — mismo morado del resto del proyecto */
+.botonotion,
+.botongooglecalendar,
+.botonnotebooklm,
+.botonmiro,
+.botonscholar{
+    background:#BDA7F5;
+    border:none;
+    border-radius:8px;
+    padding:10px 18px;
+    margin-top:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:opacity 0.18s;
+}
+
+.botonotion:hover,
+.botongooglecalendar:hover,
+.botonnotebooklm:hover,
+.botonmiro:hover,
+.botonscholar:hover{
+    opacity:0.85;
+}
+
+.bloques button a{
+    color:#fff;
+    text-decoration:none;
 }

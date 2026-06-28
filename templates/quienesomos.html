@@ -1,37 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-  
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>¿Quienes Somos?</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/quienesomos.css') }}" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quiénes somos? — Focus Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/quienesomos.css') }}">
 </head>
 
 <body>
-    <nav class="navar">
-        <div class="nav-logo">
-      <span class="focus-text">Focus Study</span>
-      <!-- Solo las iniciales del proyecto -->
-    </div>
-    </nav>
 
-    <div class="contenedorqs">
-        <h1>¿Quienes Somos?<br></h1>
-        <h3>Nuestro Propósito<br></h3>
-        <h5>Ayudar a los estudiantes a desarrollar mejores habitos<br> de estudio con métodos basados en evidencia<br></h5>
-        <h3>El Problema</h3>
-        <h5>Falta de concentración y métodos ineficientes<br> afectan el aprendizaje y el rendimiento</h5>
-        <h3>Nuestra Filosofía</h3>
-        <h5>Creemos en el aprendizaje consciente,<br> constante y enfocado</h5>
-        <h3>¿Por qué lo Empezamos?</h3>
-        <h5>Porque entendemos los desafios del estudio<br> y queremos hacer algo más simple y efectivo</h5>
+  <!-- Página pública: sin menú hamburguesa, solo un botón para volver al inicio -->
+  <header class="qs-topbar">
+    <span class="qs-brand">Focus Study</span>
+    <a href="{{ url_for('inicio') }}" class="qs-volver">← Volver al inicio</a>
+  </header>
 
-        <ul>
-            <li>
-                <a href="{{ url_for('inicio') }}">Volver al inicio</a>
-            </li>
-        </ul>
-    </div>   
+  <main class="qs-main">
+
+    <section class="qs-hero">
+      <div class="qs-hero-texto">
+        <p class="qs-eyebrow">Conócenos</p>
+        <h1 class="qs-titulo">¿Quiénes somos?</h1>
+        <p class="qs-lead">
+          Somos un equipo de estudiantes construyendo una forma más simple
+          y enfocada de estudiar, basada en métodos que de verdad funcionan.
+        </p>
+      </div>
+      <div class="qs-hero-visual">
+        <img src="{{ url_for('static', filename='img/logo_hero.png') }}"
+             alt="Focus Study" class="qs-hero-logo">
+      </div>
+    </section>
+
+    <section class="qs-grid">
+
+      <article class="qs-card">
+        <span class="qs-card-num">1</span>
+        <h2>Nuestro propósito</h2>
+        <p>Ayudar a los estudiantes a desarrollar mejores hábitos de estudio
+           con métodos basados en evidencia. No se trata de estudiar más horas,
+           sino de estudiar mejor.</p>
+      </article>
+
+      <article class="qs-card">
+        <span class="qs-card-num">2</span>
+        <h2>El problema</h2>
+        <p>La falta de concentración y los métodos ineficientes afectan el
+           aprendizaje y el rendimiento. Se estudia mucho y se retiene poco,
+           y eso termina desmotivando.</p>
+      </article>
+
+      <article class="qs-card">
+        <span class="qs-card-num">3</span>
+        <h2>Nuestra filosofía</h2>
+        <p>Creemos en el aprendizaje consciente, constante y enfocado. Los
+           pequeños hábitos de cada día pesan más que un esfuerzo enorme de
+           último momento.</p>
+      </article>
+
+      <article class="qs-card">
+        <span class="qs-card-num">4</span>
+        <h2>¿Por qué lo empezamos?</h2>
+        <p>Porque entendemos los desafíos del estudio y queremos hacer algo
+           más simple y efectivo. Somos estudiantes resolviendo un problema
+           que vivimos nosotros mismos.</p>
+      </article>
+
+    </section>
+
+    <p class="qs-cierre">Creemos que la forma en que estudias lo cambia todo.</p>
+
+  </main>
+
 </body>
+
+</html>

@@ -233,9 +233,9 @@ def descanso():
 @app.route('/api/config', methods=['POST'])
 def api_config():
     data = request.get_json(silent=True) or {}
+    # Solo el tiempo de enfoque es configurable. El descanso (5/15 min) y la
+    # cantidad de sesiones (4) son fijos, así que no se tocan acá.
     session['focus_minutes'] = int(data.get('focus_minutes', POMODORO_DEFAULT['focus_minutes']))
-    session['break_minutes'] = int(data.get('break_minutes', POMODORO_DEFAULT['break_minutes']))
-    session['cycles'] = int(data.get('cycles', POMODORO_DEFAULT['cycles']))
     return jsonify({'status': 'ok', 'config': get_pomodoro_config()})
 
 @app.route('/api/notes', methods=['POST'])

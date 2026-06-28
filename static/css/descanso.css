@@ -1,89 +1,329 @@
+/* Pantalla de descanso. Usa la paleta --fs-* de nav.css. */
+
+/* Variables locales para el cronómetro (complementan las de nav.css) */
+:root {
+    --ds-indigo:       #7A5FC0;
+    --ds-indigo-dark:  #6549A8;
+    --ds-indigo-light: #EEE8FB;
+    --ds-violet-light: #F1EEFC;
+    --ds-muted:        #8A7FA8;
+    --ds-faint:        #B5AFC8;
+    --ds-radius-lg:    18px;
+    --ds-radius-md:    12px;
+    --ds-radius-sm:    8px;
+}
+
 body {
-    background: url(../img/fotolog.jpg);
-  margin: 0;
-  min-height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #FAFAFC 0%, #F1EEFC 100%);
+    background-attachment: fixed;
+    color: var(--fs-texto);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
 
-.textocentral {
-    text-align: center;
-    position:relative;
-    top: -5px;
-    font-size: 16px;
-    line-height: 0.3; /* Espaciado recomendado para párrafos */
+.ds-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
 }
-.bloques {
+
+
+/* ── Hero ──────────────────────────────────────────────────────── */
+
+.ds-hero {
     display: flex;
-    gap: 120px; /* Espacio entre los botones*/
-    justify-content: space-between;
-    text-align: center;
-    margin: 100px; /*distancia entre los botones y arriba*/
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 36px;
 }
-.bloqueizquierdo {
-    background-color:rgb(241, 213, 249);
-    color:black;
-    border-radius: 8px;
-    padding: 60px;
-    position: relative;
-    top:-60px;
-    height:260px;
-    transform: translateX(60%);
+
+/* Contenedor reservado para ilustración futura */
+.ds-ilustracion-wrap {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    background: var(--fs-lavanda);
+    border-radius: 20px;
 }
-.bloquederecho {
-    background-color:rgb(241, 213, 249); /*color de fondo*/
-    color:black; /*color de la letra*/
-    border-radius: 8px; /*bordes redondeados*/
-    padding:60px; /*espacio para que no esté apretado*/
-    position:relative;
-    top:-60px;
-    height:260px;
-    transform: translateX(-65%);
+
+.ds-hero-texto h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--fs-texto);
 }
-.textoabajo {
-    text-align: center;
-    position:relative;
-    top:-135px
-}
-img{
-    border: 5px solid rgb(164, 124, 199) !important;
-}
-.nav-logo{
-    color: rgb(198, 84, 255);
+
+.ds-hero-sub {
+    font-size: 0.95rem;
+    color: var(--ds-muted);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 480px;
 }
 
 
+/* ── Grid de 3 columnas ─────────────────────────────────────────── */
 
-.botonomitirdescanso {
-    background-color: #0a0a0a;
-    color: #ffffff;
-    padding: 8px 35px;
-    border: 3px solid transparent; background: linear-gradient(#0a0a0a,#0a0a0a)padding-box, linear-gradient(144deg,#af40ff,#5b42f3 50%,#00ddee) border-box;
-    border-radius: 10px;
-    width: auto;
-    font-size: 16px;
+.ds-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 272px;
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 24px;
+}
+
+
+/* ── Tarjetas de contenido ──────────────────────────────────────── */
+
+.ds-card {
+    background: #fff;
+    border: 1px solid var(--fs-borde);
+    border-radius: var(--ds-radius-lg);
+    padding: 22px 20px;
+    box-shadow: 0 2px 10px rgba(47, 47, 56, 0.04);
+}
+
+.ds-card h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--fs-texto);
+}
+
+.ds-card > p {
+    font-size: 0.875rem;
+    color: var(--ds-muted);
+    line-height: 1.55;
+    margin: 0 0 14px;
+}
+
+/* Espacio reservado para la animación de respiración */
+.ds-placeholder-animacion {
+    width: 100%;
+    height: 150px;
+    background: var(--fs-lavanda);
+    border-radius: var(--ds-radius-md);
+    margin-bottom: 16px;
+}
+
+/* Espacio reservado para el video (proporción 16:9) */
+.ds-placeholder-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--fs-gris);
+    border-radius: var(--ds-radius-md);
+    margin-bottom: 16px;
+}
+
+/* Contenido que aparece al pulsar el botón */
+.ds-revelado {
+    display: none;
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: var(--fs-gris);
+    border-radius: var(--ds-radius-sm);
+    font-size: 0.85rem;
+    color: var(--fs-texto);
+    line-height: 1.6;
+}
+
+.ds-revelado.visible { display: block; }
+
+.ds-revelado p { margin: 0 0 6px; }
+.ds-revelado p:last-child { margin-bottom: 0; }
+
+ul.ds-revelado { padding-left: 28px; }
+ul.ds-revelado li { margin-bottom: 6px; }
+ul.ds-revelado li:last-child { margin-bottom: 0; }
+
+
+/* ── Botones ────────────────────────────────────────────────────── */
+
+.ds-btn {
+    border: none;
+    border-radius: var(--ds-radius-sm);
+    padding: 9px 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    display: inline-block;
-    margin: 20px auto 0 auto;
+    transition: opacity 0.15s, background 0.15s, color 0.15s;
 }
 
-.botonomitirdescanso:hover {
-  background: linear-gradient(144deg,#af40ff,#5b42f3 50%, #00ddee);
-   border: 3px solid transparent;
-    transform: scale(1.05);
+/* Secundario — lavanda, para las tarjetas de contenido */
+.ds-btn--suave {
+    background: var(--fs-lavanda);
+    color: var(--fs-texto);
+}
+.ds-btn--suave:hover {
+    background: var(--fs-morado);
+    color: #fff;
 }
 
-.botonomitirdescanso:active {
-    transform: scale(0.95);
+/* Primario — morado lleno, para omitir descanso */
+.ds-btn--omitir {
+    background: var(--fs-morado);
+    color: #fff;
+    padding: 11px 24px;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
-body{
-    user-select: none;
+.ds-btn--omitir:hover { opacity: 0.85; }
+
+
+/* ── Cronómetro del descanso ────────────────────────────────────── */
+/* Mismo anillo que el Pomodoro. Se repite aquí para no depender de pomodoro.css. */
+
+.timer-card {
+    background: linear-gradient(180deg, var(--ds-violet-light) 0%, #F4F2FC 100%);
+    border-radius: var(--ds-radius-lg);
+    padding: 1.6rem 1.25rem 1.75rem;
+    text-align: center;
+}
+
+.timer-counter {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ds-indigo);
+    margin-bottom: 1.2rem;
+}
+
+.ring-wrap {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.4rem;
+}
+
+.ring-svg { width: 100%; height: 100%; }
+
+.ring-track {
+    fill: none;
+    stroke: #E3E0F7;
+    stroke-width: 8;
+}
+
+.ring-progress {
+    fill: none;
+    stroke: var(--ds-indigo);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 553;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    transform: rotate(-90deg);
+    transition: stroke-dashoffset 1s linear;
+}
+
+.ring-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.time-display {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--fs-texto);
+    letter-spacing: -1px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.time-label {
+    font-size: 12px;
+    color: var(--ds-muted);
+    margin-top: 5px;
+}
+
+/* Botón de pausar/reanudar dentro del cronómetro */
+.btn-start {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ds-indigo);
+    color: #fff;
+    border: none;
+    border-radius: var(--ds-radius-md);
+    padding: 12px 0;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-bottom: 1rem;
+}
+.btn-start:hover { background: var(--ds-indigo-dark); }
+
+/* Puntitos de progreso de sesión */
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid #CBC6F0;
+    background: transparent;
+}
+
+.dot--done   { background: var(--ds-faint);  border-color: var(--ds-faint); }
+.dot--active { background: var(--ds-indigo); border-color: var(--ds-indigo); }
+
+
+/* ── Barra inferior ─────────────────────────────────────────────── */
+
+.ds-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 22px;
+    background: #fff;
+    border: 1px solid var(--fs-borde);
+    border-radius: var(--ds-radius-lg);
+    box-shadow: 0 2px 10px rgba(47, 47, 56, 0.04);
+}
+
+.ds-frase {
+    font-size: 0.9rem;
+    color: var(--ds-muted);
+    font-style: italic;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
 }
 
 
+/* ── Responsive ──────────────────────────────────────────────────── */
 
+@media (max-width: 920px) {
+    .ds-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .ds-timer-col {
+        grid-column: 1 / -1;
+        max-width: 300px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
 
+@media (max-width: 600px) {
+    .ds-main { padding: 24px 16px 48px; }
+
+    .ds-hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    .ds-grid { grid-template-columns: 1fr; }
+    .ds-timer-col { grid-column: auto; max-width: 100%; }
+
+    .ds-barra { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .ds-btn--omitir { width: 100%; text-align: center; }
+}

@@ -6,8 +6,9 @@
 }
 
 body{
-    font-family:'Segoe UI',sans-serif;
-    background:#f7f7fa;/*color de fondo*/
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background:linear-gradient(180deg,#FAFAFC 0%,#F1EEFC 100%);
+    background-attachment:fixed;
     margin:0;
     padding:30px;
 }
@@ -225,4 +226,18 @@ button{
     height: 70px;
     padding: 4px;
     font-size: 11px;
+}
+
+/* Espacio reservado para una imagen (se agrega más adelante) */
+.espacio-imagen{
+    height: 150px;
+    border-radius: 20px;
+    background: #EEE8FB;
+    border: 1px solid var(--fs-borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a7fa8;
+    font-size: 13px;
+    margin-bottom: 15px;
 }

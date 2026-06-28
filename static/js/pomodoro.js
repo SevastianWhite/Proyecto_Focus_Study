@@ -1,38 +1,21 @@
 'use strict';
 
 /*
- * pomodoro.js — Lógica del temporizador Pomodoro
+ * pomodoro.js — cuenta regresiva del enfoque. Cuando llega a cero, manda al
+ * usuario a /descanso. El descanso (5/15 min) y los 4 ciclos son fijos: aquí
+ * solo se configura el tiempo de enfoque.
  *
- * Esta página solo corre la cuenta regresiva de ENFOQUE. Cuando se acaba, manda
- * al usuario a /descanso (otra página) en vez de seguir contando acá mismo.
- *
- * Variables principales que usamos en todo el archivo:
- *   config → minutos de enfoque, de descanso y cantidad de ciclos (los que están activos)
- *   configTemporal → copia que se edita en el modal de ajustes antes de guardar
- *   enMarcha → true cuando el reloj está corriendo, false cuando está pausado
- *   intervalo → el setInterval que descuenta un segundo cada vez
- *   segundosRestantes → cuántos segundos faltan en la fase actual
- *   segundosTotales → cuántos segundos dura la fase actual (para calcular el anillo)
- *   cicloActual → en qué pomodoro vamos (1, 2, 3...)
- *
- * Nota: las llaves focus_minutes / break_minutes / cycles y goal / notes se quedan
- * en inglés porque son las que viajan hacia Flask (app.py). Si cambiamos una acá,
- * habría que cambiarla también allá, así que las dejamos igual.
+ * Las llaves focus_minutes / cycles van en inglés porque viajan a Flask (app.py).
  */
 
 // SERVER_CONFIG lo inyecta pomodoro.html con los valores guardados en la sesión.
 var config = {
   enfoque: SERVER_CONFIG.focus_minutes,
-  descanso: SERVER_CONFIG.break_minutes,
   ciclos: SERVER_CONFIG.cycles
 };
 
-// Copia de la config que se edita en el modal sin tocar la original hasta guardar.
-var configTemporal = {
-  enfoque: config.enfoque,
-  descanso: config.descanso,
-  ciclos: config.ciclos
-};
+// Minutos de enfoque elegidos en el modal, antes de aplicarlos.
+var enfoqueTemporal = config.enfoque;
 
 var enMarcha = false;
 var intervalo = null;
@@ -69,8 +52,8 @@ function actualizarPantalla() {
   contadorCiclo.textContent = 'Pomodoro ' + cicloActual + '/' + config.ciclos;
 
   etiquetaSiguiente.textContent = cicloActual === config.ciclos
-    ? 'Descanso largo (15–30 min)'
-    : 'Descanso corto (' + config.descanso + ' min)';
+    ? 'Descanso largo (15 min)'
+    : 'Descanso corto (5 min)';
 
   // El anillo se va "vaciando" según el tiempo que queda.
   var proporcion = segundosRestantes / segundosTotales;
@@ -126,14 +109,26 @@ function iniciarOPausar() {
         segundosRestantes--;
         actualizarPantalla();
       } else {
-        // Se acabó la fase: paramos el reloj y pasamos a la siguiente.
+        // Se acabó el enfoque de forma natural: suena el aviso y, tras un
+        // momento para que se oiga, pasamos al descanso.
         clearInterval(intervalo);
         enMarcha = false;
         textoBoton.textContent = 'Iniciar';
         iconoPlay.innerHTML = '&#9658;';
-        avanzarFase();
+        reproducirSonido();
+        setTimeout(avanzarFase, 1500);
       }
     }, 1000);
+  }
+}
+
+// Reproduce el aviso de fin. Solo se llama al terminar el enfoque de forma
+// natural; al "Saltar" no suena.
+function reproducirSonido() {
+  var audio = document.getElementById('sonido-fin');
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(function () {});
   }
 }
 
@@ -143,7 +138,7 @@ function avanzarFase() {
   var esUltimoCiclo = cicloActual >= config.ciclos;
   var parametros = new URLSearchParams({
     tipo: esUltimoCiclo ? 'largo' : 'corto',
-    min: esUltimoCiclo ? 20 : config.descanso,
+    min: esUltimoCiclo ? 15 : 5,
     ciclo: cicloActual,
     totalCiclos: config.ciclos
   });
@@ -171,15 +166,25 @@ function saltarFase() {
   avanzarFase();
 }
 
-// Abre el modal de ajustes copiando los valores actuales a la copia temporal.
+// Abre el modal y resalta la opción de enfoque que está activa.
 function abrirAjustes() {
-  configTemporal.enfoque = config.enfoque;
-  configTemporal.descanso = config.descanso;
-  configTemporal.ciclos = config.ciclos;
-  document.getElementById('inp-focus').textContent = configTemporal.enfoque;
-  document.getElementById('inp-break').textContent = configTemporal.descanso;
-  document.getElementById('inp-cycles').textContent = configTemporal.ciclos;
+  enfoqueTemporal = config.enfoque;
+  marcarOpcionActiva();
   modalAjustes.classList.add('show');
+}
+
+// Resalta el botón cuyo valor coincide con el enfoque elegido.
+function marcarOpcionActiva() {
+  var botones = document.querySelectorAll('.opcion-min');
+  botones.forEach(function (boton) {
+    var minutos = parseInt(boton.dataset.min, 10);
+    boton.classList.toggle('opcion-min--activa', minutos === enfoqueTemporal);
+  });
+}
+
+function seleccionarEnfoque(minutos) {
+  enfoqueTemporal = minutos;
+  marcarOpcionActiva();
 }
 
 // Cierra el modal. Si se hizo clic en la tarjeta (no en el fondo), no cierra.
@@ -188,42 +193,17 @@ function cerrarAjustes(evento) {
   modalAjustes.classList.remove('show');
 }
 
-// Límites mínimos y máximos para cada campo del modal.
-var LIMITES = {
-  enfoque: [1, 60],
-  descanso: [1, 30],
-  ciclos: [1, 10]
-};
-
-// Sube o baja un valor del modal sin pasarse de los límites.
-function ajustarValor(campo, cambio) {
-  var minimo = LIMITES[campo][0];
-  var maximo = LIMITES[campo][1];
-  configTemporal[campo] = Math.min(Math.max(configTemporal[campo] + cambio, minimo), maximo);
-
-  var mapaIds = { enfoque: 'inp-focus', descanso: 'inp-break', ciclos: 'inp-cycles' };
-  document.getElementById(mapaIds[campo]).textContent = configTemporal[campo];
-}
-
-// Guarda los ajustes en el servidor (Flask) y reinicia el reloj con los nuevos valores.
+// Guarda el enfoque elegido en el servidor (Flask) y reinicia el reloj.
 function aplicarAjustes() {
-  var datos = {
-    focus_minutes: configTemporal.enfoque,
-    break_minutes: configTemporal.descanso,
-    cycles: configTemporal.ciclos
-  };
-
   fetch('/api/config', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(datos)
+    body: JSON.stringify({ focus_minutes: enfoqueTemporal })
   })
   .then(function (respuesta) { return respuesta.json(); })
   .then(function (respuesta) {
     if (respuesta.status === 'ok') {
       config.enfoque = respuesta.config.focus_minutes;
-      config.descanso = respuesta.config.break_minutes;
-      config.ciclos = respuesta.config.cycles;
       modalAjustes.classList.remove('show');
       reiniciarTemporizador();
       mostrarAviso('Configuración aplicada');

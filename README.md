@@ -25,6 +25,4 @@ Plataforma web de técnicas de estudio desarrollada por estudiantes de Ingenier�
 
 3. Abrir en el navegador: `http://127.0.0.1:5000`
 
-## Estructura del proyecto
 
-Ver `GUIA_EQUIPO.md` para la explicación completa de carpetas y archivos.

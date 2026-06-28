@@ -10,7 +10,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: var(--fs-blanco);
+            background: linear-gradient(180deg, #FAFAFC 0%, #F1EEFC 100%);
+            background-attachment: fixed;
             color: var(--fs-texto);
             padding-top: var(--fs-nav-h);
         }
@@ -173,7 +174,7 @@
                        type="text"
                        name="nombre"
                        value="{{ nombre_actual }}"
-                       placeholder="Ej: Alex, Sofía, White"
+                       placeholder="Ej: Pepe, Romina, Sevastian"
                        maxlength="30"/>
                 <button class="conf-btn" type="submit">Guardar</button>
             </form>

@@ -21,7 +21,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg);
+  background: linear-gradient(180deg, #FAFAFC 0%, #F1EEFC 100%);
+  background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
 }
@@ -383,6 +384,48 @@ body {
 .btn-modal-cancel:hover { background: var(--border); }
 .btn-modal-apply { background: var(--indigo); color: #fff; }
 .btn-modal-apply:hover { background: var(--indigo-dark); }
+
+/* Opciones de minutos de enfoque (reemplazan al spinner) */
+.ajustes-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.opciones-enfoque {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.opcion-min {
+  flex: 1 1 calc(33.33% - 8px);
+  min-width: 64px;
+  padding: 10px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.opcion-min:hover { background: var(--indigo-light); }
+.opcion-min--activa {
+  background: var(--indigo);
+  border-color: var(--indigo);
+  color: #fff;
+}
+
+.opciones-nota {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 0.9rem;
+}
 
 /* ── Toast ───────────────────────────────────────────────────── */
 .toast {
