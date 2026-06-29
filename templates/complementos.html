@@ -41,52 +41,92 @@
         <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
-    <div class="textoarriba">
-        <img src="{{ url_for('static', filename='img/complementos_header.svg') }}" alt="imagen" height="45" width="50"/>
-        <h1>Complementos recomendados</h1>
-        <h4>Estos recursos externos pueden ayudar a potenciar tu aprendizaje y organización.</h4>
-        <p class="avisocomplementos">Estas herramientas se recomiendan únicamente con fines educativos, no son de nuestra autoría. La idea es que te ayuden a optimizar aún más tu desempeño a la hora de estudiar.</p>
+    <div class="comp-hero">
+        <div class="comp-hero-texto">
+            <h1>Complementos recomendados</h1>
+            <p class="comp-subtitulo">En este apartado encontrarás algunas herramientas con las que puedes potenciar aún más la forma en que estudias. Las probamos, nos funcionaron, y creemos que a ti también te pueden servir.</p>
+            <p class="avisocomplementos">Son recursos externos, no son nuestros. Los incluimos solo con fines de apoyo al estudio.</p>
+        </div>
+        <div class="comp-hero-imagen">
+            <img src="{{ url_for('static', filename='img/img_complementos_hero.png') }}" alt="Herramientas de estudio">
+        </div>
     </div>
-    <div>
-        <div class="brillo"></div>
-        <div class="brillo2"></div>
-        <button class="botonvolver"><a href="{{ url_for('dashboard') }}">Volver</a> </button>
-    </div>
-    <div class="bloques">
-        <div class="notion">
-            <img src="{{ url_for('static', filename='img/logo_notion.png') }}" alt="imagen" height="50" width="50"/>
-            <h5 class="organizacion">Organización</h5>
+    <div class="comp-grid">
+        <div class="comp-card notion">
+            <img src="{{ url_for('static', filename='img/logo_notion.png') }}" alt="Notion" height="50" width="50"/>
+            <h5>Organización</h5>
             <h2>Notion</h2>
-            <h4>Todo en uno para tomar<br>notas, organizar tareas<br>y gestionar proyectos<br>de forma visual.</h4>
-            <button class="botonotion"><a href="https://www.notion.com/es">Ver recurso</a></button>
+            <h4>Todo en uno para tomar notas, organizar tareas y gestionar proyectos de forma visual.</h4>
+            <a class="comp-card-btn" target="_blank" rel="noopener" href="https://www.notion.com/es">Ver recurso</a>
         </div>
-        <div class="googlecalendar">
-            <img src="{{ url_for('static', filename='img/logo_googlecalendar.svg') }}" alt="imagen" height="50" width="50"/>
-            <h5 class="planificación">Planificación</h5>
+        <div class="comp-card googlecalendar">
+            <img src="{{ url_for('static', filename='img/logo_googlecalendar.svg') }}" alt="Google Calendar" height="50" width="50"/>
+            <h5>Planificación</h5>
             <h2>Google Calendar</h2>
-            <h4>Agenda tus horarios<br>de estudio, recordatorios<br>y eventos importantes<br>de manera sencilla.</h4>
-            <button class="botongooglecalendar"><a href="https://calendar.google.com/calendar/u/0/r?pli=1">Ver recurso</a></button>
+            <h4>Agenda tus horarios de estudio, recordatorios y eventos importantes de manera sencilla.</h4>
+            <a class="comp-card-btn" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/u/0/r?pli=1">Ver recurso</a>
         </div>
-        <div class="notebooklm">
-            <img src="{{ url_for('static', filename='img/logo_notebooklm.svg') }}" alt="imagen" height="50" width="50"/>
-            <h5 class="resumenes">Resúmenes</h5>
+        <div class="comp-card notebooklm">
+            <img src="{{ url_for('static', filename='img/logo_notebooklm.svg') }}" alt="NotebookLM" height="50" width="50"/>
+            <h5>Resúmenes con IA</h5>
             <h2>NotebookLM</h2>
-            <h4>Sube tus apuntes y la<br>IA te ayuda a resumir,<br>organizar y entender<br>mejor el contenido.</h4>
-            <button class="botonnotebooklm"><a href="https://notebooklm.google.com/">Ver recurso</a></button>
+            <h4>Sube tus apuntes y la IA te ayuda a resumir, organizar y entender mejor el contenido.</h4>
+            <a class="comp-card-btn" target="_blank" rel="noopener" href="https://notebooklm.google.com/">Ver recurso</a>
         </div>
-        <div class="miro">
-            <img src="{{ url_for('static', filename='img/logo_miro.svg') }}" alt="imagen" height="50" width="50"/>
-            <h5 class="aprendizaje">Aprendizaje</h5>
+        <div class="comp-card miro">
+            <img src="{{ url_for('static', filename='img/logo_miro.svg') }}" alt="Miro" height="50" width="50"/>
+            <h5>Mapas mentales</h5>
             <h2>Miro</h2>
-            <h4>Pizarra colaborativa<br>para crear mapas<br>mentales y conectar<br>ideas fácilmente.</h4>
-            <button class="botonmiro"><a href="https://miro.com/es/">Ver recurso</a></button>
+            <h4>Pizarra colaborativa para crear mapas mentales y conectar ideas fácilmente.</h4>
+            <a class="comp-card-btn" target="_blank" rel="noopener" href="https://miro.com/es/">Ver recurso</a>
         </div>
-        <div class="scholar">
-            <img src="{{ url_for('static', filename='img/logo_scholar.svg') }}" alt="imagen" height="50" width="50"/>
-            <h5 class="investigacion">Investigación</h5>
+        <div class="comp-card scholar">
+            <img src="{{ url_for('static', filename='img/logo_scholar.svg') }}" alt="Google Scholar" height="50" width="50"/>
+            <h5>Investigación</h5>
             <h2>Google Scholar</h2>
-            <h4>Busca artículos y<br>papers académicos<br>confiables para tus<br>trabajos de investigación.</h4>
-            <button class="botonscholar"><a href="https://scholar.google.com/">Ver recurso</a></button>
+            <h4>Busca artículos y papers académicos confiables para tus trabajos de investigación.</h4>
+            <a class="comp-card-btn" target="_blank" rel="noopener" href="https://scholar.google.com/">Ver recurso</a>
+        </div>
+        <div class="comp-card khan">
+            <img src="{{ url_for('static', filename='img/logo_khan.svg') }}" alt="Khan Academy" height="50" width="50"/>
+            <h5>Contenido educativo</h5>
+            <h2>Khan Academy</h2>
+            <h4>Videos y ejercicios gratuitos sobre casi cualquier tema. Ideal para aprender el contenido antes de practicarlo con los métodos de Focus Study.</h4>
+            <a class="comp-card-btn" target="_blank" rel="noopener" href="https://es.khanacademy.org/">Ver recurso</a>
+        </div>
+    </div>
+
+    <div class="comp-tips">
+        <p class="comp-tips-titulo">¿Cómo los puedes combinar con Focus Study?</p>
+        <div class="comp-tips-lista">
+            <div class="comp-tip">
+                <div class="comp-tip-num">1</div>
+                <div class="comp-tip-texto">
+                    <strong>Khan Academy → Método Feynman</strong>
+                    <span>Estudia el tema en Khan Academy y luego trata de explicarlo con tus propias palabras. Si te trabas, ya sabes exactamente qué repasar.</span>
+                </div>
+            </div>
+            <div class="comp-tip">
+                <div class="comp-tip-num">2</div>
+                <div class="comp-tip-texto">
+                    <strong>NotebookLM → Active Recall</strong>
+                    <span>Sube tus apuntes a NotebookLM para resumirlos y luego practica recordándolos desde cero con la sesión de Active Recall.</span>
+                </div>
+            </div>
+            <div class="comp-tip">
+                <div class="comp-tip-num">3</div>
+                <div class="comp-tip-texto">
+                    <strong>Google Calendar → Pomodoro</strong>
+                    <span>Planifica tus bloques de estudio en el calendario y activa el temporizador Pomodoro cuando llegue la hora de enfocarte.</span>
+                </div>
+            </div>
+            <div class="comp-tip">
+                <div class="comp-tip-num">4</div>
+                <div class="comp-tip-texto">
+                    <strong>Miro → Cornell Notes</strong>
+                    <span>Arma primero un mapa mental en Miro para conectar ideas y luego estructura lo más importante con el formato Cornell.</span>
+                </div>
+            </div>
         </div>
     </div>
 

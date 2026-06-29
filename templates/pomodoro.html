@@ -4,19 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pomodoro — Focus Study</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/pomodoro.css') }}">
   <style>body { padding-top: var(--fs-nav-h); }</style>
 </head>
 <body>
 
-  <!-- ── Navegación ────────────────────────────────────────────────────── -->
+  <!-- Menú de navegación (nav.css + nav.js). Activo: Zona de Estudio → Pomodoro -->
   <nav class="fs-nav">
       <button class="fs-nav-toggle" id="fsNavToggle">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
       </button>
       <span class="fs-nav-brand">Focus Study</span>
   </nav>
@@ -41,7 +40,7 @@
       <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
   </div>
 
-  <!-- ── Main layout: 3 columns ──────────────────────────────────────── -->
+  <!-- Layout principal: 3 columnas -->
   <main class="layout">
 
     <!-- Columna izquierda: explicación del método -->
@@ -165,7 +164,7 @@
 
   </main>
 
-  <!-- ── Settings modal ──────────────────────────────────────────────── -->
+  <!-- Modal de ajustes -->
   <div class="modal-overlay" id="modal-overlay" onclick="cerrarAjustes(event)">
     <div class="modal-card">
       <h3 class="modal-title">Ajustes del temporizador</h3>
@@ -194,14 +193,13 @@
 
   <!-- Config inicial inyectada por Flask -->
   <script>
-    const SERVER_CONFIG = {
+    var SERVER_CONFIG = {
       focus_minutes: {{ config.focus_minutes }},
       break_minutes: {{ config.break_minutes }},
       cycles: {{ config.cycles }}
     };
-    // En qué ciclo arranca el timer. Normalmente 1, pero si el usuario viene
-    // de la pantalla de descanso, llega el ciclo en el que se había quedado.
-    const CICLO_INICIAL = {{ ciclo_inicial }};
+    // Si viene de /descanso, llega el ciclo en el que iba; si no, empieza en 1.
+    var CICLO_INICIAL = {{ ciclo_inicial }};
   </script>
   <script src="{{ url_for('static', filename='js/pomodoro.js') }}"></script>
   <script src="{{ url_for('static', filename='js/nav.js') }}"></script>

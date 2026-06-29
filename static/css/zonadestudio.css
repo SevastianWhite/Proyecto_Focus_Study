@@ -1,10 +1,4 @@
-/*
- * zonadestudio.css — Zona de Estudio (selector de métodos)
- * Focus Study — Área privada
- *
- * Variables de color definidas en nav.css (siempre se carga antes).
- * Esta hoja reemplaza el diseño anterior basado en imagen de fondo.
- */
+/* zonadestudio.css — Selector de métodos de estudio. Variables en nav.css. */
 
 * {
   box-sizing: border-box;
@@ -20,14 +14,14 @@ body {
   padding-top: var(--fs-nav-h);
 }
 
-/* ── Layout principal ── */
+/* Layout principal */
 .ze-main {
   max-width: 840px;
   margin: 0 auto;
   padding: 36px 24px 72px;
 }
 
-/* ── Cabecera de sección ── */
+/* Cabecera */
 .ze-breadcrumb {
   font-size: 0.7rem;
   color: #b5afc8;
@@ -49,14 +43,14 @@ body {
   margin-bottom: 36px;
 }
 
-/* ── Grid 2×2 ── */
+/* Grid */
 .ze-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
-/* ── Tarjeta de método ── */
+/* Tarjetas */
 .ze-card {
   background: var(--fs-gris);
   border-radius: 16px;
@@ -95,7 +89,7 @@ body {
   box-shadow: 0 6px 20px rgba(189, 167, 245, 0.16);
 }
 
-/* ── Nombre del método ── */
+/* Nombre */
 .ze-card-nombre {
   font-size: 1.05rem;
   font-weight: 700;
@@ -103,7 +97,7 @@ body {
   line-height: 1.2;
 }
 
-/* ── Descripción breve ── */
+/* Descripción */
 .ze-card-desc {
   font-size: 0.8rem;
   color: var(--fs-suave);
@@ -111,7 +105,7 @@ body {
   flex-grow: 1; /* empuja beneficio + CTA hacia el fondo de la tarjeta */
 }
 
-/* ── Etiqueta de beneficio principal ── */
+/* Beneficio */
 .ze-card-beneficio {
   font-size: 0.68rem;
   font-weight: 600;
@@ -127,7 +121,7 @@ body {
 .ze-card--cornell .ze-card-beneficio { background: rgba(220, 207, 251, 0.25); }
 .ze-card--recall  .ze-card-beneficio { background: rgba(166, 144, 224, 0.14); }
 
-/* ── Texto CTA ── */
+/* CTA */
 .ze-card-cta {
   font-size: 0.78rem;
   font-weight: 600;

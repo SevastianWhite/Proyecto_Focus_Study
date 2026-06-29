@@ -39,15 +39,23 @@
         <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
-    <h1>Cornell Notes</h1>
-    <h5>Organiza tus ideas de forma estructurada.</h5>
+    <div class="metodo-hero">
+        <div class="metodo-hero-texto">
+            <h1>Cornell Notes</h1>
+            <h3>Organiza y repasa con estructura</h3>
+            <h5>Divide tus apuntes en preguntas, notas y resumen para estudiar de forma más activa y efectiva.</h5>
+        </div>
+        <div class="metodo-hero-imagen">
+            <img class="espacio-imagen-metodo" src="{{ url_for('static', filename='img/img_cornell_hero.png') }}" alt="Cornell Notes">
+        </div>
+    </div>
     <div class="contenedorcornell">
         <div class="bloqueizq">
             <div class="bloquesarriba">
                 <div class="temaestudio">
                     <form>
                         <label for="temaest"> <h5>Tema de estudio</h5></label>
-                        <textarea id="temaest" name="temacn" rows="1" cols="40" placeholder="Escribe el tema aquí:"></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                        <textarea id="temaest" name="temacn" rows="1" cols="40" placeholder="Escribe el tema aquí:"></textarea>
                     </form>
                 </div>
                 <div class="fecha">
@@ -58,38 +66,45 @@
             <div class="bloquesmedios">
                 <div class="preguntasclave">
                     <h3>Preguntas clave</h3>
-                    <textarea id="preguntascornell" name="pregclaves" rows="13" cols="40" placeholder="Escribe aquí las preguntas o conceptos importantes del tema."></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                    <textarea id="preguntascornell" name="pregclaves" rows="13" cols="40" placeholder="Escribe aquí las preguntas o conceptos importantes del tema."></textarea>
                 </div>
                 <div class="notas">
                     <h3>Notas</h3>
-                    <textarea id="notascornell" name="notascor" rows="13" cols="84" placeholder="Escribe aquí tus apuntes, ideas, definiciones, ejemplos y detalles importantes."></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                    <textarea id="notascornell" name="notascor" rows="13" cols="84" placeholder="Escribe aquí tus apuntes, ideas, definiciones, ejemplos y detalles importantes."></textarea>
                 </div>
             </div>
             <div class="resumen">
                 <h3>Resumen</h3>
-                <textarea id="resumencornell" name="resumencor" rows="6" cols="130" placeholder="Escribe aquí un resumen breve del tema con tus propias palabras."></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                <textarea id="resumencornell" name="resumencor" rows="6" cols="130" placeholder="Escribe aquí un resumen breve del tema con tus propias palabras."></textarea>
             </div>
         </div>
         <div class="bloqueder">
-            <div class="espacio-imagen">Espacio para imagen</div>
             <h2>¿Cómo usar Cornell Notes?</h2>
             <ol>
-                <li>Toma apuntes</li>
-                <h5>Escribe tus notas en la columna<br>derecha durante la clase o estudio.</h5>
-                <li>Crea preguntas</li>
-                <h5>Convierte los títulos o ideas clave en<br>preguntas en la columna izquierda.</h5>
-                <li>Escribe un resumen</li>
-                <h5>Al final, resume lo más importante<br>en la parte inferior.</h5>
-                <li>Repasa y recuerda</li>
-                <h5>Cubre tus apuntes y trata de<br>responder las preguntas clave.</h5>
+                <li>
+                    Toma apuntes
+                    <h5>Escribe tus notas en la columna derecha durante la clase o estudio.</h5>
+                </li>
+                <li>
+                    Crea preguntas
+                    <h5>Convierte los títulos o ideas clave en preguntas en la columna izquierda.</h5>
+                </li>
+                <li>
+                    Escribe un resumen
+                    <h5>Al final, resume lo más importante en la parte inferior.</h5>
+                </li>
+                <li>
+                    Repasa y recuerda
+                    <h5>Cubre tus apuntes y trata de responder las preguntas clave.</h5>
+                </li>
             </ol>
             <div class="consejoeimg">
                 <div class="consejocornell">
                     <h3>Consejo del método</h3>
-                    <h5>Intenta responder las preguntas<br>sin mirar tus apuntes para<br>reforzar tu memoria.</h5>
+                    <h5>Intenta responder las preguntas sin mirar tus apuntes para reforzar tu memoria.</h5>
                 </div>
                 <div class="img">
-                    <img src="{{ url_for('static', filename='img/logo_notas_adhesivas.jpg') }}" alt="notescornell" height="80" width="90"/>
+                    <img src="{{ url_for('static', filename='img/logo_notas_adhesivas.jpg') }}" alt="Notas adhesivas" height="80" width="90"/>
                 </div>
             </div>
         </div>

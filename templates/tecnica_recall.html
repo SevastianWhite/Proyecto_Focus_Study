@@ -39,10 +39,15 @@
         <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
-    <div class="bloquearriba">
-        <h1>Active Recall</h1>
-        <h3 class="morado">Recupera antes de revisar</h3>
-        <h4>Tu cerebro se fortalece cuando intentas<br>recuperar información desde tu memoria.</h4>
+    <div class="metodo-hero">
+        <div class="metodo-hero-texto">
+            <h1>Active Recall</h1>
+            <h3 class="morado">Recupera antes de revisar</h3>
+            <h5>Tu cerebro se fortalece cuando intentas recuperar información desde tu memoria.</h5>
+        </div>
+        <div class="metodo-hero-imagen">
+            <img class="espacio-imagen-metodo" src="{{ url_for('static', filename='img/img_recall_hero.png') }}" alt="Active Recall">
+        </div>
     </div>
 
     <div class="contenedoractrec">
@@ -108,7 +113,7 @@
 
         <!-- Columna derecha: explicación del método -->
         <div class="infoactrec">
-            <div class="espacio-imagen">Espacio para imagen</div>
+            <img class="espacio-imagen" src="{{ url_for('static', filename='img/img_recall_info.png') }}" alt="Active Recall flashcards">
             <div class="quees">
                 <h3 class="titulomorado">¿Qué es el Active Recall?</h3>
                 <h5>Es una técnica de estudio que consiste en intentar recordar la información

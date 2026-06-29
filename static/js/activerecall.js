@@ -1,19 +1,7 @@
 'use strict';
 
-/*
- * activerecall.js — Lógica de la tarjeta de práctica de Active Recall
- *
- * Todo vive en memoria mientras la pestaña está abierta: no usamos base de
- * datos ni localStorage, así que si se recarga la página se pierde lo que
- * se agregó. Es intencional por ahora, queda pendiente para el Avance 4.
- *
- * Variables principales:
- *   preguntas         → arreglo con el texto de cada pregunta agregada
- *   indiceActual      → en qué pregunta de la tarjeta vamos (empieza en 0)
- *   contadorSabia      → cuántas veces se marcó "Lo sabía"
- *   contadorMasOMenos  → cuántas veces se marcó "Más o menos"
- *   contadorNoSabia    → cuántas veces se marcó "No lo sabía"
- */
+// activerecall.js — lógica del modo de práctica con tarjetas.
+// Las preguntas viven en memoria: si se recarga la página se pierden (pendiente para el Avance 4).
 
 var preguntas = [];
 var indiceActual = 0;

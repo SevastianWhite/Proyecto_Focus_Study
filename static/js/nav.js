@@ -1,9 +1,4 @@
-/*
- * nav.js — Maneja el menú de navegación que se abre y se cierra.
- 
- * Va al final del <body> en las páginas privadas:
- *   <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
- */
+// nav.js — abre y cierra el menú hamburguesa de las páginas privadas.
 (function () {
     'use strict';
 

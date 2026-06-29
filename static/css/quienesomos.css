@@ -1,6 +1,4 @@
-/* Quiénes somos — página pública (va junto al login y la interfaz inicial).
-   Misma identidad que el landing: fondo lavanda, tipografía Fraunces y la
-   paleta --fs-*. Sin menú hamburguesa: solo un botón para volver al inicio. */
+/* Quiénes somos — página pública. Misma identidad visual que el landing, sin menú hamburguesa. */
 
 :root {
   --fs-lavanda: #DCCFFB;
@@ -19,11 +17,11 @@ body {
   color: var(--fs-texto);
   min-height: 100vh;
   background:
-    linear-gradient(145deg, rgba(220,207,251,0.72) 0%, rgba(237,232,255,0.68) 100%),
-    url("../img/fotolog.jpg") center/cover no-repeat fixed;
+    linear-gradient(145deg, rgba(220,207,251,0.38) 0%, rgba(237,232,255,0.32) 100%),
+    url("../img/fondo_quienesomos.png") center/cover no-repeat fixed;
 }
 
-/* ── Barra superior ── */
+/* Barra superior */
 .qs-topbar {
   position: sticky;
   top: 0;
@@ -60,7 +58,7 @@ body {
 }
 .qs-volver:hover { opacity: 0.88; transform: translateY(-1px); }
 
-/* ── Contenido ── */
+/* Contenido */
 .qs-main {
   max-width: 920px;
   margin: 0 auto;
@@ -101,7 +99,6 @@ body {
   max-width: 430px;
 }
 
-/* Panel del hero con el logo. Aquí más adelante puede ir una ilustración. */
 .qs-hero-visual {
   display: flex;
   align-items: center;

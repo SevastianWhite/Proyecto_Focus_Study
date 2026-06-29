@@ -2,15 +2,61 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    color: #2F2F38; /* mismo color de texto que el resto del proyecto */
 }
 
 body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     background:linear-gradient(180deg,#FAFAFC 0%,#F1EEFC 100%);
     background-attachment:fixed;
-    margin:0;
+    color: #2F2F38;
     padding:30px;
+}
+
+/* Bloque hero: título a la izquierda, imagen a la derecha */
+.metodo-hero{
+    display:flex;
+    gap:32px;
+    align-items:center;
+    background:linear-gradient(135deg, #EEE8FB 0%, #f8f5ff 45%, white 100%);
+    border:1px solid var(--fs-borde);
+    border-radius:20px;
+    padding:28px 32px;
+    margin-bottom:20px;
+    box-shadow:0 4px 16px rgba(123,97,194,0.07);
+}
+
+.metodo-hero-texto{
+    flex:1;
+}
+
+.metodo-hero-texto h1,
+.metodo-hero-texto h5{
+    padding-left:0;
+}
+
+.metodo-hero-imagen{
+    width:240px;
+    flex-shrink:0;
+}
+
+.espacio-imagen-metodo{
+    width:100%;
+    height:180px;
+    border-radius:16px;
+    object-fit:cover;
+    display:block;
+}
+
+@media(max-width:900px){
+    .metodo-hero{
+        flex-direction:column;
+    }
+    .metodo-hero-imagen{
+        width:100%;
+    }
+    .espacio-imagen-metodo{
+        height:140px;
+    }
 }
 
 h1, h5 {
@@ -28,20 +74,35 @@ h1, h5 {
 /* ===== COLUMNA IZQUIERDA ===== */
 
 .bloqueizq{
-    width: 900px;
-    background:white;/*color del fondo de la izquierda*/
-    border:1px solid var(--fs-borde); /*bordes de ese cuadrado*/
+    flex:1;
+    min-width:0;
+    background:white;
+    border:1px solid var(--fs-borde);
     border-radius:20px;
     padding:25px;
-    box-shadow:0 2px 8px rgba(0,0,0,.03);
+    box-shadow:0 4px 16px rgba(123,97,194,0.07);
 }
 
 /* ===== FECHA ===== */
 
 .bloquesarriba{
     display:flex;
-    justify-content:flex-end;
+    justify-content:space-between;
+    align-items:flex-end;
     margin-bottom:20px;
+}
+
+.temaestudio{
+    flex:1;
+    margin-right:20px;
+}
+
+#temaest{
+    border:1px solid var(--fs-borde);
+    border-radius:10px;
+    padding:8px 12px;
+    background:#fafafa;
+    font-family:inherit;
 }
 
 .fecha{
@@ -54,9 +115,9 @@ h1, h5 {
 
 .fecha input{
     padding:12px;
-    border:1px solid var(--fs-borde); /*lineas del cuadrado del calendario*/
+    border:1px solid var(--fs-borde);
     border-radius:12px;
-    background:#fafafa;/*relleno*/
+    background:#fafafa;
 }
 
 /* ===== ZONA PRINCIPAL ===== */
@@ -64,7 +125,7 @@ h1, h5 {
 .bloquesmedios{
     display:grid;
     grid-template-columns:250px 1fr;
-    gap:2px; /*deja ver el fondo de abajo como linea divisoria*/
+    gap:2px;
     background:var(--fs-borde);
     border:1px solid var(--fs-borde);
     border-radius:18px;
@@ -107,6 +168,7 @@ textarea{
     background:transparent;
     font-size:15px;
     line-height:1.8;
+    font-family:inherit;
 }
 
 #preguntascornell{
@@ -124,7 +186,7 @@ textarea{
     border-radius:18px;
     background:white;
     padding:20px;
-    margin-top:4px; /*separa un poco mas del bloque de preguntas/notas*/
+    margin-top:4px;
 }
 
 #resumencornell{
@@ -195,8 +257,7 @@ textarea{
 
 .img img{
     width: 100px;
-    display: flex;
-    align-items: center;
+    display: block;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -210,6 +271,7 @@ textarea{
     .bloqueizq,
     .bloqueder{
         width:100%;
+        flex:none;
     }
 
     .bloquesmedios{
@@ -220,24 +282,4 @@ textarea{
         border-right:none;
         border-bottom:1px solid #e8e8ef;
     }
-}
-button{
-    width: 70px;
-    height: 70px;
-    padding: 4px;
-    font-size: 11px;
-}
-
-/* Espacio reservado para una imagen (se agrega más adelante) */
-.espacio-imagen{
-    height: 150px;
-    border-radius: 20px;
-    background: #EEE8FB;
-    border: 1px solid var(--fs-borde);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #8a7fa8;
-    font-size: 13px;
-    margin-bottom: 15px;
 }

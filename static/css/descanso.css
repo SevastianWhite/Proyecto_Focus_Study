@@ -1,18 +1,5 @@
 /* Pantalla de descanso. Usa la paleta --fs-* de nav.css. */
 
-/* Variables locales para el cronómetro (complementan las de nav.css) */
-:root {
-    --ds-indigo:       #7A5FC0;
-    --ds-indigo-dark:  #6549A8;
-    --ds-indigo-light: #EEE8FB;
-    --ds-violet-light: #F1EEFC;
-    --ds-muted:        #8A7FA8;
-    --ds-faint:        #B5AFC8;
-    --ds-radius-lg:    18px;
-    --ds-radius-md:    12px;
-    --ds-radius-sm:    8px;
-}
-
 body {
     margin: 0;
     min-height: 100vh;
@@ -29,22 +16,34 @@ body {
 }
 
 
-/* ── Hero ──────────────────────────────────────────────────────── */
+/* Hero */
 
 .ds-hero {
     display: flex;
     align-items: center;
     gap: 28px;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
+    background: #fff;
+    border: 1px solid var(--fs-borde);
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 10px rgba(47, 47, 56, 0.04);
 }
 
-/* Contenedor reservado para ilustración futura */
+/* Ilustración del descanso */
 .ds-ilustracion-wrap {
     width: 110px;
     height: 110px;
     flex-shrink: 0;
-    background: var(--fs-lavanda);
-    border-radius: 20px;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.ds-ilustracion-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .ds-hero-texto h1 {
@@ -56,14 +55,14 @@ body {
 
 .ds-hero-sub {
     font-size: 0.95rem;
-    color: var(--ds-muted);
+    color: var(--fs-suave);
     line-height: 1.55;
     margin: 0;
     max-width: 480px;
 }
 
 
-/* ── Grid de 3 columnas ─────────────────────────────────────────── */
+/* Grid de 3 columnas */
 
 .ds-grid {
     display: grid;
@@ -73,15 +72,15 @@ body {
     margin-bottom: 24px;
 }
 
-
-/* ── Tarjetas de contenido ──────────────────────────────────────── */
+/* Tarjetas */
 
 .ds-card {
     background: #fff;
     border: 1px solid var(--fs-borde);
-    border-radius: var(--ds-radius-lg);
+    border-radius: 18px;
     padding: 22px 20px;
     box-shadow: 0 2px 10px rgba(47, 47, 56, 0.04);
+    align-self: stretch; /* los dos cards quedan de la misma altura */
 }
 
 .ds-card h2 {
@@ -93,27 +92,129 @@ body {
 
 .ds-card > p {
     font-size: 0.875rem;
-    color: var(--ds-muted);
+    color: var(--fs-suave);
     line-height: 1.55;
     margin: 0 0 14px;
 }
 
-/* Espacio reservado para la animación de respiración */
+/* Caja de la animación de respiración */
 .ds-placeholder-animacion {
     width: 100%;
     height: 150px;
     background: var(--fs-lavanda);
-    border-radius: var(--ds-radius-md);
+    border-radius: 12px;
     margin-bottom: 16px;
 }
 
-/* Espacio reservado para el video (proporción 16:9) */
+/* Caja del video de movilidad de manos */
 .ds-placeholder-video {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    background: var(--fs-gris);
-    border-radius: var(--ds-radius-md);
+    height: 150px;
+    border-radius: 12px;
     margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.ds-placeholder-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Etiqueta de sección dentro del desplegable */
+.ds-tip-etiqueta {
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #7A5FC0;
+    margin: 8px 0 4px;
+}
+
+/* Animación de respiración */
+
+.resp-anim {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Orbe principal que inhala y exhala */
+.resp-orbe {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, #EEE8FB, #BDA7F5 50%, #7A5FC0);
+    box-shadow: 0 0 16px rgba(122, 95, 192, 0.25);
+    position: relative;
+    z-index: 2;
+    animation: resp-pulso 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Halos concéntricos que acompañan la expansión */
+.resp-halo {
+    position: absolute;
+    inset: 0;
+    margin: auto; /* centra el halo sobre el orbe sin depender del transform */
+    border-radius: 50%;
+    border: 1.5px solid rgba(189, 167, 245, 0.6);
+    animation: resp-pulso 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.resp-halo--1 { width: 76px;  height: 76px;  opacity: 0.45; }
+.resp-halo--2 { width: 96px;  height: 96px;  opacity: 0.2; animation-delay: 0.18s; }
+
+/* Texto que cambia con el ciclo */
+.resp-texto {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #7A5FC0;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+#rt-inhala { animation: rt-inhala 12s ease-in-out infinite; }
+#rt-manten { animation: rt-manten 12s ease-in-out infinite; }
+#rt-exhala { animation: rt-exhala 12s ease-in-out infinite; }
+
+/* Ciclo: 0-33% = inhala (4s) · 33-66% = mantén (4s) · 66-100% = exhala (4s) */
+@keyframes resp-pulso {
+    0%   { transform: scale(0.65); box-shadow: 0 0 8px  rgba(122, 95, 192, 0.15); }
+    33%  { transform: scale(1.35); box-shadow: 0 0 28px rgba(189, 167, 245, 0.5), 0 0 0 6px rgba(189, 167, 245, 0.12); }
+    66%  { transform: scale(1.35); box-shadow: 0 0 28px rgba(189, 167, 245, 0.5), 0 0 0 6px rgba(189, 167, 245, 0.12); }
+    100% { transform: scale(0.65); box-shadow: 0 0 8px  rgba(122, 95, 192, 0.15); }
+}
+
+@keyframes rt-inhala {
+    0%, 2%  { opacity: 0; }
+    7%      { opacity: 1; }
+    27%     { opacity: 1; }
+    33%     { opacity: 0; }
+    100%    { opacity: 0; }
+}
+
+@keyframes rt-manten {
+    0%, 33% { opacity: 0; }
+    38%     { opacity: 1; }
+    61%     { opacity: 1; }
+    66%     { opacity: 0; }
+    100%    { opacity: 0; }
+}
+
+@keyframes rt-exhala {
+    0%, 66% { opacity: 0; }
+    71%     { opacity: 1; }
+    94%     { opacity: 1; }
+    100%    { opacity: 0; }
 }
 
 /* Contenido que aparece al pulsar el botón */
@@ -122,7 +223,7 @@ body {
     margin-top: 14px;
     padding: 14px 16px;
     background: var(--fs-gris);
-    border-radius: var(--ds-radius-sm);
+    border-radius: 8px;
     font-size: 0.85rem;
     color: var(--fs-texto);
     line-height: 1.6;
@@ -133,16 +234,60 @@ body {
 .ds-revelado p { margin: 0 0 6px; }
 .ds-revelado p:last-child { margin-bottom: 0; }
 
-ul.ds-revelado { padding-left: 28px; }
-ul.ds-revelado li { margin-bottom: 6px; }
-ul.ds-revelado li:last-child { margin-bottom: 0; }
+/* Lista de ejercicios de manos, cada uno con su tiempo estimado */
+.ds-ejercicios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ds-ejercicios li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--fs-borde);
+}
+
+.ds-ejercicios li:last-child { border-bottom: none; }
+
+.ds-ej-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.ds-ej-cabecera strong { font-size: 0.85rem; }
+
+.ds-ej-tiempo {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #7A5FC0;
+    background: #EEE8FB;
+    border-radius: 999px;
+    padding: 2px 9px;
+}
+
+.ds-ej-desc {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--fs-suave);
+    line-height: 1.45;
+    margin-top: 2px;
+}
+
+.ds-ej-total {
+    font-size: 0.78rem;
+    color: var(--fs-suave);
+    font-style: italic;
+    margin: 10px 0 0;
+}
 
 
-/* ── Botones ────────────────────────────────────────────────────── */
+/* Botones */
 
 .ds-btn {
     border: none;
-    border-radius: var(--ds-radius-sm);
+    border-radius: 8px;
     padding: 9px 20px;
     font-size: 0.85rem;
     font-weight: 600;
@@ -172,20 +317,20 @@ ul.ds-revelado li:last-child { margin-bottom: 0; }
 .ds-btn--omitir:hover { opacity: 0.85; }
 
 
-/* ── Cronómetro del descanso ────────────────────────────────────── */
+/* Cronómetro */
 /* Mismo anillo que el Pomodoro. Se repite aquí para no depender de pomodoro.css. */
 
 .timer-card {
-    background: linear-gradient(180deg, var(--ds-violet-light) 0%, #F4F2FC 100%);
-    border-radius: var(--ds-radius-lg);
+    background: linear-gradient(180deg, #F1EEFC 0%, #F4F2FC 100%);
+    border-radius: 18px;
     padding: 1.6rem 1.25rem 1.75rem;
     text-align: center;
 }
 
 .timer-counter {
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 700;
-    color: var(--ds-indigo);
+    color: #7A5FC0;
     margin-bottom: 1.2rem;
 }
 
@@ -206,10 +351,10 @@ ul.ds-revelado li:last-child { margin-bottom: 0; }
 
 .ring-progress {
     fill: none;
-    stroke: var(--ds-indigo);
+    stroke: #7A5FC0;
     stroke-width: 8;
     stroke-linecap: round;
-    stroke-dasharray: 553;
+    stroke-dasharray: 553; /* circunferencia del anillo (radio 88 × 2π ≈ 553) */
     stroke-dashoffset: 0;
     transform-origin: center;
     transform: rotate(-90deg);
@@ -230,12 +375,11 @@ ul.ds-revelado li:last-child { margin-bottom: 0; }
     color: var(--fs-texto);
     letter-spacing: -1px;
     line-height: 1;
-    font-variant-numeric: tabular-nums;
 }
 
 .time-label {
     font-size: 12px;
-    color: var(--ds-muted);
+    color: var(--fs-suave);
     margin-top: 5px;
 }
 
@@ -245,10 +389,10 @@ ul.ds-revelado li:last-child { margin-bottom: 0; }
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--ds-indigo);
+    background: #7A5FC0;
     color: #fff;
     border: none;
-    border-radius: var(--ds-radius-md);
+    border-radius: 12px;
     padding: 12px 0;
     font-family: inherit;
     font-size: 14px;
@@ -257,7 +401,7 @@ ul.ds-revelado li:last-child { margin-bottom: 0; }
     transition: background 0.15s;
     margin-bottom: 1rem;
 }
-.btn-start:hover { background: var(--ds-indigo-dark); }
+.btn-start:hover { background: #6549A8; }
 
 /* Puntitos de progreso de sesión */
 .dots {
@@ -274,35 +418,34 @@ ul.ds-revelado li:last-child { margin-bottom: 0; }
     background: transparent;
 }
 
-.dot--done   { background: var(--ds-faint);  border-color: var(--ds-faint); }
-.dot--active { background: var(--ds-indigo); border-color: var(--ds-indigo); }
+.dot--done   { background: #B5AFC8; border-color: #B5AFC8; }
+.dot--active { background: #7A5FC0; border-color: #7A5FC0; }
 
 
-/* ── Barra inferior ─────────────────────────────────────────────── */
+/* Botón omitir */
+
+.ds-omitir-timer {
+    width: 100%;
+    margin-top: 12px;
+    text-align: center;
+}
+
+/* Frase motivacional */
 
 .ds-barra {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 18px 22px;
-    background: #fff;
-    border: 1px solid var(--fs-borde);
-    border-radius: var(--ds-radius-lg);
-    box-shadow: 0 2px 10px rgba(47, 47, 56, 0.04);
+    text-align: center;
+    padding: 24px 24px 8px;
 }
 
 .ds-frase {
-    font-size: 0.9rem;
-    color: var(--ds-muted);
+    font-size: 1rem;
+    color: var(--fs-suave);
     font-style: italic;
     margin: 0;
-    flex: 1;
-    min-width: 0;
 }
 
 
-/* ── Responsive ──────────────────────────────────────────────────── */
+/* Responsive */
 
 @media (max-width: 920px) {
     .ds-grid {
@@ -323,7 +466,4 @@ ul.ds-revelado li:last-child { margin-bottom: 0; }
 
     .ds-grid { grid-template-columns: 1fr; }
     .ds-timer-col { grid-column: auto; max-width: 100%; }
-
-    .ds-barra { flex-direction: column; align-items: flex-start; gap: 14px; }
-    .ds-btn--omitir { width: 100%; text-align: center; }
 }

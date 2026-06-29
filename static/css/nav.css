@@ -1,14 +1,4 @@
-/*
- * nav.css — Menú de navegación desplegable reutilizable
- * Focus Study — Área privada
- *
- * INCLUIR en todas las páginas privadas:
- *   <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
- *
- * Páginas: dashboard (Inicio), zonadestudio, complementos, configuracion
- *
- * Paleta Focus Study — mantener sincronizada si se actualiza el sistema de color.
- */
+/* nav.css — Menú hamburguesa + paleta Focus Study. Cargar en todas las páginas privadas. */
 
 :root {
   --fs-lavanda: #DCCFFB;
@@ -20,6 +10,10 @@
   --fs-suave: #8a7fa8;
   --fs-nav-h: 56px;
 }
+
+/* El contenido estático no permite selección accidental; los campos editables sí */
+body { user-select: none; }
+input, textarea { user-select: text; }
 
 /* ── Barra de navegación fija ── */
 .fs-nav {
@@ -39,7 +33,6 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--fs-texto);
-  user-select: none;
 }
 
 /* ── Botón hamburguesa ── */

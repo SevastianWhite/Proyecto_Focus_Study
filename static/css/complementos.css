@@ -1,175 +1,211 @@
-.textoarriba {
-    text-align: justify;
-    margin-top: 1px;
-    margin-left: 85px;
-}
-.botonvolver {
-    position:absolute;
-    top: calc(var(--fs-nav-h) + 16px);
-    right: 30px;
-    padding:12px 16px;
-}
-
-.bloques {
-    display: flex;
-    gap: 50px; /* Espacio entre los botones*/
-    justify-content: space-between;
-    text-align: center;
-    margin: 65px; /*distancia entre los botones y arriba*/
-}
-.notion {
-    background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:#2F2F38; /*color de la letra*/
-    border-radius: 8px; /*bordes redondeados*/
-    padding:40px; /*espacio para que no esté apretado*/
-}
-.googlecalendar {
-    background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:#2F2F38; /*color de la letra*/
-    border-radius: 8px; /*bordes redondeados*/
-    padding:40px; /*espacio para que no esté apretado*/
-}
-.notebooklm {
-    background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:#2F2F38; /*color de la letra*/
-    border-radius: 8px; /*bordes redondeados*/
-    padding:40px; /*espacio para que no esté apretado*/
-}
-.miro {
-    background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:#2F2F38; /*color de la letra*/
-    border-radius: 8px; /*bordes redondeados*/
-    padding:40px; /*espacio para que no esté apretado*/
-}
-.scholar {
-    background-color:rgb(255, 255, 255); /*color de fondo*/
-    color:#2F2F38; /*color de la letra*/
-    border-radius: 8px; /*bordes redondeados*/
-    padding:40px; /*espacio para que no esté apretado*/
-}
-/* Etiqueta de categoría (Organización, Planificación, etc.) — quedaba mal anidada
-   dentro de h5{} y por eso nunca se aplicaba, las dejamos como reglas normales.
-   Antes cada categoría tenía un color distinto (cian/verde/azul/naranja) pero no
-   pegaba con el morado del resto del proyecto, así que las dejamos todas igual */
-.bloques h5 {
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: #6b50b8;
-}
-
-body::after{
-    content: "";
-    position: fixed;
-    width: 330px;
-    height: 330px;
-    background: #e3d5fb;
-    border-radius: 50%;
-    top: -125px;
-    right: -125px;
-    pointer-events: none;
-} 
-
-body{
-    background: rgb(253, 247, 255);
+body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(180deg, #FAFAFC 0%, #F1EEFC 100%);
+    background-attachment: fixed;
+    color: #2F2F38;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero */
+
+.comp-hero {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 30px 40px 20px;
+}
+
+.comp-hero-texto {
+    flex: 1;
+}
+
+.comp-hero-texto h1 {
+    margin-bottom: 10px;
+}
+
+.comp-subtitulo {
+    font-size: 15px;
+    color: #5a5370;
+    line-height: 1.65;
+    margin-bottom: 8px;
 }
 
 .avisocomplementos {
-    text-align: justify;
-    margin-left: 85px;
-    margin-top: 8px;
-    max-width: 520px;
     font-size: 13px;
-    color: rgb(110, 100, 130);
-}
-.brillo{
-    position: fixed;
-    width: 18px;
-    height: 18px;
-    top: 80px;
-    right: 250px;
-    background: #d6c3f6;
-    transform: rotate(45deg);
-    z-index: 9999;
+    color: #8a7fa8;
+    line-height: 1.6;
 }
 
-
-
-
-.brillo::before{
-    width: 2px;
-    height: 30px;
-    top: -6px;
-    left: 8px;
+.comp-hero-imagen {
+    width: 280px;
+    flex-shrink: 0;
 }
 
-.brillo::after{
-    width: 30px;
-    height: 2px;
-    top: 8px;
-    left: -6px;
-
-}
-.brillo2{
-    position: fixed;
-    width: 12px;
-    height: 12px;
-    top: 100px;
-    right: 220px;
-    background: #BDA7F5;
-    transform: rotate(45deg);
-    z-index: 9999;
+.comp-hero-imagen img {
+    width: 100%;
+    height: 155px;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
+/* Cuadrícula */
 
-
-
-.brillo2::before{
-    width: 2px;
-    height: 30px;
-    top: 6px;
-    left: 8px;
+.comp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 4px 40px 48px;
+    max-width: 1040px;
+    margin: 0 auto;
 }
 
-.brillo2::after{
-    width: 30px;
-    height: 2px;
-    top: 8px;
-    left: -6px;
-
-}
-body{
-    user-select: none;
-}
-
-/* Botones "Ver recurso" — mismo morado del resto del proyecto */
-.botonotion,
-.botongooglecalendar,
-.botonnotebooklm,
-.botonmiro,
-.botonscholar{
-    background:#BDA7F5;
-    border:none;
-    border-radius:8px;
-    padding:10px 18px;
-    margin-top:14px;
-    font-weight:600;
-    cursor:pointer;
-    transition:opacity 0.18s;
+.comp-card {
+    background: white;
+    border: 1px solid var(--fs-borde);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(123, 97, 194, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-.botonotion:hover,
-.botongooglecalendar:hover,
-.botonnotebooklm:hover,
-.botonmiro:hover,
-.botonscholar:hover{
-    opacity:0.85;
+.comp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(189, 167, 245, 0.18);
 }
 
-.bloques button a{
-    color:#fff;
-    text-decoration:none;
+.comp-card img {
+    margin-bottom: 12px;
+}
+
+.comp-card h5 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #BDA7F5;
+    margin-bottom: 4px;
+}
+
+.comp-card h2 {
+    font-size: 18px;
+    color: #2F2F38;
+    margin-bottom: 8px;
+}
+
+.comp-card h4 {
+    font-size: 14px;
+    color: #5a5370;
+    font-weight: 400;
+    line-height: 1.65;
+    flex: 1;
+}
+
+.comp-card-btn {
+    display: inline-block;
+    background: var(--fs-morado);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-top: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.18s;
+    align-self: flex-start;
+}
+
+.comp-card-btn:hover {
+    opacity: 0.85;
+}
+
+/* Cómo combinarlos */
+
+.comp-tips {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px 56px;
+}
+
+.comp-tips-titulo {
+    font-size: 18px;
+    color: #6b50b8;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.comp-tips-lista {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.comp-tip {
+    background: white;
+    border: 1px solid var(--fs-borde);
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(123, 97, 194, 0.05);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.comp-tip-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #EEE8FB;
+    color: #7A5FC0;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.comp-tip-texto strong {
+    font-size: 14px;
+    color: #2F2F38;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.comp-tip-texto span {
+    font-size: 13px;
+    color: #8a7fa8;
+    line-height: 1.55;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .comp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px) {
+    .comp-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px 32px;
+    }
+    .comp-tips {
+        padding: 0 20px 40px;
+    }
+    .comp-tips-lista {
+        grid-template-columns: 1fr;
+    }
+    .comp-hero {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .comp-hero-imagen {
+        width: 100%;
+    }
 }

@@ -5,21 +5,12 @@ import os
 app = Flask(__name__)
 app.secret_key = 'focusstudy_clave_2026'
 
-# =============================================================
-# FOCUS STUDY — Archivo principal de Flask
-# =============================================================
-# Conecta cada URL del sitio con su página HTML.
-# Ahora también maneja login, sesión y la API del Pomodoro.
-#
-# Para agregar una página nueva:
-#   1. Crear el archivo HTML en templates/
-#   2. Agregar un @app.route abajo
-#   3. Usar url_for('nombre_funcion') en los enlaces HTML
-# =============================================================
+# app.py — Rutas principales de Focus Study
+# Conecta cada URL del sitio con su template HTML y maneja el login y la sesión.
 
 
-# ── Config por defecto del Pomodoro ───────────────────────────
-# Se usa cuando el usuario no ha cambiado nada desde el modal de ajustes.
+# Configuración por defecto del Pomodoro
+
 POMODORO_DEFAULT = {
     'focus_minutes': 25,
     'break_minutes': 5,
@@ -27,7 +18,7 @@ POMODORO_DEFAULT = {
 }
 
 
-# ── Helpers para leer y escribir usuarios.json ────────────────
+# Funciones para leer y guardar usuarios en JSON
 
 def leer_usuarios():
     ruta = os.path.join('data', 'usuarios.json')
@@ -43,36 +34,29 @@ def guardar_usuarios(lista):
         json.dump({'usuarios': lista}, f, ensure_ascii=False, indent=2)
 
 def get_pomodoro_config():
-    # Lee la config guardada en session o devuelve los valores por defecto
+    # focus_minutes sí se puede cambiar desde el modal; el descanso y los ciclos son fijos.
     return {
         'focus_minutes': session.get('focus_minutes', POMODORO_DEFAULT['focus_minutes']),
-        'break_minutes': session.get('break_minutes', POMODORO_DEFAULT['break_minutes']),
-        'cycles': session.get('cycles', POMODORO_DEFAULT['cycles'])
-    }
-
-def get_notes():
-    # Las notas del Pomodoro viven en session (no se guardan en disco)
-    return {
-        'goal': session.get('study_goal', ''),
-        'notes': session.get('quick_notes', '')
+        'break_minutes': POMODORO_DEFAULT['break_minutes'],
+        'cycles': POMODORO_DEFAULT['cycles']
     }
 
 
-# ── Página pública de inicio ──────────────────────────────────
+# Inicio (pública)
 
 @app.route('/')
 def inicio():
     return render_template('inicio.html')
 
 
-# ── Quiénes Somos ─────────────────────────────────────────────
+# Quiénes somos (pública)
 
 @app.route('/quienesomos')
 def quienesomos():
     return render_template('quienesomos.html')
 
 
-# ── Login ─────────────────────────────────────────────────────
+# Login
 # GET  → muestra el formulario
 # POST → verifica credenciales contra data/usuarios.json
 
@@ -103,7 +87,7 @@ def login():
     return render_template('login.html')
 
 
-# ── Registro ──────────────────────────────────────────────────
+# Registro
 # Solo acepta POST — el formulario viene del dorso del flip-card en login.html
 
 @app.route('/registro', methods=['POST'])
@@ -150,7 +134,7 @@ def registro():
     return redirect(url_for('dashboard'))
 
 
-# ── Dashboard → pantalla Inicio del área privada ──────────────
+# Dashboard (Inicio del área privada)
 
 @app.route('/dashboard')
 def dashboard():
@@ -159,12 +143,14 @@ def dashboard():
     return render_template('dashboard.html', nombre=nombre)
 
 
-# ── Secciones del área privada ────────────────────────────────
+# Complementos
 
 @app.route('/complementos')
 def complementos():
     return render_template('complementos.html')
 
+
+# Configuración
 
 @app.route('/configuracion', methods=['GET', 'POST'])
 def configuracion():
@@ -187,27 +173,31 @@ def configuracion():
                            nombre_actual=session.get('usuario', ''))
 
 
-# ── Zona de Estudio ───────────────────────────────────────────
+# Zona de Estudio
 
 @app.route('/zonadestudio')
 def zonadestudio():
     return render_template('zonadestudio.html')
 
 
-# ── Pomodoro ──────────────────────────────────────────────────
+# Pomodoro
 # Pasa la config y las notas al template para que {{ config.* }} no lleguen vacías.
+# Si viene de /descanso, la URL trae el ciclo en el que iba (?ciclo=2).
 
 @app.route('/pomodoro')
 def pomodoro():
-    # Si viene de /descanso, la URL trae el ciclo en el que se quedó (?ciclo=2)
     ciclo_inicial = int(request.args.get('ciclo', 1))
+    notas = {
+        'goal': session.get('study_goal', ''),
+        'notes': session.get('quick_notes', '')
+    }
     return render_template('pomodoro.html',
                            config=get_pomodoro_config(),
-                           notes=get_notes(),
+                           notes=notas,
                            ciclo_inicial=ciclo_inicial)
 
 
-# ── Descanso ──────────────────────────────────────────────────
+# Descanso
 # Recibe parámetros desde pomodoro.js cuando termina un ciclo de enfoque.
 # tipo='corto' → 5 min  |  tipo='largo' → 15 min (al completar todos los ciclos)
 
@@ -227,14 +217,13 @@ def descanso():
                            siguiente_ciclo=siguiente_ciclo)
 
 
-# ── API del Pomodoro ──────────────────────────────────────────
+# API del Pomodoro
 # pomodoro.js llama estas rutas con fetch() sin recargar la página.
 
 @app.route('/api/config', methods=['POST'])
 def api_config():
     data = request.get_json(silent=True) or {}
-    # Solo el tiempo de enfoque es configurable. El descanso (5/15 min) y la
-    # cantidad de sesiones (4) son fijos, así que no se tocan acá.
+    # Solo el tiempo de enfoque es configurable; el descanso y los ciclos son fijos.
     session['focus_minutes'] = int(data.get('focus_minutes', POMODORO_DEFAULT['focus_minutes']))
     return jsonify({'status': 'ok', 'config': get_pomodoro_config()})
 
@@ -246,8 +235,7 @@ def api_notes():
     return jsonify({'status': 'ok'})
 
 
-# ── Técnicas de estudio ───────────────────────────────────────
-# Cada técnica tiene su propia página explicativa.
+# Técnicas de estudio
 
 @app.route('/tecnica-feynman')
 def tecnica_feynman():
@@ -262,7 +250,7 @@ def tecnica_recall():
     return render_template('tecnica_recall.html')
 
 
-# ── Cerrar sesión ─────────────────────────────────────────────
+# Cerrar sesión
 
 @app.route('/cerrar-sesion')
 def cerrar_sesion():
@@ -270,6 +258,5 @@ def cerrar_sesion():
     return redirect(url_for('inicio'))
 
 
-# =============================================================
 if __name__ == '__main__':
     app.run(debug=True)

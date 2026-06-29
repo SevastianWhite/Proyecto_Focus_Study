@@ -30,7 +30,7 @@
       </button>
       <div class="fs-nav-submenu open" id="fsNavZonaMenu">
         <a href="{{ url_for('zonadestudio') }}" class="fs-nav-sublink">Vista general</a>
-        <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink">Pomodoro</a>
+        <a href="{{ url_for('pomodoro') }}" class="fs-nav-sublink activo">Pomodoro</a>
         <a href="{{ url_for('tecnica_feynman') }}" class="fs-nav-sublink">Feynman</a>
         <a href="{{ url_for('tecnica_cornell') }}" class="fs-nav-sublink">Cornell</a>
         <a href="{{ url_for('tecnica_recall') }}" class="fs-nav-sublink">Active Recall</a>
@@ -54,10 +54,10 @@
            src="{{ url_for('static', filename='sounds/fin.mp3') }}"
            preload="auto"></audio>
 
-    <!-- ── Hero ──────────────────────────────────────────────────── -->
+    <!-- Hero -->
     <header class="ds-hero">
       <div class="ds-ilustracion-wrap">
-        <!-- Espacio reservado para ilustración del descanso -->
+        <img src="{{ url_for('static', filename='img/img_descanso_hero.png') }}" alt="Descanso">
       </div>
       <div class="ds-hero-texto">
         <h1>¡Descanso bien ganado!</h1>
@@ -68,39 +68,81 @@
       </div>
     </header>
 
-    <!-- ── Grid principal: 3 columnas ────────────────────────────── -->
+    <!-- Grid principal: 3 columnas -->
     <div class="ds-grid">
 
       <!-- Columna 1: Respiración guiada -->
       <article class="ds-card">
         <div class="ds-placeholder-animacion">
-          <!-- Espacio reservado para animación de respiración -->
+          <div class="resp-anim">
+            <div class="resp-halo resp-halo--2"></div>
+            <div class="resp-halo resp-halo--1"></div>
+            <div class="resp-orbe"></div>
+            <span class="resp-texto" id="rt-inhala">Inhala</span>
+            <span class="resp-texto" id="rt-manten">Mantén</span>
+            <span class="resp-texto" id="rt-exhala">Exhala</span>
+          </div>
         </div>
         <h2>Respiración guiada</h2>
         <p>Inhala 4 segundos, mantén 4, exhala 4. Repite para calmarte y reducir el estrés.</p>
-        <button class="ds-btn ds-btn--suave" type="button" onclick="mostrarRespiracion()">
-          Ver ejercicio
+        <button class="ds-btn ds-btn--suave" type="button" onclick="alternarDesplegable(this, 'ds-respiracion', 'Ver pasos de respiración')">
+          Ver pasos de respiración
         </button>
         <div class="ds-revelado" id="ds-respiracion">
-          <p>1. Siéntate cómodo con la espalda recta.</p>
+          <p><strong>Sigue estos pasos:</strong></p>
+          <p>1. Siéntate derecho con la espalda apoyada.</p>
           <p>2. Inhala lentamente por la nariz — cuenta hasta 4.</p>
           <p>3. Mantén el aire — cuenta hasta 4.</p>
           <p>4. Exhala despacio por la boca — cuenta hasta 4.</p>
           <p>5. Repite de 4 a 6 veces.</p>
+          <p class="ds-tip-etiqueta">¿Por qué 4 segundos?</p>
+          <p>Es un ritmo cómodo que casi cualquiera puede seguir sin quedarse sin aire.
+             Respirar lento y parejo le avisa a tu cuerpo que puede relajarse: bajan
+             las pulsaciones y se siente menos estrés.</p>
+          <p class="ds-tip-etiqueta">Consejos:</p>
+          <p>· Cierra los ojos para concentrarte mejor.</p>
+          <p>· Hazlo despacio, sin forzar el ritmo.</p>
+          <p>· No te preocupes si al principio te cuesta — es normal.</p>
         </div>
       </article>
 
-      <!-- Columna 2: Estiramientos -->
+      <!-- Columna 2: Movilidad de manos -->
       <article class="ds-card">
         <div class="ds-placeholder-video">
-          <!-- Espacio reservado para video de estiramientos (16:9) -->
+          <video src="{{ url_for('static', filename='video/video_manos.mp4') }}"
+                 controls playsinline preload="metadata"></video>
         </div>
-        <h2>Estiramientos rápidos</h2>
-        <p>Mueve el cuerpo para liberar tensión y volver con más energía a tu sesión.</p>
-        <button class="ds-btn ds-btn--suave" type="button" onclick="mostrarEstiramientos()">
-          Ver estiramientos
+        <h2>Movilidad de manos</h2>
+        <p>Sigue el video o elige los ejercicios que quieras. Ideales si llevas rato con el teclado o el mouse.</p>
+        <button class="ds-btn ds-btn--suave" type="button" onclick="alternarDesplegable(this, 'ds-estiramientos', 'Ver ejercicios y tiempos')">
+          Ver ejercicios y tiempos
         </button>
-        <ul class="ds-revelado" id="ds-estiramientos"></ul>
+        <div class="ds-revelado" id="ds-estiramientos">
+          <p class="ds-tip-etiqueta">Movimientos que puedes hacer:</p>
+          <ul class="ds-ejercicios">
+            <li>
+              <div class="ds-ej-cabecera"><strong>Giro de muñecas</strong><span class="ds-ej-tiempo">20 s</span></div>
+              <span class="ds-ej-desc">Gira ambas muñecas en círculos, 10 veces en cada dirección.</span>
+            </li>
+            <li>
+              <div class="ds-ej-cabecera"><strong>Estirar los dedos</strong><span class="ds-ej-tiempo">15 s</span></div>
+              <span class="ds-ej-desc">Abre bien la mano y estira los dedos, mantén 5 segundos. Repite 3 veces.</span>
+            </li>
+            <li>
+              <div class="ds-ej-cabecera"><strong>Abrir y cerrar el puño</strong><span class="ds-ej-tiempo">20 s</span></div>
+              <span class="ds-ej-desc">Cierra el puño despacio y ábrelo por completo, 10 veces.</span>
+            </li>
+            <li>
+              <div class="ds-ej-cabecera"><strong>Flexión de muñeca</strong><span class="ds-ej-tiempo">20 s</span></div>
+              <span class="ds-ej-desc">Dobla la muñeca hacia arriba y hacia abajo con suavidad, 10 veces.</span>
+            </li>
+            <li>
+              <div class="ds-ej-cabecera"><strong>Masaje de palma</strong><span class="ds-ej-tiempo">30 s</span></div>
+              <span class="ds-ej-desc">Masajea la palma y la base del pulgar con el pulgar de la otra mano.</span>
+            </li>
+          </ul>
+          <p class="ds-ej-total">Todos juntos toman cerca de 2 minutos — haz los que alcances en tu descanso.</p>
+        </div>
       </article>
 
       <!-- Columna 3: Cronómetro del descanso -->
@@ -128,16 +170,16 @@
           <div class="dots" id="ds-dots"></div>
 
         </div>
+        <button class="ds-btn ds-btn--omitir ds-omitir-timer" type="button" onclick="omitirDescanso()">
+          Omitir descanso →
+        </button>
       </aside>
 
     </div>
 
-    <!-- ── Barra inferior: frase + omitir ────────────────────────── -->
+    <!-- Frase motivacional -->
     <footer class="ds-barra">
       <p class="ds-frase" id="ds-frase"></p>
-      <button class="ds-btn ds-btn--omitir" type="button" onclick="omitirDescanso()">
-        Omitir descanso →
-      </button>
     </footer>
 
   </main>

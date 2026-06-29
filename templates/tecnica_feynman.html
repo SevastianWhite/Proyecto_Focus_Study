@@ -41,30 +41,44 @@
         <a href="{{ url_for('cerrar_sesion') }}" class="fs-nav-link fs-nav-link--salir">Cerrar sesión</a>
     </div>
 
-    <div class="fondo">
-        <h1>Método Feynman</h1>
-        <h3>Aprende enseñando</h3>
-        <h5>El mejor método para comprender a profundidad explicando con tus propias palabras.</h5>
+    <div class="metodo-hero">
+            <div class="metodo-hero-texto">
+                <h1>Método Feynman</h1>
+                <h3>Aprende enseñando</h3>
+                <h5>El mejor método para comprender a profundidad explicando con tus propias palabras.</h5>
+            </div>
+            <div class="metodo-hero-imagen">
+                <img class="espacio-imagen-metodo" src="{{ url_for('static', filename='img/img_feynman_hero.png') }}" alt="Método Feynman">
+            </div>
+        </div>
         <div class="todoslosbloques">
             <div class="pasos">
                 <h3>¿Qué es el método Feynman?</h3>
                 <h5>Consiste en explicar un tema como si se lo enseñaras a alguien que no sabe nada sobre él. Al hacerlo, identificas los vacíos en tu conocimiento y realmente aprendes.</h5>
+                <h3>Pasos del método Feynman</h3>
                 <ol>
-                    <h3>Pasos del método Feynman</h3>
-                    <li>Elige un tema</li>
-                    <h5>Selecciona lo que quieres aprender.<br></h5>
-                    <li>Explícalo</li>
-                    <h5>Explícalo con palabras simples como<br>si fueras a otra persona.<br></h5>
-                    <li>Detecta vacíos</li>
-                    <h5>Identifica lo que no pudiste explicar<br>bien.</h5>
-                    <li>Simplifica</li>
-                    <h5>Vuelve a explicarlo de forma aún más<br>clara y sencilla.</h5>
+                    <li>
+                        Elige un tema
+                        <h5>Selecciona lo que quieres aprender.</h5>
+                    </li>
+                    <li>
+                        Explícalo
+                        <h5>Explícalo con palabras simples como si fueras a otra persona.</h5>
+                    </li>
+                    <li>
+                        Detecta vacíos
+                        <h5>Identifica lo que no pudiste explicar bien.</h5>
+                    </li>
+                    <li>
+                        Simplifica
+                        <h5>Vuelve a explicarlo de forma aún más clara y sencilla.</h5>
+                    </li>
                 </ol>
                 <div class="recuerda">
                     <h5>Recuerda</h5>
-                    <h5>"Si no puedes explicarlo simplemente, es que<br>no lo entiendes lo suficiente."<br>-Richard Feynman</h5>
+                    <h5>"Si no puedes explicarlo simplemente, es que no lo entiendes lo suficiente." -Richard Feynman</h5>
                 </div>
-                <div class="espacio-imagen">Espacio para imagen</div>
+                <img class="espacio-imagen" src="{{ url_for('static', filename='img/img_feynman_pasos.png') }}" alt="Ciclo Feynman">
             </div>
             <div class="ordenpasos">
                 <div class="paso1">
@@ -77,7 +91,7 @@
                     <h2>2- Explícalo con palabras simples</h2>
                     <h5>Imagina que se lo explicas a un niño de 10 años</h5>
                     <form>
-                        <textarea id="explicación" name="comentariop2" rows="6" cols="100" placeholder="Escribe tu explicacion aquí:"></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                        <textarea id="explicacion" name="comentariop2" rows="6" cols="100" placeholder="Escribe tu explicacion aquí:"></textarea>
                     </form>
                 </div>
                 <div class="bloques3y4">
@@ -85,14 +99,14 @@
                         <h2>3- Conceptos que te costó explicar</h2>
                         <h5>Anota aquí lo que no entendiste del todo.</h5>
                         <form>
-                            <textarea id="conceptos" name="comentariop3" rows="4" cols="49" placeholder="Escribe aquí:"></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                            <textarea id="conceptos" name="comentariop3" rows="4" cols="49" placeholder="Escribe aquí:"></textarea>
                         </form>
                     </div>
                     <div class="paso4">
-                        <h2>Explicación final simplificada</h2>
+                        <h2>4- Explicación final simplificada</h2>
                         <h5>Ahora vuelve a explicarlo de la forma más sencilla posible.</h5>
                         <form>
-                            <textarea id="expfinal" name="comentariop4" rows="4" cols="49" placeholder="Escribe tu explicación final aquí:"></textarea><!--cols: ancho, placeholder:texto visible, rows:altura, name:identificador, id:identificador unico-->
+                            <textarea id="expfinal" name="comentariop4" rows="4" cols="49" placeholder="Escribe tu explicación final aquí:"></textarea>
                         </form>
                     </div>
                 </div>
@@ -101,7 +115,6 @@
         <div class="consejo">
             <h4>Consejo: Si todavía te trabas al explicar, vuelve al paso 2 y simplifica más tu explicación.</h4>
         </div>
-    </div>
 
     <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
 </body>

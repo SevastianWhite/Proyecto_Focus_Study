@@ -1,14 +1,9 @@
 {
   "usuarios": [
     {
-      "nombre": "juan",
-      "correo": "sevastian@gmail.com",
-      "contrasena": "12345678"
-    },
-    {
-      "nombre": "Estudiante",
-      "correo": "a@a.a",
-      "contrasena": "aaaaaaaa"
+      "nombre": "demo",
+      "correo": "demo@focusstudy.com",
+      "contrasena": "demo1234"
     }
   ]
 }

@@ -17,7 +17,7 @@ var enMarcha = false;
 var intervalo = null;
 
 // Largo del contorno del círculo del SVG (radio 88), para dibujar el avance del anillo.
-var CIRCUNFERENCIA = 2 * Math.PI * 88;
+var circunferencia = 2 * Math.PI * 88;
 
 var displayTiempo = document.getElementById('ds-time-display');
 var anilloProgreso = document.getElementById('ds-ring-progress');
@@ -33,8 +33,8 @@ function formatearTiempo(totalSegundos) {
 
 function actualizarAnillo() {
   var proporcion = segundosRestantes / segundosTotales;
-  anilloProgreso.style.strokeDasharray = CIRCUNFERENCIA;
-  anilloProgreso.style.strokeDashoffset = CIRCUNFERENCIA * (1 - proporcion);
+  anilloProgreso.style.strokeDasharray = circunferencia;
+  anilloProgreso.style.strokeDashoffset = circunferencia * (1 - proporcion);
 }
 
 function dibujarPuntos() {
@@ -100,29 +100,12 @@ function omitirDescanso() {
   window.location.href = '/pomodoro?ciclo=' + siguienteCiclo;
 }
 
-function mostrarRespiracion() {
-  document.getElementById('ds-respiracion').classList.toggle('visible');
-}
-
-function mostrarEstiramientos() {
-  var lista = document.getElementById('ds-estiramientos');
-  if (lista.classList.contains('visible')) {
-    return;
-  }
-  var ejercicios = [
-    'Gira el cuello lentamente, 5 veces a cada lado.',
-    'Estira los brazos hacia arriba y mantén 10 segundos.',
-    'Rota los hombros hacia atrás 10 veces.',
-    'Ponte de pie y estira la espalda hacia los lados.',
-    'Cierra los ojos y respira hondo 5 veces.',
-    'Mueve los tobillos en círculos, 10 veces cada uno.'
-  ];
-  ejercicios.forEach(function (texto) {
-    var item = document.createElement('li');
-    item.textContent = texto;
-    lista.appendChild(item);
-  });
-  lista.classList.add('visible');
+// Abre o cierra un desplegable y cambia el texto del botón.
+// textoCerrado es lo que muestra el botón cuando el contenido está oculto.
+function alternarDesplegable(btn, idContenido, textoCerrado) {
+  var contenido = document.getElementById(idContenido);
+  contenido.classList.toggle('visible');
+  btn.textContent = contenido.classList.contains('visible') ? 'Ocultar' : textoCerrado;
 }
 
 function mostrarFrase() {

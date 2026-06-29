@@ -1,12 +1,8 @@
 'use strict';
 
-/*
- * pomodoro.js — cuenta regresiva del enfoque. Cuando llega a cero, manda al
- * usuario a /descanso. El descanso (5/15 min) y los 4 ciclos son fijos: aquí
- * solo se configura el tiempo de enfoque.
- *
- * Las llaves focus_minutes / cycles van en inglés porque viajan a Flask (app.py).
- */
+// pomodoro.js — temporizador de enfoque. Cuando llega a cero va a /descanso.
+// Solo se puede cambiar el tiempo de enfoque; el descanso y los ciclos son fijos.
+// focus_minutes y cycles van en inglés porque los recibe Flask (app.py).
 
 // SERVER_CONFIG lo inyecta pomodoro.html con los valores guardados en la sesión.
 var config = {
@@ -24,7 +20,7 @@ var segundosTotales = config.enfoque * 60;
 var cicloActual = CICLO_INICIAL;
 
 // Largo del contorno del círculo (radio 88 en el SVG). Sirve para dibujar el avance.
-var CIRCUNFERENCIA = 2 * Math.PI * 88;
+var circunferencia = 2 * Math.PI * 88;
 
 // Referencias a los elementos del HTML que vamos a actualizar.
 var pantallaTiempo = document.getElementById('time-display');
@@ -57,8 +53,8 @@ function actualizarPantalla() {
 
   // El anillo se va "vaciando" según el tiempo que queda.
   var proporcion = segundosRestantes / segundosTotales;
-  var desfase = CIRCUNFERENCIA * (1 - proporcion);
-  anilloProgreso.style.strokeDasharray = CIRCUNFERENCIA;
+  var desfase = circunferencia * (1 - proporcion);
+  anilloProgreso.style.strokeDasharray = circunferencia;
   anilloProgreso.style.strokeDashoffset = desfase;
 
   dibujarPuntos();
@@ -212,9 +208,8 @@ function aplicarAjustes() {
   .catch(function () { mostrarAviso('Error al guardar la configuración'); });
 }
 
-// ── Notas y meta de estudio ──────────────────────────────────────────────
 // Guardamos automáticamente, pero esperamos un poco después de la última tecla
-// para no mandar una petición por cada letra escrita.
+// para no mandar una petición por cada letra escrita (debounce).
 var temporizadorGuardado = null;
 
 function programarGuardado() {
